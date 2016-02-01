@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="happipugModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="happipugEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="MovieItems" EntityType="happipugModel.MovieItem" />
+    <EntitySet Name="Movies" EntityType="happipugModel.Movie" />
+    <AssociationSet Name="FK__MovieItem__Movie__145C0A3F" Association="happipugModel.FK__MovieItem__Movie__145C0A3F">
+      <End Role="Movies" EntitySet="Movies" />
+      <End Role="MovieItems" EntitySet="MovieItems" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="MovieItem">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="ProductNo" Type="Int64" />
+    <Property Name="ProductName" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="ProductShopURL" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="ProductImgURL" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="ProductPrice" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="ptop" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="pleft" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="starttime" Type="Decimal" Precision="28" Scale="6" />
+    <Property Name="endtime" Type="Decimal" Precision="28" Scale="6" />
+    <Property Name="Movie_Id" Type="Int32" />
+    <NavigationProperty Name="Movie" Relationship="happipugModel.FK__MovieItem__Movie__145C0A3F" FromRole="MovieItems" ToRole="Movies" />
+    <Property Type="String" Name="ProductHandle" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Movie">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="MovieName" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="MovieHero" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="MovieHeroin" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="MovieLanguage" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="MovieDirector" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="MovieProduction" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="MovieItems" Relationship="happipugModel.FK__MovieItem__Movie__145C0A3F" FromRole="Movies" ToRole="MovieItems" />
+  </EntityType>
+  <Association Name="FK__MovieItem__Movie__145C0A3F">
+    <End Role="Movies" Type="happipugModel.Movie" Multiplicity="0..1" />
+    <End Role="MovieItems" Type="happipugModel.MovieItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Movies">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MovieItems">
+        <PropertyRef Name="Movie_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

@@ -1,0 +1,43 @@
+﻿<div class="splash-screen video-loaded">
+    <img src="/2015-08-21_10-31-40/images/logo.gif">
+</div>
+<div class="video-header fluid-container" style="opacity: 1;">
+
+    <div class="clipper-top clipper ready">
+    </div>
+    <div class="video-holder ng-isolate-scope">
+        <video muted="" autoplay="" loop="" class="video-element hidden-xs">
+            <source src="https://edge-assets.wirewax.com/ww4-foh/bgvids/WIREWAX_action_1_141104_28.mp4" type="video/mp4">
+            <source src="https://edge-assets.wirewax.com/ww4-foh/bgvids/WIREWAX_action_1_141104_28.webm" type="video/webm">
+        </video>
+    </div>
+
+    <div class="video-overlay hidden-xs"></div>
+    <div class="main-content-header">
+        <h1 class="title">
+            <span class="text-anim text-anim-1 animated">NEW MOVIES</span>
+            <span class="text-anim text-anim-2 animated" style="margin-left: 10px">ARRIVED.</span>
+        </h1>
+        <h2 class="subtitle">
+            <span class="text-anim text-anim-3 animated">Choose movie to shop movie items, now</span>
+        </h2>
+        <div class="bottom-bits in-video-header">
+
+            <button type="button" data-role="none" ng-click="prevSlick()" class="slick-prev" style="display: block;">Previous</button>
+
+            <div style="display: table-cell; vertical-align: middle;" class="text-anim text-anim-5 logos-container animated logo-wrapper">
+
+
+                <span ng-repeat="item in items">
+                    <img class="play-in-header-carousel" style="width: 20%; height: 50%; cursor: pointer" ng-click="gotoVideo()" src="{{ item.imgSrc }}" alt="{{ item.label}}">
+                </span>
+
+
+            </div>
+
+            <button type="button" data-role="none" ng-click="nextSlick()" class="slick-next" style="display: block;">Next</button>
+        </div>
+
+
+    </div>
+</div>

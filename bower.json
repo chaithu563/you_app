@@ -1,0 +1,23 @@
+{
+  "name": "shop_app",
+  "description": "A starter project for AngularJS",
+  "version": "0.0.0",
+  "homepage": "https://github.com/chaithu563/shop_app.git",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "angular": "~1.4.5",
+    "angular-route": "~1.4.0",
+	 "angular-ui-router": "~0.2.15",
+    "angular-loader": "~1.4.0",
+    "angular-mocks": "~1.4.0",
+    "html5-boilerplate": "~5.2.0",
+	"angular-bootstrap": "~0.13.0",
+	"underscore" : "~1.8.3",
+	"angular-resource" : "~1.4.4",
+	 "slick-carousel" : "~1.5.8",
+	"jquery": ">=1.7"
+	}
+  
+	
+}

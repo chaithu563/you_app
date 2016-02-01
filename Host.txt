@@ -1,0 +1,110 @@
+http://manage.bigrock.in/servlet/ViewDomainServlet?orderid=37199329&jumptoservice=false&entity-search-user-input=futurebrightsolar.com&referrerkey=TDNVMDNoOVE0MUwvVW0rNWd2bXNVb0lTWU80S0RLMmszcG9QSHhhT0xCdDlNTThzZUVPRTZRPT0=
+
+
+http://futurebrightsolar.com/videoproject/shop_app/app/index.html#/home
+
+http://futurebrightsolar.com:8880/smb/file-manager/list?currentDir=/%2Fhttpdocs
+http://futurebrightsolar.com:8880/smb/file-manager/list
+gayamrahu@gmail.com
+Gayma@123
+
+
+notes
+
+1) choose Buttons  (https://thenounproject.com/search/?q=shop)
+2) Application NAme(
+3) video control tab
+http://blog.teamtreehouse.com/building-custom-controls-for-html5-videos
+4) image purchase tag in video tag  control abov e
+
+5) background image
+6) right side videos(not required)
+7)http://www.hotstar.com/#!/featured 
+8) change images as above
+9)timings match more items
+
+
+-----------------------
+1)http://www.iconsdb.com/custom-color/cart-icons.html    (#0371A8) shop play
+
+
+http://www.wirewax.com/home/create-own
+http://www.similarsitesearch.com/alternatives-to/wirewax.com
+https://www.sequoiacap.com/india
+http://www.softbank.jp/en/
+http://www.innovid.com/
+https://studio.wirewax.com/#/studio/videos
+gayam_raja@yahoo.co.in
+azsxdc
+https://gayamstore.myshopify.com/admin/products/2466588099.json
+
+title
+9705030809
+
+https://gayamstore.myshopify.com/admin/products/2464999811/images.json
+
+-----------------------data base
+Connection string: Data Source=162.222.225.88;Network Library=;Connection Timeout=15;Packet Size=4096;Integrated Security=no;User ID=happipug;Encrypt=no;
+Connection timeout: 15
+Database: futurxpb_happipug
+Datasource: 162.222.225.88
+Network packet size: 4096
+Server version: 11.00.3000
+Work station id: PLESK-WEB8
+
+--------------------sql
+CREATE TABLE Movies
+(
+Id int NOT NULL,
+MovieName varchar(255) NOT NULL,
+MovieHero varchar(255),
+MovieHeroin varchar(255),
+MovieLanguage varchar(255),
+MovieDirector varchar(255),
+MovieProduction varchar(255),
+PRIMARY KEY (Id)
+)
+
+INSERT INTO [futurxpb_happipug].[happipug].[Movies]
+           ([Id]
+           ,[MovieName]
+           ,[MovieHero]
+           ,[MovieHeroin]
+           ,[MovieLanguage]
+           ,[MovieDirector]
+           ,[MovieProduction])
+     VALUES
+           (1
+           ,'sreemanthudu'
+           ,'mahesh babu'
+           ,'shruti Hasan'
+           ,'telugu'
+           ,'koratal siva'
+           ,'mahesh production')
+GO
+
+
+
+
+
+
+CREATE TABLE MovieItems
+(
+Id int NOT NULL,
+ProductNo int NOT NULL,
+ProductName varchar(255),
+ProductShopURL varchar(MAX),
+ProductImgURL varchar(MAX),
+ProductPrice money,
+ptop decimal NOT NULL,
+pleft decimal NOT NULL,
+starttime decimal NOT NULL,
+endtime decimal NOT NULL,
+Movie_Id int,
+PRIMARY KEY (Id),
+FOREIGN KEY (Movie_Id) REFERENCES Movies(Id)
+)
+----------------api serv
+http://localhost/shop/HappiPugService/HappiPugService/api/movieItems
+http://localhost/shop/HappiPugService/HappiPugService/api/movies/1
+
