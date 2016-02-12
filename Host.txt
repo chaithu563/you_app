@@ -108,3 +108,10 @@ FOREIGN KEY (Movie_Id) REFERENCES Movies(Id)
 http://localhost/shop/HappiPugService/HappiPugService/api/movieItems
 http://localhost/shop/HappiPugService/HappiPugService/api/movies/1
 
+
+happiepug
+Here is your API key AIzaSyDaYcpv3O5JP7gjljOfo4D-fL9KeC55VW8
+
+clientiD
+692869361430-gsc9idinv1fqk56hlr29diqhgfhdru5m.apps.googleusercontent.com
+secre  R-WyRNKwmIQIOGAEBLCS_qJq
