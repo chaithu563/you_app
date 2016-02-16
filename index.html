@@ -37,6 +37,15 @@
 
         var scopes = 'https://www.googleapis.com/auth/plus.me';
 
+		//jwt tocken   https://developers.google.com/identity/protocols/OAuth2ServiceAccount#creatingjwt
+		var header={"alg":"RS256","typ":"JWT"};
+		//eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9
+		var claimtocken={"iss":"happiepug@inlaid-backbone-120410.iam.gserviceaccount.com","scope":"https://www.googleapis.com/auth/devstorage.readonly","aud":"https://www.googleapis.com/oauth2/v4/token","exp":1328554385,"iat":1328550785}
+		//eyJpc3MiOiJoYXBwaWVwdWdAaW5sYWlkLWJhY2tib25lLTEyMDQxMC5pYW0uZ3NlcnZpY2VhY2NvdW50LmNvbSIsInNjb3BlIjoiaHR0cHM6Ly93d3cuZ29vZ2xlYXBpcy5jb20vYXV0aC9kZXZzdG9yYWdlLnJlYWRvbmx5IiwiYXVkIjoiaHR0cHM6Ly93d3cuZ29vZ2xlYXBpcy5jb20vb2F1dGgyL3Y0L3Rva2VuIiwiZXhwIjoxMzI4NTU0Mzg1LCJpYXQiOjEzMjg1NTA3ODV9
+		
+		//var encodedString = base64UrlEncode(header) + "." + base64UrlEncode(payload);
+//SHA256withRSA(encodedString,'secreat')
+// old HMACSHA256(encodedString, 'secret');
         function handleClientLoad() {
             // Step 2: Reference the API key
             gapi.client.setApiKey(apiKey);
