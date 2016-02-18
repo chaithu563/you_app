@@ -46,10 +46,37 @@
 		//var encodedString = base64UrlEncode(header) + "." + base64UrlEncode(payload);
 //SHA256withRSA(encodedString,'secreat')
 // old HMACSHA256(encodedString, 'secret');
-        function handleClientLoad() {
+//base64 signature    NDg4RDczM0U1M0E0NkEwNEQ5OUJBNDNDQzMzQzgyNjY1QTJEQzgyOENENkZBREEyRkZEMEVGOTczQ0YxNTUxOQ==
+//http://hash.online-convert.com/sha256-generator
+//http://www.convertstring.com/Hash/SHA256
+var jwtTocken="eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJoYXBwaWVwdWdAaW5sYWlkLWJhY2tib25lLTEyMDQxMC5pYW0uZ3NlcnZpY2VhY2NvdW50LmNvbSIsInNjb3BlIjoiaHR0cHM6Ly93d3cuZ29vZ2xlYXBpcy5jb20vYXV0aC9kZXZzdG9yYWdlLnJlYWRvbmx5IiwiYXVkIjoiaHR0cHM6Ly93d3cuZ29vZ2xlYXBpcy5jb20vb2F1dGgyL3Y0L3Rva2VuIiwiZXhwIjoxMzI4NTU0Mzg1LCJpYXQiOjEzMjg1NTA3ODV9.NDg4RDczM0U1M0E0NkEwNEQ5OUJBNDNDQzMzQzgyNjY1QTJEQzgyOENENkZBREEyRkZEMEVGOTczQ0YxNTUxOQ==";
+       
+	   function handleClientLoad() {
             // Step 2: Reference the API key
-            gapi.client.setApiKey(apiKey);
-            window.setTimeout(checkAuth, 1);
+            //gapi.client.setApiKey(apiKey);
+	   	//window.setTimeout(checkAuth, 1);
+
+			//server to server auth
+			var xmlhttp = new XMLHttpRequest();
+			var url = "https://www.googleapis.com/oauth2/v4/token";
+			url = url + "?" + "grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Ajwt-bearer" + "&assertion=" + jwtTocken + "";
+xmlhttp.open("POST", url, true);
+xmlhttp.setRequestHeader("Content-type", "x-www-form-urlencoded");
+xmlhttp.onreadystatechange = function () { //Call a function when the state changes.
+    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+        alert(xmlhttp.responseText);
+    }
+}
+//var parameters = {
+//	"grant_type": "urn:ietf:params:oauth:grant-type:jwt-bearer",
+//	"assertion": jwtTocken
+	   	//};
+
+
+
+// Neither was accepted when I set with parameters="username=myname"+"&password=mypass" as the server may not accept that
+	   	//xmlhttp.send(JSON.stringify(parameters));
+xmlhttp.send();
         }
 
         function checkAuth() {
@@ -59,7 +86,7 @@
         function handleAuthResult(authResult) {
             var authorizeButton = document.getElementById('authorize-button');
             if (authResult && !authResult.error) {
-                //authorizeButton.style.visibility = 'hidden';
+                authorizeButton.style.visibility = 'hidden';
                 makeApiCall();
             } else {
                 authorizeButton.style.visibility = '';
