@@ -46,7 +46,8 @@
 		//var encodedString = base64UrlEncode(header) + "." + base64UrlEncode(payload);
 //SHA256withRSA(encodedString,'secreat')
 // old HMACSHA256(encodedString, 'secret');
-//base64 signature    NDg4RDczM0U1M0E0NkEwNEQ5OUJBNDNDQzMzQzgyNjY1QTJEQzgyOENENkZBREEyRkZEMEVGOTczQ0YxNTUxOQ==
+			//base64 signature    NDg4RDczM0U1M0E0NkEwNEQ5OUJBNDNDQzMzQzgyNjY1QTJEQzgyOENENkZBREEyRkZEMEVGOTczQ0YxNTUxOQ==
+			//https://groups.google.com/forum/#!topic/oauth2-dev/8jkOpmN604w
 //http://hash.online-convert.com/sha256-generator
 			//http://www.convertstring.com/Hash/SHA256
 			//https://kjur.github.io/jsrsasign/sample-rsasign.html
@@ -61,7 +62,7 @@ var jwtTocken="eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJoYXBwaWVwdWdAaW5s
 			//server to server auth
 			var xmlhttp = new XMLHttpRequest();
 			var url = "https://www.googleapis.com/oauth2/v4/token";
-			url = url + "?" + "grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Ajwt-bearer" + "&assertion=" + jwtTocken + "";
+		//	url = url + "?" + "grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Ajwt-bearer" + "&assertion=" + jwtTocken + "";
 xmlhttp.open("POST", url, true);
 xmlhttp.setRequestHeader("Content-type", "x-www-form-urlencoded");
 xmlhttp.onreadystatechange = function () { //Call a function when the state changes.
@@ -72,13 +73,13 @@ xmlhttp.onreadystatechange = function () { //Call a function when the state chan
 //var parameters = {
 //	"grant_type": "urn:ietf:params:oauth:grant-type:jwt-bearer",
 //	"assertion": jwtTocken
-	   	//};
+//	   	};
 
-
+	
 
 // Neither was accepted when I set with parameters="username=myname"+"&password=mypass" as the server may not accept that
-	   	//xmlhttp.send(JSON.stringify(parameters));
-xmlhttp.send();
+	   	xmlhttp.send((parameters));
+//xmlhttp.send();
         }
 
         function checkAuth() {
