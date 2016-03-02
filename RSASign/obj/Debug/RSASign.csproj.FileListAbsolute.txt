@@ -10,3 +10,9 @@ C:\chaitanya\raja\myshop\you_app\RSASign\bin\Debug\RSASign.pdb
 C:\chaitanya\raja\myshop\you_app\RSASign\obj\Debug\RSASign.csprojResolveAssemblyReference.cache
 C:\chaitanya\raja\myshop\you_app\RSASign\obj\Debug\RSASign.exe
 C:\chaitanya\raja\myshop\you_app\RSASign\obj\Debug\RSASign.pdb
+D:\youtube\RSASign\bin\Debug\RSASign.exe.config
+D:\youtube\RSASign\obj\Debug\RSASign.exe
+D:\youtube\RSASign\obj\Debug\RSASign.pdb
+D:\youtube\RSASign\bin\Debug\RSASign.exe
+D:\youtube\RSASign\bin\Debug\RSASign.pdb
+D:\youtube\RSASign\obj\Debug\RSASign.csprojResolveAssemblyReference.cache
