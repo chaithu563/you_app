@@ -30,112 +30,15 @@
   </head>
     
     <script type="text/javascript">
-        //https://zavitax.wordpress.com/2012/12/17/logging-in-with-google-service-account-in-c-jwt/
-        var clientId = '692869361430-gsc9idinv1fqk56hlr29diqhgfhdru5m.apps.googleusercontent.com';
+     
 
-        var apiKey = 'AIzaSyDaYcpv3O5JP7gjljOfo4D-fL9KeC55VW8';
-
-        var scopes = 'https://www.googleapis.com/auth/plus.me';
-
-		//jwt tocken   https://developers.google.com/identity/protocols/OAuth2ServiceAccount#creatingjwt
-		var header={"alg":"RS256","typ":"JWT"};
-		//eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9
-		var claimtocken={"iss":"happiepug@inlaid-backbone-120410.iam.gserviceaccount.com","scope":"https://www.googleapis.com/auth/devstorage.readonly","aud":"https://www.googleapis.com/oauth2/v4/token","exp":1328554385,"iat":1328550785}
-		//eyJpc3MiOiJoYXBwaWVwdWdAaW5sYWlkLWJhY2tib25lLTEyMDQxMC5pYW0uZ3NlcnZpY2VhY2NvdW50LmNvbSIsInNjb3BlIjoiaHR0cHM6Ly93d3cuZ29vZ2xlYXBpcy5jb20vYXV0aC9kZXZzdG9yYWdlLnJlYWRvbmx5IiwiYXVkIjoiaHR0cHM6Ly93d3cuZ29vZ2xlYXBpcy5jb20vb2F1dGgyL3Y0L3Rva2VuIiwiZXhwIjoxMzI4NTU0Mzg1LCJpYXQiOjEzMjg1NTA3ODV9
-		
-		//var encodedString = base64UrlEncode(header) + "." + base64UrlEncode(payload);
-//SHA256withRSA(encodedString,'secreat')
-// old HMACSHA256(encodedString, 'secret');
-			//base64 signature    NDg4RDczM0U1M0E0NkEwNEQ5OUJBNDNDQzMzQzgyNjY1QTJEQzgyOENENkZBREEyRkZEMEVGOTczQ0YxNTUxOQ==
-			//https://groups.google.com/forum/#!topic/oauth2-dev/8jkOpmN604w
-//http://hash.online-convert.com/sha256-generator
-			//http://www.convertstring.com/Hash/SHA256
-			//https://kjur.github.io/jsrsasign/sample-rsasign.html
-			//http://cryptomanager.com/download.php
-		var jwtTocken = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJoYXBwaWVwdWdAaW5sYWlkLWJhY2tib25lLTEyMDQxMC5pYW0uZ3NlcnZpY2VhY2NvdW50LmNvbSIsInNjb3BlIjoiaHR0cHM6Ly93d3cuZ29vZ2xlYXBpcy5jb20vYXV0aC9kZXZzdG9yYWdlLnJlYWRvbmx5IiwiYXVkIjoiaHR0cHM6Ly93d3cuZ29vZ2xlYXBpcy5jb20vb2F1dGgyL3Y0L3Rva2VuIiwiZXhwIjoxMzI4NTU0Mzg1LCJpYXQiOjEzMjg1NTA3ODV9.gaVushwzH8yvaBrAwcx0pwrNE8WYyVrN+5lihrl1Q3LrL9likjMLvNqavVxvnKV03fGWaEqWZ1zL6LRL80XlIWcz3yq4/9kMFhBHEYO6tDUBI1m/dBPA+9BTuuUUUQZ1qD4Re3BMXAti9GrffvQ4AFAJ+74Eyhcg8IyU1zlFuKsRtSc+L6dPBC8+ZhoxXMN8UvFdBl/rdQVIFfEvX0ebrsMkrfdrFQp5lcXBhhiyDc+hqfZYy1SiesfGoO1ASKDM0EX5H7Nj7kOAYltHPcKDAtT97hwauUVWLqWHK73J8vD+3F5M5KOKTRatzLwEjM/huMVLubkJ5cvLuN2+oP3EwQ==";
-       
-	   function handleClientLoad() {
-            // Step 2: Reference the API key
-            //gapi.client.setApiKey(apiKey);
-	   	//window.setTimeout(checkAuth, 1);
-
-			//server to server auth
-			var xmlhttp = new XMLHttpRequest();
-			var url = "https://www.googleapis.com/oauth2/v4/token";
-			url = url + "?" + "grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Ajwt-bearer" + "&assertion=" + jwtTocken + "";
-xmlhttp.open("POST", url, true);
-xmlhttp.setRequestHeader("Content-type", "x-www-form-urlencoded");
-xmlhttp.onreadystatechange = function () { //Call a function when the state changes.
-    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-        alert(xmlhttp.responseText);
-    }
-}
-//var parameters = {
-//	"grant_type": "urn:ietf:params:oauth:grant-type:jwt-bearer",
-//	"assertion": jwtTocken
-//	   	};
-
-	
-
-// Neither was accepted when I set with parameters="username=myname"+"&password=mypass" as the server may not accept that
-	   	xmlhttp.send();
-	   	//xmlhttp.send();
-
-	   	//https://stephenhaunts.com/2014/11/23/cryptography-in-net-digital-signatures/
-        }
-
-        function checkAuth() {
-            gapi.auth.authorize({ client_id: clientId, scope: scopes, immediate: true }, handleAuthResult);
-        }
-
-        function handleAuthResult(authResult) {
-            var authorizeButton = document.getElementById('authorize-button');
-            if (authResult && !authResult.error) {
-                authorizeButton.style.visibility = 'hidden';
-                makeApiCall();
-            } else {
-                authorizeButton.style.visibility = '';
-                authorizeButton.onclick = handleAuthClick;
-            }
-        }
-
-        function handleAuthClick(event) {
-            // Step 3: get authorization to use private data
-            gapi.auth.authorize({ client_id: clientId, scope: scopes, immediate: false }, handleAuthResult);
-            return false;
-        }
-
-        // Load the API and make an API call.  Display the results on the screen.
-        function makeApiCall() {
-            // Step 4: Load the Google+ API
-            gapi.client.load('plus', 'v1').then(function () {
-                // Step 5: Assemble the API request
-                var request = gapi.client.plus.people.get({
-                    'userId': 'me'
-                });
-                // Step 6: Execute the API request
-                request.then(function (resp) {
-                    var heading = document.createElement('h4');
-                    var image = document.createElement('img');
-                    image.src = resp.result.image.url;
-                    heading.appendChild(image);
-                    heading.appendChild(document.createTextNode(resp.result.displayName));
-
-                    document.getElementById('content').appendChild(heading);
-                }, function (reason) {
-                    console.log('Error: ' + reason.result.error.message);
-                });
-            });
-        }
     </script>
 
-    <script src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
+    
 
   <!-- 3. Display the application -->
   <body>
-    <my-app>Loading...</my-app></br>
-          <!--Add a button for the user to click to initiate auth sequence -->
-    <button id="authorize-button" >Authorize</button>
+    <hp-app>Loading...</hp-app>    
   </body>
 
 </html>

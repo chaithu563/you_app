@@ -1,4 +1,4 @@
-System.register(['angular2/core', './content/header.component'], function(exports_1) {
+System.register(['angular2/core'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,32 +8,28 @@ System.register(['angular2/core', './content/header.component'], function(export
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, header_component_1;
-    var AppComponent;
+    var core_1;
+    var HeaderComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
-            },
-            function (header_component_1_1) {
-                header_component_1 = header_component_1_1;
             }],
         execute: function() {
-            AppComponent = (function () {
-                function AppComponent() {
+            HeaderComponent = (function () {
+                function HeaderComponent() {
                 }
-                AppComponent = __decorate([
+                HeaderComponent = __decorate([
                     core_1.Component({
-                        selector: 'hp-app',
-                        template: '<hp-header></hp-header><h1>Main</h1>',
-                        directives: [header_component_1.HeaderComponent]
+                        selector: 'hp-header',
+                        template: '<h1>My Header</h1>'
                     }), 
                     __metadata('design:paramtypes', [])
-                ], AppComponent);
-                return AppComponent;
+                ], HeaderComponent);
+                return HeaderComponent;
             })();
-            exports_1("AppComponent", AppComponent);
+            exports_1("HeaderComponent", HeaderComponent);
         }
     }
 });
-//# sourceMappingURL=app.component.js.map
+//# sourceMappingURL=header.component.js.map
