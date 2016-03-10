@@ -1,4 +1,4 @@
-System.register(['angular2/core', './content/header.component'], function(exports_1) {
+System.register(['angular2/core', './content/header/header.component', './content/body/body.component', './httpclient'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,7 +8,7 @@ System.register(['angular2/core', './content/header.component'], function(export
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, header_component_1;
+    var core_1, header_component_1, body_component_1, httpclient_1;
     var AppComponent;
     return {
         setters:[
@@ -17,18 +17,27 @@ System.register(['angular2/core', './content/header.component'], function(export
             },
             function (header_component_1_1) {
                 header_component_1 = header_component_1_1;
+            },
+            function (body_component_1_1) {
+                body_component_1 = body_component_1_1;
+            },
+            function (httpclient_1_1) {
+                httpclient_1 = httpclient_1_1;
             }],
         execute: function() {
             AppComponent = (function () {
-                function AppComponent() {
+                function AppComponent(httpClient) {
+                    httpClient.get('https://www.googleapis.com/youtube/v3/playlists')
+                        .map(function (res) { return res.json(); })
+                        .subscribe(function (res) { return console.log(res); });
                 }
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'hp-app',
-                        template: '<hp-header></hp-header><h1>Main</h1>',
-                        directives: [header_component_1.HeaderComponent]
+                        template: '<hp-header></hp-header><hp-body></hp-body>',
+                        directives: [header_component_1.HeaderComponent, body_component_1.BodyComponent]
                     }), 
-                    __metadata('design:paramtypes', [])
+                    __metadata('design:paramtypes', [httpclient_1.HttpClient])
                 ], AppComponent);
                 return AppComponent;
             })();

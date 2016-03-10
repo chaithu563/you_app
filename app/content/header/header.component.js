@@ -22,7 +22,7 @@ System.register(['angular2/core'], function(exports_1) {
                 HeaderComponent = __decorate([
                     core_1.Component({
                         selector: 'hp-header',
-                        template: '<h1>My Header</h1>'
+                        template: '<h1>My Header1</h1> <input type="text" />'
                     }), 
                     __metadata('design:paramtypes', [])
                 ], HeaderComponent);
