@@ -1,4 +1,4 @@
-System.register(['angular2/core', './content/header/header.component', './content/body/body.component', 'angular2/http'], function(exports_1) {
+System.register(['angular2/core', './content/header/header.component', './content/body/body.component', 'angular2/http', 'rxjs/Rx'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -23,18 +23,14 @@ System.register(['angular2/core', './content/header/header.component', './conten
             },
             function (http_1_1) {
                 http_1 = http_1_1;
-            }],
+            },
+            function (_1) {}],
         execute: function() {
             AppComponent = (function () {
-                //constructor(httpClient: HttpClient) {
-                //    httpClient.get('https://www.googleapis.com/youtube/v3/playlists')
-                //        .map(res => res.json())
-                //        .subscribe(res => console.log(res));
-                //}
                 function AppComponent(http) {
-                    http.get('https://www.googleapis.com/youtube/v3/playlists')
-                        .map(function (res) { return res.json(); })
-                        .subscribe(function (people) { return console.log(people); });
+                    var _this = this;
+                    this.result = { friends: [] };
+                    http.get('https://www.googleapis.com/youtube/v3/playlists').map(function (res) { return res.json(); }).subscribe(function (res) { return _this.result = res; });
                 }
                 AppComponent = __decorate([
                     core_1.Component({

@@ -1,4 +1,4 @@
-﻿import {Http, Headers} from 'angular2/http';
+﻿import {Http, Headers, HTTP_PROVIDERS} from 'angular2/http';
 import {Injectable} from 'angular2/core';
 @Injectable()
 export class HttpClient {
@@ -9,7 +9,7 @@ export class HttpClient {
 
     createAuthorizationHeader(headers: Headers) {
         headers.append('Authorization', 'Bearer ' +
-           'ya29.oAJ07SJEgeAUynYIaV7sngYtFFNy_aqE20TnRSzOHyJ1K8aiuP_yvhQHMHMazqxxeUY');
+           'ya29.pgKXsPfC6omlE3dXewMwpRLiPqh2tWVQh0vGEUroTszYd0CI0nwf3HuVAVMnOm0GIO8');
     }
 
     get(url) {

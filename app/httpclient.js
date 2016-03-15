@@ -25,7 +25,7 @@ System.register(['angular2/http', 'angular2/core'], function(exports_1) {
                 }
                 HttpClient.prototype.createAuthorizationHeader = function (headers) {
                     headers.append('Authorization', 'Bearer ' +
-                        'ya29.oAJ07SJEgeAUynYIaV7sngYtFFNy_aqE20TnRSzOHyJ1K8aiuP_yvhQHMHMazqxxeUY');
+                        'ya29.pgKXsPfC6omlE3dXewMwpRLiPqh2tWVQh0vGEUroTszYd0CI0nwf3HuVAVMnOm0GIO8');
                 };
                 HttpClient.prototype.get = function (url) {
                     var headers = new http_1.Headers();
