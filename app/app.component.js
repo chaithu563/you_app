@@ -1,4 +1,4 @@
-System.register(['angular2/core', './content/header/header.component', './content/body/body.component', 'angular2/http', 'rxjs/Rx'], function(exports_1) {
+System.register(['angular2/core', './content/header/header.component', './content/body/body.component', 'angular2/http', './httpclient', 'rxjs/Rx'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,7 +8,7 @@ System.register(['angular2/core', './content/header/header.component', './conten
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, header_component_1, body_component_1, http_1;
+    var core_1, header_component_1, body_component_1, http_1, httpclient_1;
     var AppComponent;
     return {
         setters:[
@@ -24,22 +24,29 @@ System.register(['angular2/core', './content/header/header.component', './conten
             function (http_1_1) {
                 http_1 = http_1_1;
             },
+            function (httpclient_1_1) {
+                httpclient_1 = httpclient_1_1;
+            },
             function (_1) {}],
         execute: function() {
             AppComponent = (function () {
-                function AppComponent(http) {
-                    var _this = this;
-                    this.result = { friends: [] };
-                    http.get('https://www.googleapis.com/youtube/v3/playlists').map(function (res) { return res.json(); }).subscribe(function (res) { return _this.result = res; });
+                function AppComponent(httpClient) {
+                    //'https://www.googleapis.com/youtube/v3/playlists?part=snippet&id=PLN-d9pcl44sYHJbw2Kobs355w1Sj2o52t
+                    //channels?part=contentDetails&id=UCoWg9A-3VNv7adgHLc4LheA
+                    //UUoWg9A-3VNv7adgHLc4LheA
+                    httpClient.get('https://www.googleapis.com/youtube/v3/PlaylistItems?part=snippet&id=UUoWg9A-3VNv7adgHLc4LheA')
+                        .map(function (res) { return res.json(); })
+                        .subscribe(function (res) { return console.log(res); });
                 }
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'hp-app',
-                        viewProviders: [http_1.HTTP_PROVIDERS],
+                        providers: [httpclient_1.HttpClient, http_1.HTTP_PROVIDERS],
+                        // appInjector: [HttpClient],
                         template: '<hp-header></hp-header><hp-body></hp-body>',
                         directives: [header_component_1.HeaderComponent, body_component_1.BodyComponent]
                     }), 
-                    __metadata('design:paramtypes', [http_1.Http])
+                    __metadata('design:paramtypes', [httpclient_1.HttpClient])
                 ], AppComponent);
                 return AppComponent;
             })();
