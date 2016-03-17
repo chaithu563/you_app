@@ -34,7 +34,8 @@ System.register(['angular2/core', './content/header/header.component', './conten
                     //'https://www.googleapis.com/youtube/v3/playlists?part=snippet&id=PLN-d9pcl44sYHJbw2Kobs355w1Sj2o52t
                     //channels?part=contentDetails&id=UCoWg9A-3VNv7adgHLc4LheA
                     //UUoWg9A-3VNv7adgHLc4LheA
-                    httpClient.get('https://www.googleapis.com/youtube/v3/PlaylistItems?part=snippet&id=UUoWg9A-3VNv7adgHLc4LheA')
+                    //playlistItems?part=snippet&id=UUoWg9A-3VNv7adgHLc4LheA
+                    httpClient.get('https://www.googleapis.com/youtube/v3/channels?part=contentDetails&id=UCoWg9A-3VNv7adgHLc4LheA')
                         .map(function (res) { return res.json(); })
                         .subscribe(function (res) { return console.log(res); });
                 }
