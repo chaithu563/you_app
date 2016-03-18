@@ -1,4 +1,6 @@
-System.register(['angular2/core', './content/header/header.component', './content/body/body.component', 'angular2/http', './httpclient', 'rxjs/Rx'], function(exports_1) {
+System.register(['angular2/core', './content/header/header.component', './content/body/body.component', 'angular2/http', './httpclient', 'rxjs/Rx'], function(exports_1, context_1) {
+    "use strict";
+    var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -31,11 +33,13 @@ System.register(['angular2/core', './content/header/header.component', './conten
         execute: function() {
             AppComponent = (function () {
                 function AppComponent(httpClient) {
-                    //'https://www.googleapis.com/youtube/v3/playlists?part=snippet&id=PLN-d9pcl44sYHJbw2Kobs355w1Sj2o52t
+                    //https://www.googleapis.com/youtube/v3/playlists?part=snippet&id=PLN-d9pcl44sYHJbw2Kobs355w1Sj2o52t
                     //channels?part=contentDetails&id=UCoWg9A-3VNv7adgHLc4LheA
                     //UUoWg9A-3VNv7adgHLc4LheA
                     //playlistItems?part=snippet&id=UUoWg9A-3VNv7adgHLc4LheA
-                    httpClient.get('https://www.googleapis.com/youtube/v3/channels?part=contentDetails&id=UCoWg9A-3VNv7adgHLc4LheA')
+                    //channels?part=contentDetails&id=UCoWg9A-3VNv7adgHLc4LheA
+                    //https://developers.google.com/apis-explorer/#p/youtube/v3/youtube.channels.list?part= contentDetails&forUsername=chaitanya.eedara  not work
+                    httpClient.get('https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PLN-d9pcl44sYHJbw2Kobs355w1Sj2o52t')
                         .map(function (res) { return res.json(); })
                         .subscribe(function (res) { return console.log(res); });
                 }
@@ -50,7 +54,7 @@ System.register(['angular2/core', './content/header/header.component', './conten
                     __metadata('design:paramtypes', [httpclient_1.HttpClient])
                 ], AppComponent);
                 return AppComponent;
-            })();
+            }());
             exports_1("AppComponent", AppComponent);
         }
     }

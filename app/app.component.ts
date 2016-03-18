@@ -15,11 +15,13 @@ export class AppComponent {
     
 
     constructor(httpClient: HttpClient) {
-    //'https://www.googleapis.com/youtube/v3/playlists?part=snippet&id=PLN-d9pcl44sYHJbw2Kobs355w1Sj2o52t
+    //https://www.googleapis.com/youtube/v3/playlists?part=snippet&id=PLN-d9pcl44sYHJbw2Kobs355w1Sj2o52t
     //channels?part=contentDetails&id=UCoWg9A-3VNv7adgHLc4LheA
     //UUoWg9A-3VNv7adgHLc4LheA
     //playlistItems?part=snippet&id=UUoWg9A-3VNv7adgHLc4LheA
-        httpClient.get('https://www.googleapis.com/youtube/v3/channels?part=contentDetails&id=UCoWg9A-3VNv7adgHLc4LheA')
+			//channels?part=contentDetails&id=UCoWg9A-3VNv7adgHLc4LheA
+			//https://developers.google.com/apis-explorer/#p/youtube/v3/youtube.channels.list?part= contentDetails&forUsername=chaitanya.eedara  not work
+			httpClient.get('https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PLN-d9pcl44sYHJbw2Kobs355w1Sj2o52t')
            
             .map(res => res.json())
             

@@ -9,7 +9,7 @@ export class HttpClient {
 
     createAuthorizationHeader(headers: Headers) {
         headers.append('Authorization', 'Bearer ' +
-           'ya29.pwLSdM-P0uqNWWZSKfWxVZgkvyrF0Eqaeh_ATjZuXnzkzWRst0zemXLPUxQWpKXiiPA');
+           'ya29.qQKNjCkB1qOjgWNTykXXkANbB-pK5MTMhYIqquhA8uIoyyanYUSbTEkBvQYzDaQwNVk');
     }
 
     get(url) {
