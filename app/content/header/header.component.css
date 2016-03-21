@@ -1,5 +1,27 @@
 ﻿body {
 }
-h1{
-	background-color:red;
+.header_container{
+	    margin: 0 auto;
+      width: 100%;
+}
+.navbar {
+    height: 94px;
+}
+.header-new {
+    background: url(../images/header_bg.png) repeat-x;
+    font-family: 'Roboto', sans-serif!important;
+    font-weight: 300;
+}
+.navbar-inverse {
+    border: none;
+}
+
+.navbar {
+    height: 55px;
+}
+.header-new {
+    background: #fff;
+}
+.no-mar {
+    margin: 0;
 }
