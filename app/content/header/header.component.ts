@@ -4,6 +4,6 @@
     selector: 'hp-header',
    // template: '<h1>My Header1</h1> <input type="text" />'
     templateUrl: 'app/content/header/header.component.html',
-    styleUrls: ['header.component.css']
+    styleUrls: ['app/content/header/header.component.css']
 })
 export class HeaderComponent { }

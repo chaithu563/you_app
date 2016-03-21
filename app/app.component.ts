@@ -14,7 +14,17 @@ import 'rxjs/Rx';
 export class AppComponent {
     
 
-    constructor(httpClient: HttpClient) {
+	constructor(httpClient: HttpClient, http: Http) {
+
+
+
+		http.get('http://localhost/shop/HappiPugService/HappiPugService/api/token')
+			.map(res => res.json())
+			.subscribe(token => localStorage.setItem('apitoken', token.access_token),
+			err => console.log(err)
+			);
+
+
     //https://www.googleapis.com/youtube/v3/playlists?part=snippet&id=PLN-d9pcl44sYHJbw2Kobs355w1Sj2o52t
     //channels?part=contentDetails&id=UCoWg9A-3VNv7adgHLc4LheA
     //UUoWg9A-3VNv7adgHLc4LheA
