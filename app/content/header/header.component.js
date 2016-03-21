@@ -1,6 +1,4 @@
-System.register(['angular2/core'], function(exports_1, context_1) {
-    "use strict";
-    var __moduleName = context_1 && context_1.id;
+System.register(['angular2/core'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -24,12 +22,14 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                 HeaderComponent = __decorate([
                     core_1.Component({
                         selector: 'hp-header',
-                        template: '<h1>My Header1</h1> <input type="text" />'
+                        // template: '<h1>My Header1</h1> <input type="text" />'
+                        templateUrl: 'app/content/header/header.component.html',
+                        styleUrls: ['header.component.css']
                     }), 
                     __metadata('design:paramtypes', [])
                 ], HeaderComponent);
                 return HeaderComponent;
-            }());
+            })();
             exports_1("HeaderComponent", HeaderComponent);
         }
     }
