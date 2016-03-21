@@ -1,7 +1,7 @@
 ﻿<html>
-  <head>
+<head>
     <title>Angular 2 QuickStart</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- 1. Load libraries -->
     <!-- IE required polyfills, in this exact order -->
@@ -12,36 +12,43 @@
     <script src="node_modules/systemjs/dist/system.src.js"></script>
     <script src="node_modules/rxjs/bundles/Rx.js"></script>
     <script src="node_modules/angular2/bundles/angular2.dev.js"></script>
-      <script src="node_modules/angular2/bundles/router.min.js"></script>
-      <script src="node_modules/angular2/bundles/http.min.js"></script>
-
+    <script src="node_modules/angular2/bundles/router.min.js"></script>
+    <script src="node_modules/angular2/bundles/http.min.js"></script>
+    <!--<script src="node_modules/angular2/bootstrap.js"></script>-->
+    <script src="node_modules/ng2-bootstrap/ng2-bootstrap.js"></script>
     <!-- 2. Configure SystemJS -->
     <script>
       System.config({
-        packages: {        
-          app: {
-            format: 'register',
-            defaultExtension: 'js'
-          }
-        }
+        packages: {
+              "app": {
+                format: 'register',
+                defaultExtension: 'js'
+              },
+           "node_modules/ng2-bootstrap": {
+                  defaultExtension: 'js'
+               }
+          },
+         paths: {
+    "ng2-bootstrap/ng2-bootstrap":   "node_modules/ng2-bootstrap/ng2-bootstrap"
+  }
       });
       System.import('app/main')
             .then(null, console.error.bind(console));
     </script>
 
-  </head>
-    
-    <script type="text/javascript">
-     
+</head>
 
-    </script>
+<script type="text/javascript">
 
-    
 
-  <!-- 3. Display the application -->
-  <body>
-    <hp-app>Loading...</hp-app>    
-  </body>
+</script>
+
+
+
+<!-- 3. Display the application -->
+<body>
+    <hp-app>Loading...</hp-app>
+</body>
 
 </html>
 
