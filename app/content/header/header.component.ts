@@ -26,7 +26,6 @@ import {CAROUSEL_DIRECTIVES} from 'ng2-bootstrap/ng2-bootstrap';
 	//http://valor-software.com/ng2-bootstrap/
 export class HeaderComponent {
 
-
 	private myInterval: number = 5000;
   private noWrapSlides: boolean = false;
   private slides: Array<any> = [];
