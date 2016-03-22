@@ -26,7 +26,33 @@ System.register(['angular2/core', 'angular2/common', 'ng2-bootstrap/ng2-bootstra
         execute: function() {
             HeaderComponent = (function () {
                 function HeaderComponent() {
+                    this.myInterval = 5000;
+                    this.noWrapSlides = false;
+                    this.slides = [];
+                    //for (let i = 0; i < 4; i++) {
+                    //  this.addSlide();
+                    //}
+                    this.addSlides();
                 }
+                //private addSlide() {
+                //  let newWidth = 600 + this.slides.length + 1;
+                //  this.slides.push({
+                //    image: `//placekitten.com/${newWidth}/300`,
+                //    text: `${['More', 'Extra', 'Lots of', 'Surplus'][this.slides.length % 4]}
+                //    ${['Cats', 'Kittys', 'Felines', 'Cutes'][this.slides.length % 4]}`
+                //  });
+                //}
+                HeaderComponent.prototype.addSlides = function () {
+                    this.slides = [{
+                            image: 'http://c.saavncdn.com/027/Nenu-Sailaja-Telugu-2015-500x500.jpg',
+                            text: 'Nenu Sailaja'
+                        },
+                        {
+                            image: 'http://t1.gstatic.com/images?q=tbn:ANd9GcSD_Uvlw5nnibqcIQtKdzmuDtsmu88M7fieGiSUSLZOdjzLjhe9',
+                            text: 'Nanaku premathoo'
+                        }
+                    ];
+                };
                 HeaderComponent = __decorate([
                     core_1.Component({
                         selector: 'hp-header',
@@ -34,7 +60,7 @@ System.register(['angular2/core', 'angular2/common', 'ng2-bootstrap/ng2-bootstra
                         // template: '<h1>My Header1</h1> <input type="text" />'
                         templateUrl: 'app/content/header/header.component.html',
                         styleUrls: ['app/content/header/header.component.css'],
-                        directives: [ng2_bootstrap_1.Alert, common_1.CORE_DIRECTIVES]
+                        directives: [ng2_bootstrap_1.CAROUSEL_DIRECTIVES, common_1.CORE_DIRECTIVES, common_1.FORM_DIRECTIVES]
                     }), 
                     __metadata('design:paramtypes', [])
                 ], HeaderComponent);
