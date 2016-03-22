@@ -4,6 +4,25 @@
 	    margin: 0 auto;
       width: 100%;
 }
+
+ /*.header_container.carousel {
+	background:none !important;
+	
+}
+
+header_container.carousel.carousel-control {
+	background:none !important;
+	right:2px !important;
+}*/
+
+
+
+/*.carousel-control.left, .carousel-control.right {
+  background: none !important;
+ }*/
+
+
+
 .navbar {
     height: 94px;
 }

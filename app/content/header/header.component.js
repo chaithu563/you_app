@@ -43,13 +43,26 @@ System.register(['angular2/core', 'angular2/common', 'ng2-bootstrap/ng2-bootstra
                 //  });
                 //}
                 HeaderComponent.prototype.addSlides = function () {
-                    this.slides = [{
-                            image: 'http://c.saavncdn.com/027/Nenu-Sailaja-Telugu-2015-500x500.jpg',
-                            text: 'Nenu Sailaja'
+                    this.slides = [
+                        {
+                            image: 'app/content/header/imgs/movie1.jpg',
+                            text: ''
                         },
                         {
-                            image: 'http://t1.gstatic.com/images?q=tbn:ANd9GcSD_Uvlw5nnibqcIQtKdzmuDtsmu88M7fieGiSUSLZOdjzLjhe9',
-                            text: 'Nanaku premathoo'
+                            image: 'app/content/header/imgs/movie2.jpg',
+                            text: ''
+                        },
+                        {
+                            image: 'app/content/header/imgs/movie3.jpg',
+                            text: ''
+                        },
+                        {
+                            image: 'app/content/header/imgs/movie4.jpg',
+                            text: ''
+                        },
+                        {
+                            image: 'app/content/header/imgs/movie5.jpg',
+                            text: ''
                         }
                     ];
                 };
@@ -60,7 +73,20 @@ System.register(['angular2/core', 'angular2/common', 'ng2-bootstrap/ng2-bootstra
                         // template: '<h1>My Header1</h1> <input type="text" />'
                         templateUrl: 'app/content/header/header.component.html',
                         styleUrls: ['app/content/header/header.component.css'],
-                        directives: [ng2_bootstrap_1.CAROUSEL_DIRECTIVES, common_1.CORE_DIRECTIVES, common_1.FORM_DIRECTIVES]
+                        directives: [ng2_bootstrap_1.CAROUSEL_DIRECTIVES, common_1.CORE_DIRECTIVES, common_1.FORM_DIRECTIVES],
+                        //templateUrl: 'header.component.html',
+                        //  styleUrls: ['header.component.css']
+                        //		 styles: [`
+                        //   .carousel-control {
+                        //	background:none !important;
+                        //	left:2px !important;
+                        //}
+                        //.carousel-control.left {
+                        //	background:none !important;
+                        //	left:2px !important;
+                        //}
+                        //  `],
+                        encapsulation: core_1.ViewEncapsulation.None
                     }), 
                     __metadata('design:paramtypes', [])
                 ], HeaderComponent);

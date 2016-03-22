@@ -1,0 +1,26 @@
+﻿
+
+ /*.header_container.carousel {
+	background:none !important;
+	
+}
+
+header_container.carousel.carousel-control {
+	background:none !important;
+	right:2px !important;
+}*/
+
+
+ .carousel-control.left{
+	 left:2px !important;
+ }
+
+ .carousel-control.right{
+	 right:2px !important;
+ }
+.carousel-control.left, .carousel-control.right {
+ background: none !important;
+ }
+
+
+

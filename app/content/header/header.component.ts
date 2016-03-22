@@ -1,4 +1,4 @@
-﻿import { Component} from 'angular2/core';
+﻿import { Component, ViewEncapsulation} from 'angular2/core';
 import {CORE_DIRECTIVES, FORM_DIRECTIVES} from 'angular2/common';
 import {CAROUSEL_DIRECTIVES} from 'ng2-bootstrap/ng2-bootstrap';
 @Component({
@@ -7,9 +7,20 @@ import {CAROUSEL_DIRECTIVES} from 'ng2-bootstrap/ng2-bootstrap';
    // template: '<h1>My Header1</h1> <input type="text" />'
     templateUrl: 'app/content/header/header.component.html',
     styleUrls: ['app/content/header/header.component.css'],
-		directives: [CAROUSEL_DIRECTIVES, CORE_DIRECTIVES, FORM_DIRECTIVES]
+		directives: [CAROUSEL_DIRECTIVES, CORE_DIRECTIVES, FORM_DIRECTIVES],
 	//templateUrl: 'header.component.html',
-    //styleUrls: ['header.component.css']
+  //  styleUrls: ['header.component.css']
+//		 styles: [`
+//   .carousel-control {
+//	background:none !important;
+//	left:2px !important;
+//}
+//.carousel-control.left {
+//	background:none !important;
+//	left:2px !important;
+//}
+//  `],
+		 encapsulation: ViewEncapsulation.None
 })
 
 	//http://valor-software.com/ng2-bootstrap/
@@ -38,14 +49,27 @@ export class HeaderComponent {
 
 	private addSlides() {
     
-    this.slides=[  {
-										image: 'http://c.saavncdn.com/027/Nenu-Sailaja-Telugu-2015-500x500.jpg',
-										text: 'Nenu Sailaja'
+    this.slides = [
+									{
+										image:'app/content/header/imgs/movie1.jpg' ,
+										text: ''
 									},
 								  {
-									image: 'http://t1.gstatic.com/images?q=tbn:ANd9GcSD_Uvlw5nnibqcIQtKdzmuDtsmu88M7fieGiSUSLZOdjzLjhe9',
-									text: 'Nanaku premathoo'
-								  }
+										image: 'app/content/header/imgs/movie2.jpg',
+									  text: ''
+									},
+									{
+										image: 'app/content/header/imgs/movie3.jpg',
+										text: ''
+									},
+									{
+										image: 'app/content/header/imgs/movie4.jpg',
+										text: ''
+									},
+									{
+										image: 'app/content/header/imgs/movie5.jpg',
+										text: ''
+									}
 
 
 		         ];

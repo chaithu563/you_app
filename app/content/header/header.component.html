@@ -1,17 +1,13 @@
 ﻿
-<div class="header_container" ng-init="init()">
+<div class="header_container">
 	
 
 	<carousel interval="4000" nowrap="false">
 		<!--ngfor #slidez [ngforin]="slides"--> 
 		<slide *ngFor="#slidez of slides"
 					 [active]="slidez.active">
-			<img [src]="slidez.image" style="margin:auto;">
-
-			<div class="carousel-caption">
-				<h4>Slide {{index}}</h4>
-
-				<p>{{slidez.text}}</p>
+			<div style="width:100%">
+				<img [src]="slidez.image" style="margin:auto;">
 			</div>
 		</slide>
 	</carousel>
