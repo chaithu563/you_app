@@ -1,4 +1,6 @@
-System.register(['angular2/core'], function(exports_1) {
+System.register(['angular2/core', 'angular2/common', 'ng2-bootstrap/ng2-bootstrap'], function(exports_1, context_1) {
+    "use strict";
+    var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,12 +10,18 @@ System.register(['angular2/core'], function(exports_1) {
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1;
+    var core_1, common_1, ng2_bootstrap_1;
     var HeaderComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
+            },
+            function (common_1_1) {
+                common_1 = common_1_1;
+            },
+            function (ng2_bootstrap_1_1) {
+                ng2_bootstrap_1 = ng2_bootstrap_1_1;
             }],
         execute: function() {
             HeaderComponent = (function () {
@@ -25,12 +33,13 @@ System.register(['angular2/core'], function(exports_1) {
                         //	moduleId: $__moduleContext.id,
                         // template: '<h1>My Header1</h1> <input type="text" />'
                         templateUrl: 'app/content/header/header.component.html',
-                        styleUrls: ['app/content/header/header.component.css']
+                        styleUrls: ['app/content/header/header.component.css'],
+                        directives: [ng2_bootstrap_1.Alert, common_1.CORE_DIRECTIVES]
                     }), 
                     __metadata('design:paramtypes', [])
                 ], HeaderComponent);
                 return HeaderComponent;
-            })();
+            }());
             exports_1("HeaderComponent", HeaderComponent);
         }
     }
