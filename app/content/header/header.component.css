@@ -14,6 +14,10 @@
 .navbar {
     height: 94px;
 }
+ .navbar ul li{
+  display: inline;
+}
+
 /*.header-new {
     background: url(../images/header_bg.png) repeat-x;
     font-family: 'Roboto', sans-serif!important;

@@ -1,41 +1,39 @@
 ﻿
 <div class="header_container">
-	
-    <nav class="navbar"  role="navigation">
-        <ul>
-            <li>
-                <a href="#">Home</a>
-            </li>
-            <li>
-                <a href="#">home1</a>
-               
-            </li>
-            <li>
-                <a href="#">Home2</a>
-            </li>
-            <li>
-                <a href="#">Home3</a>
-            </li>
-            <li>
-                <a href="#">Home4</a>
-                
-            </li>
-            <li>
-                <a href="#">Home5</a>
-            </li>
-        </ul>
-        </nav>
 
-        <carousel interval="4000" nowrap="false">
-            <!--ngfor #slidez [ngforin]="slides"-->
-            <slide *ngFor="#slidez of slides"
-                   [active]="slidez.active">
-                <div style="width:100%">
-                    <img class="carousel-img" [src]="slidez.image" style="margin:auto;">
-                </div>
-            </slide>
-        </carousel>
+	<nav class="navbar" role="navigation">
+		<ul>
+			<li>
+				<a href="#">HOME</a>
+			</li>
+			<li>
+				<a href="#">MOVIES</a>
+			</li>
+			<li>
+				<a href="#">TV SHOWS</a>
+			</li>
+			<li>
+				<a href="#">TRAILERS</a>
+			</li>
+			<li>
+				<a href="#">SONGS</a>
+			</li>
+			<li>
+				<a href="#">FASHION</a>
+			</li>
+		</ul>
+	</nav>
+
+	<carousel interval="4000" nowrap="false">
+		<!--ngfor #slidez [ngforin]="slides"-->
+		<slide *ngFor="#slidez of slides"
+					 [active]="slidez.active">
+			<div style="width:100%">
+				<img class="carousel-img" [src]="slidez.image" style="margin:auto;">
+			</div>
+		</slide>
+	</carousel>
 
 
-        <div class="clearfix"></div>
-</div>
+	<div class="clearfix"></div>
+  </div>
