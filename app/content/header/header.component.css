@@ -4,7 +4,9 @@
 	    margin: 0 auto;
       width: 100%;
 }
-
+carousel{
+	z-index:99;
+}
 
 .carousel-img{
     width: 100%;
@@ -12,12 +14,17 @@
 }
 
 .navbar {
-    height: 94px;
+    /*height: 94px;*/
 }
  .navbar ul li{
   display: inline;
 }
 
+ .header-new {
+    background: url(app/content/header/imgs/header_bg.png) repeat-x;
+    font-family: 'Roboto', sans-serif!important;
+    font-weight: 300;
+}
 /*.header-new {
     background: url(../images/header_bg.png) repeat-x;
     font-family: 'Roboto', sans-serif!important;
