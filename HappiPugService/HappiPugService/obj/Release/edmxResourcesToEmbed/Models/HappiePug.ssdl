@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="happipugModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="happipugModelStoreContainer">
+    <EntitySet Name="MovieItems" EntityType="happipugModel.Store.MovieItems" store:Type="Tables" Schema="happipug" />
+    <EntitySet Name="Movies" EntityType="happipugModel.Store.Movies" store:Type="Tables" Schema="happipug" />
+    <AssociationSet Name="FK__MovieItem__Movie__182C9B23" Association="happipugModel.Store.FK__MovieItem__Movie__182C9B23">
+      <End Role="Movies" EntitySet="Movies" />
+      <End Role="MovieItems" EntitySet="MovieItems" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="MovieItems">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ProductNo" Type="numeric" />
+    <Property Name="ProductName" Type="varchar" MaxLength="255" />
+    <Property Name="ProductShopURL" Type="varchar(max)" />
+    <Property Name="ProductImgURL" Type="varchar(max)" />
+    <Property Name="ProductPrice" Type="money" />
+    <Property Name="ptop" Type="decimal" Nullable="false" />
+    <Property Name="pleft" Type="decimal" Nullable="false" />
+    <Property Name="starttime" Type="decimal" Precision="28" Scale="6" />
+    <Property Name="endtime" Type="decimal" Precision="28" Scale="6" />
+    <Property Name="Movie_Id" Type="int" />
+    <Property Name="ProductHandle" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="Movies">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="MovieName" Type="varchar" Nullable="false" MaxLength="255" />
+    <Property Name="MovieHero" Type="varchar" MaxLength="255" />
+    <Property Name="MovieHeroin" Type="varchar" MaxLength="255" />
+    <Property Name="MovieLanguage" Type="varchar" MaxLength="255" />
+    <Property Name="MovieDirector" Type="varchar" MaxLength="255" />
+    <Property Name="MovieProduction" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <Association Name="FK__MovieItem__Movie__182C9B23">
+    <End Role="Movies" Type="happipugModel.Store.Movies" Multiplicity="0..1" />
+    <End Role="MovieItems" Type="happipugModel.Store.MovieItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Movies">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MovieItems">
+        <PropertyRef Name="Movie_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

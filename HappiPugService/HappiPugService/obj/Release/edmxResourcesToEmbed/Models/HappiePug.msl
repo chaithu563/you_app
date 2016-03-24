@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="happipugModelStoreContainer" CdmEntityContainer="happipugEntities">
+    <EntitySetMapping Name="MovieItems">
+      <EntityTypeMapping TypeName="happipugModel.MovieItem">
+        <MappingFragment StoreEntitySet="MovieItems">
+          <ScalarProperty Name="ProductHandle" ColumnName="ProductHandle" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ProductNo" ColumnName="ProductNo" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          <ScalarProperty Name="ProductShopURL" ColumnName="ProductShopURL" />
+          <ScalarProperty Name="ProductImgURL" ColumnName="ProductImgURL" />
+          <ScalarProperty Name="ProductPrice" ColumnName="ProductPrice" />
+          <ScalarProperty Name="ptop" ColumnName="ptop" />
+          <ScalarProperty Name="pleft" ColumnName="pleft" />
+          <ScalarProperty Name="starttime" ColumnName="starttime" />
+          <ScalarProperty Name="endtime" ColumnName="endtime" />
+          <ScalarProperty Name="Movie_Id" ColumnName="Movie_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Movies">
+      <EntityTypeMapping TypeName="happipugModel.Movie">
+        <MappingFragment StoreEntitySet="Movies">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="MovieName" ColumnName="MovieName" />
+          <ScalarProperty Name="MovieHero" ColumnName="MovieHero" />
+          <ScalarProperty Name="MovieHeroin" ColumnName="MovieHeroin" />
+          <ScalarProperty Name="MovieLanguage" ColumnName="MovieLanguage" />
+          <ScalarProperty Name="MovieDirector" ColumnName="MovieDirector" />
+          <ScalarProperty Name="MovieProduction" ColumnName="MovieProduction" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
