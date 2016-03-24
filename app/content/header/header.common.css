@@ -21,5 +21,8 @@ header_container.carousel.carousel-control {
 .carousel-control.left, .carousel-control.right {
  background: none !important;
  }
-
+ .logo_image{
+	 height:10%;
+	 width:60% !important;
+ }
  
