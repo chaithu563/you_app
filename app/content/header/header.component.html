@@ -35,16 +35,16 @@
 		</div>
 
 	</nav>
-		
-	<carousel interval="4000" nowrap="false">
-		<slide *ngFor="#slidez of slides"
-					 [active]="slidez.active">
-			<div style="width:100%">
-				<img class="carousel-img" [src]="slidez.image" style="margin:auto;">
-			</div>
-		</slide>
-	</carousel>
+    <div class="carosel_div">
+        <carousel interval="4000" nowrap="false">
+            <slide *ngFor="#slidez of slides"
+                   [active]="slidez.active">
+                <div style="width:100%">
+                    <img class="carousel-img" [src]="slidez.image" style="margin:auto;">
+                </div>
+            </slide>
+        </carousel>
 
-
+    </div>	
 	<div class="clearfix"></div>
   </div>

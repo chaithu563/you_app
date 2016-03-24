@@ -16,7 +16,8 @@ export class AppComponent {
 
 	constructor(httpClient: HttpClient, http: Http) {
 
-		http.get('http://localhost/shop/HappiPugService/HappiPugService/api/token')
+		//http.get('http://localhost/shop/HappiPugService/HappiPugService/api/token')
+        http.get('http://localhost/HappiPugService/api/token')
 			.map(res => res.json())
 			.subscribe(token => localStorage.setItem('apitoken', token.access_token),
 			err => console.log(err)

@@ -31,7 +31,8 @@ System.register(['angular2/core', './content/header/header.component', './conten
         execute: function() {
             AppComponent = (function () {
                 function AppComponent(httpClient, http) {
-                    http.get('http://localhost/shop/HappiPugService/HappiPugService/api/token')
+                    //http.get('http://localhost/shop/HappiPugService/HappiPugService/api/token')
+                    http.get('http://localhost/HappiPugService/api/token')
                         .map(function (res) { return res.json(); })
                         .subscribe(function (token) { return localStorage.setItem('apitoken', token.access_token); }, function (err) { return console.log(err); });
                     //https://www.googleapis.com/youtube/v3/playlists?part=snippet&id=PLN-d9pcl44sYHJbw2Kobs355w1Sj2o52t

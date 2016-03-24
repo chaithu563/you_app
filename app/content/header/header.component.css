@@ -4,6 +4,13 @@
 .header_container {
     margin: 0 auto;
     width: 100%;
+    
+}
+.carosel_div{
+    position:absolute;
+    top:8%;
+    width:100%;
+    z-index:1;
 }
 
 carousel {
@@ -19,6 +26,8 @@ carousel {
     padding: 0 50px;
     display: inline;
     width: 100%;
+    opacity:0.15;
+    z-index:3;
 }
 
 
