@@ -46,7 +46,7 @@ namespace HappiPugCloudService.Controllers
 					var claimset = new
 					{
 						iss = "happiepug@inlaid-backbone-120410.iam.gserviceaccount.com",
-						scope = "https://www.googleapis.com/auth/prediction",
+						scope = "https://www.googleapis.com/auth/youtube",
 						//scope = "https://www.googleapis.com/auth/devstorage.readonly",
 						aud = "https://www.googleapis.com/oauth2/v4/token",
 						iat = times[0],

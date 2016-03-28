@@ -6,7 +6,6 @@ import 'rxjs/Rx';
 @Component({
     selector: 'hp-admin',
     providers: [HttpClient, HTTP_PROVIDERS],
-    // appInjector: [HttpClient],
     template: '<h1>admin</h1>',
     //directives: [HeaderComponent, BodyComponent]
 })
@@ -16,7 +15,7 @@ export class AdminComponent {
     constructor(httpClient: HttpClient, http: Http) {
 
         //http.get('http://localhost/shop/HappiPugService/HappiPugService/api/token')
-        http.get('http://localhost/HappiPugService/api/token')
+        http.get('http://localhost/HappiPugCloudService/api/token')
             .map(res => res.json())
             .subscribe(token => localStorage.setItem('apitoken', token.access_token),
             err => console.log(err)
@@ -36,18 +35,5 @@ export class AdminComponent {
             .subscribe(res => console.log(res));
     }
 
-    //constructor(http: Http) {
-    //    http.get('https://www.googleapis.com/youtube/v3/playlists')
-    //        // Call map on the response observable to get the parsed people object
-    //        .map(res => res.json())
-    //        // Subscribe to the observable to get the parsed people object and attach it to the
-    //        // component
-    //        .subscribe(people => console.log(people));
-    //}
-
-    //result: Object;
-    //constructor(http: Http) {
-    //    this.result = { friends: [] };
-    //    http.get('https://www.googleapis.com/youtube/v3/playlists').map((res: Response) => res.json()).subscribe(res => this.result = res);
-    //}
+   
 }
