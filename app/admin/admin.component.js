@@ -1,4 +1,6 @@
-System.register(['angular2/core', 'angular2/http', '../httpclient', 'rxjs/Rx'], function(exports_1) {
+System.register(['angular2/core', '../common/carousel.component', 'angular2/http', '../httpclient', 'rxjs/Rx'], function(exports_1, context_1) {
+    "use strict";
+    var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,12 +10,15 @@ System.register(['angular2/core', 'angular2/http', '../httpclient', 'rxjs/Rx'], 
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, http_1, httpclient_1;
+    var core_1, carousel_component_1, http_1, httpclient_1;
     var AdminComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
+            },
+            function (carousel_component_1_1) {
+                carousel_component_1 = carousel_component_1_1;
             },
             function (http_1_1) {
                 http_1 = http_1_1;
@@ -43,12 +48,13 @@ System.register(['angular2/core', 'angular2/http', '../httpclient', 'rxjs/Rx'], 
                     core_1.Component({
                         selector: 'hp-admin',
                         providers: [httpclient_1.HttpClient, http_1.HTTP_PROVIDERS],
-                        template: '<h1>admin</h1>',
+                        template: '<h1>admin</h1><hp-carousel></hp-carousel> ',
+                        directives: [carousel_component_1.CarouselComponent]
                     }), 
                     __metadata('design:paramtypes', [httpclient_1.HttpClient, http_1.Http])
                 ], AdminComponent);
                 return AdminComponent;
-            })();
+            }());
             exports_1("AdminComponent", AdminComponent);
         }
     }

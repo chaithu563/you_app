@@ -1,13 +1,13 @@
 ﻿import { Component} from 'angular2/core';
-
+import {CarouselComponent } from '../common/carousel.component';
 import {Http, HTTP_PROVIDERS, Response} from 'angular2/http';
 import {HttpClient} from '../httpclient';
 import 'rxjs/Rx';
 @Component({
     selector: 'hp-admin',
     providers: [HttpClient, HTTP_PROVIDERS],
-    template: '<h1>admin</h1>',
-    //directives: [HeaderComponent, BodyComponent]
+    template: '<h1>admin</h1><hp-carousel></hp-carousel> ',
+    directives: [CarouselComponent]
 })
 export class AdminComponent {
 

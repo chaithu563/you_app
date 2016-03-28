@@ -11,27 +11,31 @@ System.register(['angular2/core'], function(exports_1, context_1) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var core_1;
-    var BodyComponent;
+    var CarouselComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
             }],
         execute: function() {
-            BodyComponent = (function () {
-                function BodyComponent() {
+            //import {Http, HTTP_PROVIDERS, Response} from 'angular2/http';
+            //import {HttpClient} from './httpclient';
+            CarouselComponent = (function () {
+                function CarouselComponent() {
                 }
-                BodyComponent = __decorate([
+                CarouselComponent = __decorate([
                     core_1.Component({
-                        selector: 'hp-body',
-                        template: '<h1>My Body</h1>'
+                        selector: 'hp-carousel',
+                        //providers: [HttpClient, HTTP_PROVIDERS],
+                        // appInjector: [HttpClient],
+                        template: '<div class="carousel"> carousel videos </div>',
                     }), 
                     __metadata('design:paramtypes', [])
-                ], BodyComponent);
-                return BodyComponent;
+                ], CarouselComponent);
+                return CarouselComponent;
             }());
-            exports_1("BodyComponent", BodyComponent);
+            exports_1("CarouselComponent", CarouselComponent);
         }
     }
 });
-//# sourceMappingURL=body.component.js.map
+//# sourceMappingURL=carousel.component.js.map
