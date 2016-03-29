@@ -7,20 +7,26 @@ import {videoinfo} from './interfaces/videoinfo';
 	selector: 'hp-carousel',
 	//providers: [HttpClient, HTTP_PROVIDERS],
 	
-    templateUrl: 'app/common/carousel.component.html',
-    directives: [CORE_DIRECTIVES],
-   styleUrls: ['app/common/carousel.component.css']
+	templateUrl: 'app/common/carousel.component.html',
+	directives: [CORE_DIRECTIVES],
+	styleUrls: ['app/common/carousel.component.css']
 })
 export class CarouselComponent {
 
-    videos: Array< videoinfo>;
+  videos: videoinfo[];
 	constructor() {
-        this.videos = [];
+		this.videos = [];
+				this.addVideos();
+	}
 
-    }
+	public addVideos() {
+		this.videos = [
+			{ videoId: 1, imgUrl: '/app/content/header/imgs/movie1.jpg', videoName: 'Nenu Silaja' },
+			{ videoId: 2, imgUrl: '/app/content/header/imgs/movie2.jpg', videoName: 'Nenu Silaja2' },
+			{ videoId: 3, imgUrl: '/app/content/header/imgs/movie3.jpg', videoName: 'Nenu Silaja3' },
+			{ videoId: 4, imgUrl: '/app/content/header/imgs/movie4.jpg', videoName: 'Nenu Silaja4' },
+			{ videoId: 5, imgUrl: '/app/content/header/imgs/movie5.jpg', videoName: 'Nenu Silaja5' }
+		];
 
-    addVideos() {
-
-
-    }
+	}
 }

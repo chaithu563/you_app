@@ -4,9 +4,9 @@
     <div class="hp_videos_display">
         <ul>
 
-            <li  >
-
-            </li>
+					<li *ngFor="#videoinfo of videos">
+						<img src="{{videoinfo.imgUrl}}" />
+					</li>
         </ul>
 
     </div>

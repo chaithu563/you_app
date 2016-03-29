@@ -4,7 +4,8 @@
 }
 .hp_videos_display
 {
-
+	width: 100%;
+  border: 1px solid black;
 }
 
 .hp_videos_display ul{
@@ -12,5 +13,9 @@
 }
 
 .hp_videos_display li{
-
+	display:inline;
+}
+.hp_videos_display img{
+	width:10%;
+	height:10%;
 }

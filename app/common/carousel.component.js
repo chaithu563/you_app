@@ -1,4 +1,6 @@
-System.register(['angular2/core', 'angular2/common'], function(exports_1) {
+System.register(['angular2/core', 'angular2/common'], function(exports_1, context_1) {
+    "use strict";
+    var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -22,8 +24,16 @@ System.register(['angular2/core', 'angular2/common'], function(exports_1) {
             CarouselComponent = (function () {
                 function CarouselComponent() {
                     this.videos = [];
+                    this.addVideos();
                 }
                 CarouselComponent.prototype.addVideos = function () {
+                    this.videos = [
+                        { videoId: 1, imgUrl: '/app/content/header/imgs/movie1.jpg', videoName: 'Nenu Silaja' },
+                        { videoId: 2, imgUrl: '/app/content/header/imgs/movie2.jpg', videoName: 'Nenu Silaja2' },
+                        { videoId: 3, imgUrl: '/app/content/header/imgs/movie3.jpg', videoName: 'Nenu Silaja3' },
+                        { videoId: 4, imgUrl: '/app/content/header/imgs/movie4.jpg', videoName: 'Nenu Silaja4' },
+                        { videoId: 5, imgUrl: '/app/content/header/imgs/movie5.jpg', videoName: 'Nenu Silaja5' }
+                    ];
                 };
                 CarouselComponent = __decorate([
                     core_1.Component({
@@ -36,7 +46,7 @@ System.register(['angular2/core', 'angular2/common'], function(exports_1) {
                     __metadata('design:paramtypes', [])
                 ], CarouselComponent);
                 return CarouselComponent;
-            })();
+            }());
             exports_1("CarouselComponent", CarouselComponent);
         }
     }
