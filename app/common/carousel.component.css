@@ -5,17 +5,37 @@
 .hp_videos_display
 {
 	width: 100%;
-  border: 1px solid black;
+ // border: 04px solid black;
 }
 
 .hp_videos_display ul{
-
+	overflow:hidden;
 }
 
 .hp_videos_display li{
 	display:inline;
+	padding-left:3px;
+	/*padding: 10px 10px 10px 20px;*/
 }
 .hp_videos_display img{
 	width:10%;
 	height:10%;
+	/*float:left;*/
+}
+.hp_videos_display span{
+	display:inline-block	;
+}
+.hp_videos_display li:nth-child(5):after 
+{ 
+	content:"\A\A"; 
+	white-space:pre;
+
+}
+.hp_videos_display a {
+	/*display:block;*/
+}
+.hp_videos_display li:hover > a,
+.hp_videos_display ul ul :hover > a,
+.hp_videos_display a:focus {
+background: #efefef;
 }

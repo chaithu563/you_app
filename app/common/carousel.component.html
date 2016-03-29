@@ -1,11 +1,13 @@
-﻿<div class="hp_carousel_common">
+﻿<div class="hp_carousel_common ">
     <h2> my videos</h2>
 
     <div class="hp_videos_display">
         <ul>
 
 					<li *ngFor="#videoinfo of videos">
-						<img src="{{videoinfo.imgUrl}}" />
+
+						<a> <img src="{{videoinfo.imgUrl}}" />  <span> {{videoinfo.videoName}}</span> </a>  
+						
 					</li>
         </ul>
 
