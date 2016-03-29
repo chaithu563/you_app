@@ -1,6 +1,4 @@
-System.register(['angular2/core'], function(exports_1, context_1) {
-    "use strict";
-    var __moduleName = context_1 && context_1.id;
+System.register(['angular2/core', 'angular2/common'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -10,30 +8,35 @@ System.register(['angular2/core'], function(exports_1, context_1) {
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1;
+    var core_1, common_1;
     var CarouselComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
+            },
+            function (common_1_1) {
+                common_1 = common_1_1;
             }],
         execute: function() {
-            //import {Http, HTTP_PROVIDERS, Response} from 'angular2/http';
-            //import {HttpClient} from './httpclient';
             CarouselComponent = (function () {
                 function CarouselComponent() {
+                    this.videos = [];
                 }
+                CarouselComponent.prototype.addVideos = function () {
+                };
                 CarouselComponent = __decorate([
                     core_1.Component({
                         selector: 'hp-carousel',
                         //providers: [HttpClient, HTTP_PROVIDERS],
-                        // appInjector: [HttpClient],
-                        template: '<div class="carousel"> carousel videos </div>',
+                        templateUrl: 'app/common/carousel.component.html',
+                        directives: [common_1.CORE_DIRECTIVES],
+                        styleUrls: ['app/common/carousel.component.css']
                     }), 
                     __metadata('design:paramtypes', [])
                 ], CarouselComponent);
                 return CarouselComponent;
-            }());
+            })();
             exports_1("CarouselComponent", CarouselComponent);
         }
     }
