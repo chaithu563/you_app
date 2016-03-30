@@ -29,29 +29,27 @@ System.register(['angular2/core', '../common/carousel.component', 'angular2/http
             function (_1) {}],
         execute: function() {
             AdminComponent = (function () {
-                function AdminComponent(httpClient, http) {
-                    //http.get('http://localhost/shop/HappiPugService/HappiPugService/api/token')
-                    http.get('http://localhost/HappiPugCloudService/api/token')
-                        .map(function (res) { return res.json(); })
-                        .subscribe(function (token) { return localStorage.setItem('apitoken', token.access_token); }, function (err) { return console.log(err); });
-                    //https://www.googleapis.com/youtube/v3/playlists?part=snippet&id=PLN-d9pcl44sYHJbw2Kobs355w1Sj2o52t
-                    //channels?part=contentDetails&id=UCoWg9A-3VNv7adgHLc4LheA
-                    //UUoWg9A-3VNv7adgHLc4LheA
-                    //playlistItems?part=snippet&id=UUoWg9A-3VNv7adgHLc4LheA
-                    //channels?part=contentDetails&id=UCoWg9A-3VNv7adgHLc4LheA
-                    //https://developers.google.com/apis-explorer/#p/youtube/v3/youtube.channels.list?part= contentDetails&forUsername=chaitanya.eedara  not work
-                    httpClient.get('https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PLN-d9pcl44sYHJbw2Kobs355w1Sj2o52t')
-                        .map(function (res) { return res.json(); })
-                        .subscribe(function (res) { return console.log(res); });
+                function AdminComponent() {
+                    this.videos = [];
+                    this.addVideos();
                 }
+                AdminComponent.prototype.addVideos = function () {
+                    this.videos = [
+                        { videoId: 1, imgUrl: '/app/content/header/imgs/movie1.jpg', videoName: 'Nenu Silaja' },
+                        { videoId: 2, imgUrl: '/app/content/header/imgs/movie2.jpg', videoName: 'Nenu Silaja2' },
+                        { videoId: 3, imgUrl: '/app/content/header/imgs/movie3.jpg', videoName: 'Nenu Silaja3' },
+                        { videoId: 4, imgUrl: '/app/content/header/imgs/movie4.jpg', videoName: 'Nenu Silaja4' },
+                        { videoId: 5, imgUrl: '/app/content/header/imgs/movie5.jpg', videoName: 'Nenu Silaja5' }
+                    ];
+                };
                 AdminComponent = __decorate([
                     core_1.Component({
                         selector: 'hp-admin',
                         providers: [httpclient_1.HttpClient, http_1.HTTP_PROVIDERS],
-                        template: '<h1>admin</h1><hp-carousel></hp-carousel> ',
+                        template: '<h1>admin</h1><hp-carousel [cvideos]="videos"></hp-carousel> ',
                         directives: [carousel_component_1.CarouselComponent]
                     }), 
-                    __metadata('design:paramtypes', [httpclient_1.HttpClient, http_1.Http])
+                    __metadata('design:paramtypes', [])
                 ], AdminComponent);
                 return AdminComponent;
             }());

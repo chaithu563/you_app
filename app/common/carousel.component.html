@@ -4,13 +4,13 @@
     <div class="hp_videos_display">
         <div class="all_videos">
 
-					<div class="each_video" *ngFor="#videoinfo of videos">
-						
-					
-							<div class="vid_img"> <img src="{{videoinfo.imgUrl}}" /> </div>
+					<div class="each_video" *ngFor="#videoinfo of cvideos">
 
-							<span class="vid_info"> {{videoinfo.videoName}}</span>
-						
+
+						<div class="vid_img"> <img src="{{videoinfo.imgUrl}}" /> </div>
+
+						<span class="vid_info"> {{videoinfo.videoName}}</span>
+
 					</div>
         </div>
 
