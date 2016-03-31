@@ -1,1 +1,1 @@
-{"version":3,"file":"videoinfo.js","sourceRoot":"","sources":["videoinfo.ts"],"names":[],"mappings":";;;;;;;YAAA;gBAAA;gBAIA,CAAC;gBAAD,gBAAC;YAAD,CAAC,AAJD,IAIC;YAJD,iCAIC,CAAA"}
+{"version":3,"file":"videoinfo.js","sourceRoot":"","sources":["videoinfo.ts"],"names":["videoinfo","videoinfo.constructor"],"mappings":";;;;;YAAA;gBAAAA;gBAIAC,CAACA;gBAADD,gBAACA;YAADA,CAACA,AAJD,IAIC;YAJD,iCAIC,CAAA"}

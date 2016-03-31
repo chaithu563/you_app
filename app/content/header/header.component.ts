@@ -31,9 +31,9 @@ export class HeaderComponent {
 										image:'app/content/header/imgs/movie1.jpg' ,
 										text: ''
 									},
-								  {
+								    {
 										image: 'app/content/header/imgs/movie2.jpg',
-									  text: ''
+									    text: ''
 									},
 									{
 										image: 'app/content/header/imgs/movie3.jpg',

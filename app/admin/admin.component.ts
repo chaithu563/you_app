@@ -7,7 +7,7 @@ import {videoinfo} from '../interfaces/videoinfo';
 @Component({
 	selector: 'hp-admin',
 	providers: [HttpClient, HTTP_PROVIDERS],
-	template: '<h1>admin</h1><hp-carousel [cvideos]="videos"></hp-carousel> ',
+	template: '<h1>admin</h1><hp-carousel [title]="title" [cvideos]="videos"></hp-carousel> ',
 	directives: [CarouselComponent]
 })
 export class AdminComponent {
@@ -39,20 +39,43 @@ export class AdminComponent {
 	//}
 
 
-		videos: videoinfo[];
-	constructor() {
-		this.videos = [];
-		this.addVideos();
+    videos: videoinfo[];
+    tvideos: videoinfo[];
+    title: string;
+    constructor(httpClient: HttpClient) {
+        httpClient.get('http://localhost/HappiPugCloudService/api/token')
+	        .map(res => res.json())
+	        .subscribe(token => localStorage.setItem('apitoken', token.access_token),
+	        err => console.log(err)
+	        );
+        this.videos = [];
+        this.tvideos = [];
+        this.title = "Trailors";
+        this.getVideos(httpClient);
 	}
 
-	public addVideos() {
+    public getVideos(httpClient: HttpClient) {
 		this.videos = [
     		{ videoId: 1, imgUrl: '/app/content/header/imgs/movie1.jpg', videoName: 'Nenu Silaja' },
     		{ videoId: 2, imgUrl: '/app/content/header/imgs/movie2.jpg', videoName: 'Nenu Silaja2' },
     		{ videoId: 3, imgUrl: '/app/content/header/imgs/movie3.jpg', videoName: 'Nenu Silaja3' },
     		{ videoId: 4, imgUrl: '/app/content/header/imgs/movie4.jpg', videoName: 'Nenu Silaja4' },
     		{ videoId: 5, imgUrl: '/app/content/header/imgs/movie5.jpg', videoName: 'Nenu Silaja5' }
-		];
+        ];
+
+
+        httpClient.get('https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PLN-d9pcl44sYHJbw2Kobs355w1Sj2o52t&maxResults=25')
+
+	        .map(res => res.json())
+            //.map(x=> {
+
+            //    this.tvideos.push(new videoinfo(){videoId=x.id,videoName=x.name,imgUrl=x.url});
+
+            //})
+					.subscribe(res => console.log(res));
+
+
+	}
 
 
 

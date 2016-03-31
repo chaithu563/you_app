@@ -13,38 +13,12 @@ import {videoinfo} from '../interfaces/videoinfo';
 })
 export class CarouselComponent {
 
-  //videos: videoinfo[];
-  //  constructor() {
-  //  	this.videos = [];
-  //  			this.addVideos();
-  //  }
-
-  //  public addVideos() {
-  //  	this.videos = [
-  //  		{ videoId: 1, imgUrl: '/app/content/header/imgs/movie1.jpg', videoName: 'Nenu Silaja' },
-  //  		{ videoId: 2, imgUrl: '/app/content/header/imgs/movie2.jpg', videoName: 'Nenu Silaja2' },
-  //  		{ videoId: 3, imgUrl: '/app/content/header/imgs/movie3.jpg', videoName: 'Nenu Silaja3' },
-  //  		{ videoId: 4, imgUrl: '/app/content/header/imgs/movie4.jpg', videoName: 'Nenu Silaja4' },
-  //  		{ videoId: 5, imgUrl: '/app/content/header/imgs/movie5.jpg', videoName: 'Nenu Silaja5' }
-  //  	];
-
-  //  }
-
+  
 
 	@Input() cvideos: videoinfo[];
-//	videos: videoinfo[];
+
 	constructor() {
-    	//this.videos = [];
-    	//		this.addVideos();
-
-
-		//this.videos = [
-    	//	{ videoId: 1, imgUrl: '/app/content/header/imgs/movie1.jpg', videoName: 'Nenu Silaja' },
-    	//	{ videoId: 2, imgUrl: '/app/content/header/imgs/movie2.jpg', videoName: 'Nenu Silaja2' },
-    	//	{ videoId: 3, imgUrl: '/app/content/header/imgs/movie3.jpg', videoName: 'Nenu Silaja3' },
-    	//	{ videoId: 4, imgUrl: '/app/content/header/imgs/movie4.jpg', videoName: 'Nenu Silaja4' },
-    	//	{ videoId: 5, imgUrl: '/app/content/header/imgs/movie5.jpg', videoName: 'Nenu Silaja5' }
-    	//];
+    	
     }
 
 }

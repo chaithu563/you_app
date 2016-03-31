@@ -2,4 +2,5 @@
     videoId: number;
     videoName: string;
     imgUrl: string;
+  
 }
