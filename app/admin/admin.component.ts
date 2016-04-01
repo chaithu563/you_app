@@ -56,23 +56,49 @@ export class AdminComponent {
 
     public getVideos(httpClient: HttpClient) {
 		this.videos = [
-    		{ videoId: 1, imgUrl: '/app/content/header/imgs/movie1.jpg', videoName: 'Nenu Silaja' },
-    		{ videoId: 2, imgUrl: '/app/content/header/imgs/movie2.jpg', videoName: 'Nenu Silaja2' },
-    		{ videoId: 3, imgUrl: '/app/content/header/imgs/movie3.jpg', videoName: 'Nenu Silaja3' },
-    		{ videoId: 4, imgUrl: '/app/content/header/imgs/movie4.jpg', videoName: 'Nenu Silaja4' },
-    		{ videoId: 5, imgUrl: '/app/content/header/imgs/movie5.jpg', videoName: 'Nenu Silaja5' }
+    		{ videoId: 1, imgUrl: './app/content/header/imgs/movie1.jpg', videoName: 'Nenu Silaja' },
+    		{ videoId: 2, imgUrl: './app/content/header/imgs/movie2.jpg', videoName: 'Nenu Silaja2' },
+    		{ videoId: 3, imgUrl: './app/content/header/imgs/movie3.jpg', videoName: 'Nenu Silaja3' },
+    		{ videoId: 4, imgUrl: './app/content/header/imgs/movie4.jpg', videoName: 'Nenu Silaja4' },
+    		{ videoId: 5, imgUrl: './app/content/header/imgs/movie5.jpg', videoName: 'Nenu Silaja5' }
         ];
 
 
         httpClient.get('https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PLN-d9pcl44sYHJbw2Kobs355w1Sj2o52t&maxResults=25')
 
-	        .map(res => res.json())
+	        .map((res:Response) => res.json())
             //.map(x=> {
 
             //    this.tvideos.push(new videoinfo(){videoId=x.id,videoName=x.name,imgUrl=x.url});
 
             //})
-					.subscribe(res => console.log(res));
+
+					.map((res: any) => {
+					//new videoinfo(){videoId = x.id, videoName = x.name, imgUrl = x.url }
+				//	var myitem = new videoinfo();
+					var myvideos = new Array();
+					//fore (var i = 0; i < res.items; i++) {
+
+					//	myitem.videoId = res.items[i].snippet.resourceId.videoId;
+					//	myitem.videoName = res.items[i].snippet.title;
+					//	myitem.imgUrl = res.items[i].snippet.thumbnails.medium.url;
+					//	myvideos.push(myitem);
+					//}
+					res.items.forEach(function (item,i) {
+
+						//myitem.videoId = item.snippet.resourceId.videoId;
+						//myitem.videoName = item.snippet.title;
+						//myitem.imgUrl = item.snippet.thumbnails.medium.url;
+						myvideos.push(new videoinfo(item.snippet.resourceId.videoId, item.snippet.title, item.snippet.thumbnails.medium.url));
+
+					})
+					
+					return myvideos;
+
+					}
+
+					)
+					.subscribe(res => { console.log(res); this.videos=res });
 
 
 	}
@@ -86,5 +112,5 @@ export class AdminComponent {
 
 
 
-}
+
 

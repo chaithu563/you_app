@@ -1,4 +1,6 @@
-System.register(['angular2/core', '../common/carousel.component', 'angular2/http', '../httpclient', 'rxjs/Rx'], function(exports_1) {
+System.register(['angular2/core', '../common/carousel.component', 'angular2/http', '../httpclient', 'rxjs/Rx', '../interfaces/videoinfo'], function(exports_1, context_1) {
+    "use strict";
+    var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,7 +10,7 @@ System.register(['angular2/core', '../common/carousel.component', 'angular2/http
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, carousel_component_1, http_1, httpclient_1;
+    var core_1, carousel_component_1, http_1, httpclient_1, videoinfo_1;
     var AdminComponent;
     return {
         setters:[
@@ -24,7 +26,10 @@ System.register(['angular2/core', '../common/carousel.component', 'angular2/http
             function (httpclient_1_1) {
                 httpclient_1 = httpclient_1_1;
             },
-            function (_1) {}],
+            function (_1) {},
+            function (videoinfo_1_1) {
+                videoinfo_1 = videoinfo_1_1;
+            }],
         execute: function() {
             AdminComponent = (function () {
                 function AdminComponent(httpClient) {
@@ -39,16 +44,33 @@ System.register(['angular2/core', '../common/carousel.component', 'angular2/http
                 AdminComponent.prototype.getVideos = function (httpClient) {
                     var _this = this;
                     this.videos = [
-                        { videoId: 1, imgUrl: '/app/content/header/imgs/movie1.jpg', videoName: 'Nenu Silaja' },
-                        { videoId: 2, imgUrl: '/app/content/header/imgs/movie2.jpg', videoName: 'Nenu Silaja2' },
-                        { videoId: 3, imgUrl: '/app/content/header/imgs/movie3.jpg', videoName: 'Nenu Silaja3' },
-                        { videoId: 4, imgUrl: '/app/content/header/imgs/movie4.jpg', videoName: 'Nenu Silaja4' },
-                        { videoId: 5, imgUrl: '/app/content/header/imgs/movie5.jpg', videoName: 'Nenu Silaja5' }
+                        { videoId: 1, imgUrl: './app/content/header/imgs/movie1.jpg', videoName: 'Nenu Silaja' },
+                        { videoId: 2, imgUrl: './app/content/header/imgs/movie2.jpg', videoName: 'Nenu Silaja2' },
+                        { videoId: 3, imgUrl: './app/content/header/imgs/movie3.jpg', videoName: 'Nenu Silaja3' },
+                        { videoId: 4, imgUrl: './app/content/header/imgs/movie4.jpg', videoName: 'Nenu Silaja4' },
+                        { videoId: 5, imgUrl: './app/content/header/imgs/movie5.jpg', videoName: 'Nenu Silaja5' }
                     ];
                     httpClient.get('https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PLN-d9pcl44sYHJbw2Kobs355w1Sj2o52t&maxResults=25')
                         .map(function (res) { return res.json(); })
-                        .map(function (x) { _this.tvideos.push(); })
-                        .subscribe(function (res) { return console.log(res); });
+                        .map(function (res) {
+                        //new videoinfo(){videoId = x.id, videoName = x.name, imgUrl = x.url }
+                        //	var myitem = new videoinfo();
+                        var myvideos = new Array();
+                        //fore (var i = 0; i < res.items; i++) {
+                        //	myitem.videoId = res.items[i].snippet.resourceId.videoId;
+                        //	myitem.videoName = res.items[i].snippet.title;
+                        //	myitem.imgUrl = res.items[i].snippet.thumbnails.medium.url;
+                        //	myvideos.push(myitem);
+                        //}
+                        res.items.forEach(function (item, i) {
+                            //myitem.videoId = item.snippet.resourceId.videoId;
+                            //myitem.videoName = item.snippet.title;
+                            //myitem.imgUrl = item.snippet.thumbnails.medium.url;
+                            myvideos.push(new videoinfo_1.videoinfo(item.snippet.resourceId.videoId, item.snippet.title, item.snippet.thumbnails.medium.url));
+                        });
+                        return myvideos;
+                    })
+                        .subscribe(function (res) { console.log(res); _this.videos = res; });
                 };
                 AdminComponent = __decorate([
                     core_1.Component({
@@ -60,7 +82,7 @@ System.register(['angular2/core', '../common/carousel.component', 'angular2/http
                     __metadata('design:paramtypes', [httpclient_1.HttpClient])
                 ], AdminComponent);
                 return AdminComponent;
-            })();
+            }());
             exports_1("AdminComponent", AdminComponent);
         }
     }

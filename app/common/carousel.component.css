@@ -21,11 +21,12 @@
 .hp_videos_display span{
 	
 }
-.hp_videos_display li:nth-child(5):after 
+.each_video:nth-child(4):after 
 { 
-	content:"\A\A"; 
+	content:"\A"; 
 	white-space:pre;
-
+	display:inline-block;
+	/*display:inline-block;*/
 }
 
 
