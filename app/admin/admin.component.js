@@ -57,7 +57,7 @@ System.register(['angular2/core', '../common/carousel.component', 'angular2/http
                     core_1.Component({
                         selector: 'hp-admin',
                         providers: [httpclient_1.HttpClient, http_1.HTTP_PROVIDERS],
-                        template: '<h1>admin</h1><hp-carousel [title]="title" [cvideos]="videos"></hp-carousel> ',
+                        template: "\n\t\t\t\t\t\n\t\t\t\t\t\t<hp-carousel [title]=\"title\" [cvideos] = \"videos\" > </hp-carousel> ",
                         directives: [carousel_component_1.CarouselComponent]
                     }), 
                     __metadata('design:paramtypes', [httpclient_1.HttpClient])
