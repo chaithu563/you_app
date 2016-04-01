@@ -11,7 +11,7 @@ import {videoinfo} from '../interfaces/videoinfo';
 	directives: [CarouselComponent]
 })
 export class AdminComponent {
-
+	//https://auth0.com/blog/2016/01/25/angular-2-series-part-4-component-router-in-depth/
 
 	//constructor(httpClient: HttpClient, http: Http) {
 
