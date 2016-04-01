@@ -28,6 +28,10 @@ System.register(['angular2/core', 'angular2/common'], function(exports_1, contex
                     core_1.Input(), 
                     __metadata('design:type', Array)
                 ], CarouselComponent.prototype, "cvideos", void 0);
+                __decorate([
+                    core_1.Input(), 
+                    __metadata('design:type', String)
+                ], CarouselComponent.prototype, "title", void 0);
                 CarouselComponent = __decorate([
                     core_1.Component({
                         selector: 'hp-carousel',

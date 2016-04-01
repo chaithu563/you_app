@@ -37,35 +37,16 @@ System.register(['angular2/core', '../common/carousel.component', 'angular2/http
                         .map(function (res) { return res.json(); })
                         .subscribe(function (token) { return localStorage.setItem('apitoken', token.access_token); }, function (err) { return console.log(err); });
                     this.videos = [];
-                    this.tvideos = [];
                     this.title = "Trailors";
                     this.getVideos(httpClient);
                 }
                 AdminComponent.prototype.getVideos = function (httpClient) {
                     var _this = this;
-                    this.videos = [
-                        { videoId: 1, imgUrl: './app/content/header/imgs/movie1.jpg', videoName: 'Nenu Silaja' },
-                        { videoId: 2, imgUrl: './app/content/header/imgs/movie2.jpg', videoName: 'Nenu Silaja2' },
-                        { videoId: 3, imgUrl: './app/content/header/imgs/movie3.jpg', videoName: 'Nenu Silaja3' },
-                        { videoId: 4, imgUrl: './app/content/header/imgs/movie4.jpg', videoName: 'Nenu Silaja4' },
-                        { videoId: 5, imgUrl: './app/content/header/imgs/movie5.jpg', videoName: 'Nenu Silaja5' }
-                    ];
                     httpClient.get('https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PLN-d9pcl44sYHJbw2Kobs355w1Sj2o52t&maxResults=25')
                         .map(function (res) { return res.json(); })
                         .map(function (res) {
-                        //new videoinfo(){videoId = x.id, videoName = x.name, imgUrl = x.url }
-                        //	var myitem = new videoinfo();
                         var myvideos = new Array();
-                        //fore (var i = 0; i < res.items; i++) {
-                        //	myitem.videoId = res.items[i].snippet.resourceId.videoId;
-                        //	myitem.videoName = res.items[i].snippet.title;
-                        //	myitem.imgUrl = res.items[i].snippet.thumbnails.medium.url;
-                        //	myvideos.push(myitem);
-                        //}
                         res.items.forEach(function (item, i) {
-                            //myitem.videoId = item.snippet.resourceId.videoId;
-                            //myitem.videoName = item.snippet.title;
-                            //myitem.imgUrl = item.snippet.thumbnails.medium.url;
                             myvideos.push(new videoinfo_1.videoinfo(item.snippet.resourceId.videoId, item.snippet.title, item.snippet.thumbnails.medium.url));
                         });
                         return myvideos;

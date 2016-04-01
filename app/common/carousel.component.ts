@@ -13,12 +13,12 @@ import {videoinfo} from '../interfaces/videoinfo';
 })
 export class CarouselComponent {
 
-  
-
 	@Input() cvideos: videoinfo[];
+	@Input() title: string;
 
 	constructor() {
     	
+
     }
 
 }

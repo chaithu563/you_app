@@ -39,73 +39,47 @@ export class AdminComponent {
 	//}
 
 
-    videos: videoinfo[];
-    tvideos: videoinfo[];
-    title: string;
-    constructor(httpClient: HttpClient) {
-        httpClient.get('http://localhost/HappiPugCloudService/api/token')
-	        .map(res => res.json())
-	        .subscribe(token => localStorage.setItem('apitoken', token.access_token),
-	        err => console.log(err)
-	        );
-        this.videos = [];
-        this.tvideos = [];
-        this.title = "Trailors";
-        this.getVideos(httpClient);
+	videos: videoinfo[];
+	tvideos: videoinfo[];
+	title: string;
+	constructor(httpClient: HttpClient) {
+		httpClient.get('http://localhost/HappiPugCloudService/api/token')
+			.map(res => res.json())
+			.subscribe(token => localStorage.setItem('apitoken', token.access_token),
+				err => console.log(err)
+				);
+		this.videos = [];
+		this.title = "Trailors";
+		this.getVideos(httpClient);
 	}
 
-    public getVideos(httpClient: HttpClient) {
-		this.videos = [
-    		{ videoId: 1, imgUrl: './app/content/header/imgs/movie1.jpg', videoName: 'Nenu Silaja' },
-    		{ videoId: 2, imgUrl: './app/content/header/imgs/movie2.jpg', videoName: 'Nenu Silaja2' },
-    		{ videoId: 3, imgUrl: './app/content/header/imgs/movie3.jpg', videoName: 'Nenu Silaja3' },
-    		{ videoId: 4, imgUrl: './app/content/header/imgs/movie4.jpg', videoName: 'Nenu Silaja4' },
-    		{ videoId: 5, imgUrl: './app/content/header/imgs/movie5.jpg', videoName: 'Nenu Silaja5' }
-        ];
+	public getVideos(httpClient: HttpClient) {
+		httpClient.get('https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PLN-d9pcl44sYHJbw2Kobs355w1Sj2o52t&maxResults=25')
 
+			.map((res: Response) => res.json())
+			.map((res: any) => {
 
-        httpClient.get('https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PLN-d9pcl44sYHJbw2Kobs355w1Sj2o52t&maxResults=25')
+				var myvideos = new Array();
 
-	        .map((res:Response) => res.json())
-            //.map(x=> {
+				res.items.forEach(function (item, i) {
 
-            //    this.tvideos.push(new videoinfo(){videoId=x.id,videoName=x.name,imgUrl=x.url});
+					myvideos.push(new videoinfo(item.snippet.resourceId.videoId, item.snippet.title, item.snippet.thumbnails.medium.url));
 
-            //})
+				})
 
-					.map((res: any) => {
-					//new videoinfo(){videoId = x.id, videoName = x.name, imgUrl = x.url }
-				//	var myitem = new videoinfo();
-					var myvideos = new Array();
-					//fore (var i = 0; i < res.items; i++) {
+				return myvideos;
 
-					//	myitem.videoId = res.items[i].snippet.resourceId.videoId;
-					//	myitem.videoName = res.items[i].snippet.title;
-					//	myitem.imgUrl = res.items[i].snippet.thumbnails.medium.url;
-					//	myvideos.push(myitem);
-					//}
-					res.items.forEach(function (item,i) {
+			}
 
-						//myitem.videoId = item.snippet.resourceId.videoId;
-						//myitem.videoName = item.snippet.title;
-						//myitem.imgUrl = item.snippet.thumbnails.medium.url;
-						myvideos.push(new videoinfo(item.snippet.resourceId.videoId, item.snippet.title, item.snippet.thumbnails.medium.url));
-
-					})
-					
-					return myvideos;
-
-					}
-
-					)
-					.subscribe(res => { console.log(res); this.videos=res });
+				)
+			.subscribe(res => { console.log(res); this.videos = res });
 
 
 	}
 
 
 
-	}
+}
 
 
 
