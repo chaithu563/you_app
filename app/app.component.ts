@@ -5,7 +5,7 @@ import {Http, HTTP_PROVIDERS, Response} from 'angular2/http';
 import {HttpClient} from './httpclient';
 import 'rxjs/Rx';
 @Component({
-    selector: 'hp-app',
+   // selector: 'hp-main',
     providers: [HttpClient, HTTP_PROVIDERS],
    // appInjector: [HttpClient],
     template: '<hp-header></hp-header><hp-body></hp-body>',

@@ -1,6 +1,4 @@
-System.register(['angular2/core', '../common/carousel.component', 'angular2/http', '../httpclient', 'rxjs/Rx', '../interfaces/videoinfo'], function(exports_1, context_1) {
-    "use strict";
-    var __moduleName = context_1 && context_1.id;
+System.register(['angular2/core', '../common/carousel.component', 'angular2/http', '../httpclient', 'rxjs/Rx', '../interfaces/videoinfo'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -11,7 +9,7 @@ System.register(['angular2/core', '../common/carousel.component', 'angular2/http
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var core_1, carousel_component_1, http_1, httpclient_1, videoinfo_1;
-    var AdminComponent;
+    var AdminVideos;
     return {
         setters:[
             function (core_1_1) {
@@ -31,16 +29,13 @@ System.register(['angular2/core', '../common/carousel.component', 'angular2/http
                 videoinfo_1 = videoinfo_1_1;
             }],
         execute: function() {
-            AdminComponent = (function () {
-                function AdminComponent(httpClient) {
-                    httpClient.get('http://localhost/HappiPugCloudService/api/token')
-                        .map(function (res) { return res.json(); })
-                        .subscribe(function (token) { return localStorage.setItem('apitoken', token.access_token); }, function (err) { return console.log(err); });
+            AdminVideos = (function () {
+                function AdminVideos(httpClient) {
                     this.videos = [];
                     this.title = "Trailors";
                     this.getVideos(httpClient);
                 }
-                AdminComponent.prototype.getVideos = function (httpClient) {
+                AdminVideos.prototype.getVideos = function (httpClient) {
                     var _this = this;
                     httpClient.get('https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PLN-d9pcl44sYHJbw2Kobs355w1Sj2o52t&maxResults=25')
                         .map(function (res) { return res.json(); })
@@ -53,7 +48,7 @@ System.register(['angular2/core', '../common/carousel.component', 'angular2/http
                     })
                         .subscribe(function (res) { console.log(res); _this.videos = res; });
                 };
-                AdminComponent = __decorate([
+                AdminVideos = __decorate([
                     core_1.Component({
                         selector: 'hp-admin',
                         providers: [httpclient_1.HttpClient, http_1.HTTP_PROVIDERS],
@@ -61,11 +56,11 @@ System.register(['angular2/core', '../common/carousel.component', 'angular2/http
                         directives: [carousel_component_1.CarouselComponent]
                     }), 
                     __metadata('design:paramtypes', [httpclient_1.HttpClient])
-                ], AdminComponent);
-                return AdminComponent;
-            }());
-            exports_1("AdminComponent", AdminComponent);
+                ], AdminVideos);
+                return AdminVideos;
+            })();
+            exports_1("AdminVideos", AdminVideos);
         }
     }
 });
-//# sourceMappingURL=admin.component.js.map
+//# sourceMappingURL=admin.videos.js.map

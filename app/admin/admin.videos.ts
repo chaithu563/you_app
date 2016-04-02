@@ -18,7 +18,7 @@ import {videoinfo} from '../interfaces/videoinfo';
 	
 
 
-export class AdminComponent {
+export class AdminVideos {
 	//https://auth0.com/blog/2016/01/25/angular-2-series-part-4-component-router-in-depth/
 
 
@@ -26,11 +26,7 @@ export class AdminComponent {
 	videos: videoinfo[];
 	title: string;
 	constructor(httpClient: HttpClient) {
-		httpClient.get('http://localhost/HappiPugCloudService/api/token')
-			.map(res => res.json())
-			.subscribe(token => localStorage.setItem('apitoken', token.access_token),
-				err => console.log(err)
-				);
+		
 		this.videos = [];
 		this.title = "Trailors";
 		this.getVideos(httpClient);

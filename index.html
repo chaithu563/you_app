@@ -22,7 +22,10 @@
     <script src="node_modules/ng2-bootstrap/ng2-bootstrap.js"></script>
     <!-- 2. Configure SystemJS -->
     <script>
-      System.config({
+        System.config({
+            transpiler: 'typescript',
+            globalEvaluationScope: false,
+            typescriptOptions: { emitDecoratorMetadata: true },
         packages: {
               "app": {
                 format: 'register',
@@ -52,7 +55,7 @@
 
 <!-- 3. Display the application -->
 <body>
-    <hp-app>Loading...</hp-app>
+    <hp-main>Loading...</hp-main>
 </body>
 
 </html>

@@ -1,11 +1,12 @@
 ﻿import { Component} from 'angular2/core';
-import {AdminComponent} from './admin.component';
+import {AdminVideos} from './admin.videos';
+import {Http, HTTP_PROVIDERS, Response} from 'angular2/http';
 import {ROUTER_DIRECTIVES, RouteConfig, Router} from 'angular2/router';
 import 'rxjs/Rx';
-
+import {HttpClient} from '../httpclient';
 @Component({
-	selector: 'hp-admin',
-
+	//selector: 'hp-admin',
+    providers: [HttpClient, HTTP_PROVIDERS],
 	template: `
 									<h1>admin</h1>				<router-outlet></router-outlet>
 						`,
@@ -14,7 +15,7 @@ import 'rxjs/Rx';
 
 // Routing is set up with the RouteConfig decorator
 @RouteConfig([
-		{ path: '/admin', component: AdminComponent, name: 'AdminHome', useAsDefault: true },
+		{ path: '/home', component: AdminVideos, name: 'AdminHome', useAsDefault: true },
  // { path: '/admin/:video/...', component: AdminVideo, name: 'Users' },
   { path: '/**', redirectTo: ['AdminHome'] }
 ])
@@ -23,8 +24,12 @@ export class AdminHome {
 	//https://auth0.com/blog/2016/01/25/angular-2-series-part-4-component-router-in-depth/
 
 
-	constructor() {
-		
+    constructor(httpClient: HttpClient) {
+        httpClient.get('http://localhost/HappiPugCloudService/api/token')
+            .map(res => res.json())
+            .subscribe(token => localStorage.setItem('apitoken', token.access_token),
+            err => console.log(err)
+            );
 	}
 
 
