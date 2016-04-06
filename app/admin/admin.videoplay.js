@@ -1,4 +1,4 @@
-System.register(['angular2/core'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/http', '../httpclient', 'rxjs/Rx'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,28 +10,37 @@ System.register(['angular2/core'], function(exports_1, context_1) {
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1;
-    var BodyComponent;
+    var core_1, http_1, httpclient_1;
+    var AdminVideoPlay;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
-            }],
+            },
+            function (http_1_1) {
+                http_1 = http_1_1;
+            },
+            function (httpclient_1_1) {
+                httpclient_1 = httpclient_1_1;
+            },
+            function (_1) {}],
         execute: function() {
-            BodyComponent = (function () {
-                function BodyComponent() {
+            AdminVideoPlay = (function () {
+                function AdminVideoPlay(httpClient) {
                 }
-                BodyComponent = __decorate([
+                AdminVideoPlay = __decorate([
                     core_1.Component({
-                        selector: 'hp-body',
-                        template: '<h1>My Body</h1>'
+                        //selector: 'hp-admin',
+                        providers: [httpclient_1.HttpClient, http_1.HTTP_PROVIDERS],
+                        template: "\n\t\t\t\t\t\t\t<div> video play </div>\n\n\t\t\t\t\t\t ",
+                        directives: []
                     }), 
-                    __metadata('design:paramtypes', [])
-                ], BodyComponent);
-                return BodyComponent;
+                    __metadata('design:paramtypes', [httpclient_1.HttpClient])
+                ], AdminVideoPlay);
+                return AdminVideoPlay;
             }());
-            exports_1("BodyComponent", BodyComponent);
+            exports_1("AdminVideoPlay", AdminVideoPlay);
         }
     }
 });
-//# sourceMappingURL=body.component.js.map
+//# sourceMappingURL=admin.videoplay.js.map

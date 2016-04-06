@@ -1,19 +1,19 @@
 ﻿<div class="hp_carousel_common ">
-    <h2> {{title}}</h2>
+	<h2> {{title}}</h2>
 
-    <div class="hp_videos_display">
-        <div class="all_videos">
+	<div class="hp_videos_display">
+		<div class="all_videos">
 
-					<div class="each_video" *ngFor="#videoinfo of cvideos">
+			<div class="each_video" *ngFor="#videoinfo of cvideos">
 
 
-						<div class="vid_img" (click)="callredirect()"> <img src="{{videoinfo.imgUrl}}" /> </div>
+				<div class="vid_img" (click)="callredirect(videoinfo)"> <img src="{{videoinfo.imgUrl}}" /> </div>
 
-						<span class="vid_info"> {{videoinfo.videoName}}</span>
+				<span class="vid_info"> {{videoinfo.videoName}}</span>
 
-					</div>
-        </div>
+			</div>
+		</div>
 
-    </div>
-     
+	</div>
+
 </div>

@@ -12,18 +12,18 @@ import {videoinfo} from '../interfaces/videoinfo';
 	styleUrls: ['app/common/carousel.component.css']
 })
 export class CarouselComponent {
-
+	@Output() redirectFun: EventEmitter<any> = new EventEmitter();
 	@Input() cvideos: videoinfo[];
 	@Input() title: string;
-	@Output() redirectFun  = new EventEmitter();
+	
 	//constructor() {
     	
 
 	//}
 
-	callredirect() {
+	callredirect(video:videoinfo) {
 
-		this.redirectFun.emit("event");
+		this.redirectFun.next(video);
 
 		}
 

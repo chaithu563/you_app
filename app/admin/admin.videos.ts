@@ -59,7 +59,7 @@ export class AdminVideos {
 
 	public redirectURL(video: videoinfo) {
 
-
+		console.log(video);
 		}
 
 

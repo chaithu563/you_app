@@ -1,4 +1,6 @@
-System.register(['angular2/core', '../common/carousel.component', 'angular2/http', '../httpclient', 'rxjs/Rx', '../interfaces/videoinfo'], function(exports_1) {
+System.register(['angular2/core', '../common/carousel.component', 'angular2/http', '../httpclient', 'rxjs/Rx', '../interfaces/videoinfo'], function(exports_1, context_1) {
+    "use strict";
+    var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -48,17 +50,20 @@ System.register(['angular2/core', '../common/carousel.component', 'angular2/http
                     })
                         .subscribe(function (res) { console.log(res); _this.videos = res; });
                 };
+                AdminVideos.prototype.redirectURL = function (video) {
+                    console.log(video);
+                };
                 AdminVideos = __decorate([
                     core_1.Component({
                         selector: 'hp-admin',
                         providers: [httpclient_1.HttpClient, http_1.HTTP_PROVIDERS],
-                        template: "\n\t\t\t\t\t\n\t\t\t\t\t\t<hp-carousel [title]=\"title\" [cvideos] = \"videos\" > </hp-carousel> ",
+                        template: "\n\t\t\t\t\t\n\t\t\t\t\t\t<hp-carousel [title]=\"title\" [cvideos] = \"videos\" (redirectFun)=\"redirectURL($event)\" > </hp-carousel> ",
                         directives: [carousel_component_1.CarouselComponent]
                     }), 
                     __metadata('design:paramtypes', [httpclient_1.HttpClient])
                 ], AdminVideos);
                 return AdminVideos;
-            })();
+            }());
             exports_1("AdminVideos", AdminVideos);
         }
     }
