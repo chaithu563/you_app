@@ -12,7 +12,7 @@ import {videoinfo} from '../interfaces/videoinfo';
 	providers: [HttpClient, HTTP_PROVIDERS],
 	template: `
 					
-						<hp-carousel [title]="title" [cvideos] = "videos" > </hp-carousel> `,
+						<hp-carousel [title]="title" [cvideos] = "videos" (redirectFun)="redirectURL($event)" > </hp-carousel> `,
 	directives: [CarouselComponent]
 })
 	
@@ -56,6 +56,11 @@ export class AdminVideos {
 
 
 	}
+
+	public redirectURL(video: videoinfo) {
+
+
+		}
 
 
 

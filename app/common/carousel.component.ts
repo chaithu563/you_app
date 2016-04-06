@@ -1,6 +1,6 @@
-﻿import { Component,Input} from 'angular2/core';
+﻿import { Component, Input, Output, EventEmitter} from 'angular2/core';
 import {CORE_DIRECTIVES} from 'angular2/common';
-//import {Http, HTTP_PROVIDERS, Response} from 'angular2/http';
+import {Http, HTTP_PROVIDERS, Response} from 'angular2/http';
 //import {HttpClient} from './httpclient';
 import {videoinfo} from '../interfaces/videoinfo';
 @Component({
@@ -15,10 +15,16 @@ export class CarouselComponent {
 
 	@Input() cvideos: videoinfo[];
 	@Input() title: string;
-
-	constructor() {
+	@Output() redirectFun  = new EventEmitter();
+	//constructor() {
     	
 
-    }
+	//}
+
+	callredirect() {
+
+		this.redirectFun.emit("event");
+
+		}
 
 }

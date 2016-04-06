@@ -1,5 +1,6 @@
 ﻿import { Component} from 'angular2/core';
 import {AdminVideos} from './admin.videos';
+import {AdminVideoPlay} from './admin.videoplay';
 import {Http, HTTP_PROVIDERS, Response} from 'angular2/http';
 import {ROUTER_DIRECTIVES, RouteConfig, Router} from 'angular2/router';
 import 'rxjs/Rx';
@@ -15,7 +16,8 @@ import {HttpClient} from '../httpclient';
 
 // Routing is set up with the RouteConfig decorator
 @RouteConfig([
-		{ path: '/home', component: AdminVideos, name: 'AdminHome', useAsDefault: true },
+		{ path: '/videos', component: AdminVideos, name: 'AdminHome', useAsDefault: true },
+		{ path: '/play', component: AdminVideoPlay, name: 'AdminPlay' },
  // { path: '/admin/:video/...', component: AdminVideo, name: 'Users' },
   { path: '/**', redirectTo: ['AdminHome'] }
 ])
