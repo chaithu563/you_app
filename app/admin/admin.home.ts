@@ -27,11 +27,13 @@ export class AdminHome {
 
 
     constructor(httpClient: HttpClient) {
+
         httpClient.get('http://localhost/HappiPugCloudService/api/token')
             .map(res => res.json())
             .subscribe(token => localStorage.setItem('apitoken', token.access_token),
             err => console.log(err)
-            );
+        );
+
 	}
 
 

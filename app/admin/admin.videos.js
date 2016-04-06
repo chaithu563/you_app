@@ -1,6 +1,4 @@
-System.register(['angular2/core', '../common/carousel.component', 'angular2/http', '../httpclient', 'rxjs/Rx', '../interfaces/videoinfo'], function(exports_1, context_1) {
-    "use strict";
-    var __moduleName = context_1 && context_1.id;
+System.register(['angular2/core', 'angular2/router', '../common/carousel.component', 'angular2/http', '../httpclient', 'rxjs/Rx', '../interfaces/videoinfo'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -10,12 +8,15 @@ System.register(['angular2/core', '../common/carousel.component', 'angular2/http
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, carousel_component_1, http_1, httpclient_1, videoinfo_1;
+    var core_1, router_1, carousel_component_1, http_1, httpclient_1, videoinfo_1;
     var AdminVideos;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
+            },
+            function (router_1_1) {
+                router_1 = router_1_1;
             },
             function (carousel_component_1_1) {
                 carousel_component_1 = carousel_component_1_1;
@@ -32,7 +33,8 @@ System.register(['angular2/core', '../common/carousel.component', 'angular2/http
             }],
         execute: function() {
             AdminVideos = (function () {
-                function AdminVideos(httpClient) {
+                function AdminVideos(httpClient, router) {
+                    this.router = router;
                     this.videos = [];
                     this.title = "Trailors";
                     this.getVideos(httpClient);
@@ -52,18 +54,20 @@ System.register(['angular2/core', '../common/carousel.component', 'angular2/http
                 };
                 AdminVideos.prototype.redirectURL = function (video) {
                     console.log(video);
+                    this.router.navigate(['AdminPlay']);
+                    ;
                 };
                 AdminVideos = __decorate([
                     core_1.Component({
                         selector: 'hp-admin',
                         providers: [httpclient_1.HttpClient, http_1.HTTP_PROVIDERS],
-                        template: "\n\t\t\t\t\t\n\t\t\t\t\t\t<hp-carousel [title]=\"title\" [cvideos] = \"videos\" (redirectFun)=\"redirectURL($event)\" > </hp-carousel> ",
+                        template: "\n\t\t\t\t\t\t<hp-carousel [title]=\"title\" [cvideos] = \"videos\" (redirectFun)=\"redirectURL($event)\" > </hp-carousel>\n\n                ",
                         directives: [carousel_component_1.CarouselComponent]
                     }), 
-                    __metadata('design:paramtypes', [httpclient_1.HttpClient])
+                    __metadata('design:paramtypes', [httpclient_1.HttpClient, router_1.Router])
                 ], AdminVideos);
                 return AdminVideos;
-            }());
+            })();
             exports_1("AdminVideos", AdminVideos);
         }
     }

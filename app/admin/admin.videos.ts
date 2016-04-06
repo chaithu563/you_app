@@ -10,9 +10,10 @@ import {videoinfo} from '../interfaces/videoinfo';
 @Component({
 	selector: 'hp-admin',
 	providers: [HttpClient, HTTP_PROVIDERS],
-	template: `
-					
-						<hp-carousel [title]="title" [cvideos] = "videos" (redirectFun)="redirectURL($event)" > </hp-carousel> `,
+	template:   `
+						<hp-carousel [title]="title" [cvideos] = "videos" (redirectFun)="redirectURL($event)" > </hp-carousel>
+
+                `,
 	directives: [CarouselComponent]
 })
 	
@@ -24,16 +25,21 @@ export class AdminVideos {
 
 
 	videos: videoinfo[];
-	title: string;
-	constructor(httpClient: HttpClient) {
+    title: string;
+    router: Router;
+    constructor(httpClient: HttpClient, router: Router) {
 		
+        this.router = router;
 		this.videos = [];
 		this.title = "Trailors";
 		this.getVideos(httpClient);
 	}
 
 
-	public getVideos(httpClient: HttpClient) {
+    public getVideos(httpClient: HttpClient) {
+
+       
+
 		httpClient.get('https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PLN-d9pcl44sYHJbw2Kobs355w1Sj2o52t&maxResults=25')
 
 			.map((res: Response) => res.json())
@@ -59,7 +65,8 @@ export class AdminVideos {
 
 	public redirectURL(video: videoinfo) {
 
-		console.log(video);
+        console.log(video);
+        this.router.navigate(['AdminPlay']);          ;
 		}
 
 
