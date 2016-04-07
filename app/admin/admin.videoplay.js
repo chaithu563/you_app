@@ -1,4 +1,6 @@
-System.register(['angular2/core', 'angular2/http', '../httpclient', 'rxjs/Rx'], function(exports_1) {
+System.register(['angular2/core', 'angular2/http', '../httpclient', 'rxjs/Rx'], function(exports_1, context_1) {
+    "use strict";
+    var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -30,13 +32,18 @@ System.register(['angular2/core', 'angular2/http', '../httpclient', 'rxjs/Rx'], 
                     core_1.Component({
                         //selector: 'hp-admin',
                         providers: [httpclient_1.HttpClient, http_1.HTTP_PROVIDERS],
-                        template: "\n\t\t\t\t\t\t\t<div> video play </div>\n\n\t\t\t\t\t\t ",
+                        //template: `
+                        //						<div> video play </div>
+                        //					 `,
+                        templateUrl: './admin.videoplay.html',
+                        //template: require('./app.html'),
+                        styleUrls: ['./admin.videoplay.css'],
                         directives: []
                     }), 
                     __metadata('design:paramtypes', [httpclient_1.HttpClient])
                 ], AdminVideoPlay);
                 return AdminVideoPlay;
-            })();
+            }());
             exports_1("AdminVideoPlay", AdminVideoPlay);
         }
     }

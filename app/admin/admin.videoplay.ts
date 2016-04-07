@@ -10,10 +10,13 @@ import {videoinfo} from '../interfaces/videoinfo';
 @Component({
 	//selector: 'hp-admin',
 	providers: [HttpClient, HTTP_PROVIDERS],
-	template: `
-							<div> video play </div>
+	//template: `
+	//						<div> video play </div>
 
-						 `,
+	//					 `,
+	templateUrl: './admin.videoplay.html',
+	//template: require('./app.html'),
+	styleUrls: ['./admin.videoplay.css'],
 	directives: []
 })
 
