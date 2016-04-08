@@ -4,14 +4,14 @@
 
 		<div class="admVideoDiv">
 
-			<div class="admin_video_overlays" ng-show="true">
-				<!-- ng-class="all-overlays overlay-image overlay-1 out"-->
-				<div ng-repeat="item in availItems" ng-style="{'position':'absolute' }" my-draggable="{{item}}">
-					<img style="width: 30px; height: 30px; color: black" ng-src="../app/img/plus-tag.svg" ng-click="openSelectedItem(item)">
+			<!--<div class="admin_video_overlays" ng-show="true">
+				
+				<div  *ngFor="#item of availItems" ng-style="{'position':'absolute' }" my-draggable="{{item}}">
+					<img style="width: 30px; height: 30px; color: black" src="../app/img/plus-tag.svg" (click)="openSelectedItem(item)">
 				</div>
 
 
-			</div>
+			</div>-->
 
 			<div class="videodiv">
 
@@ -19,8 +19,8 @@
 					<source src="../app/video/sreemanthudu.mp4" type="video/mp4">
 				</video>
 
-				<div class="admin-video-controls">
-					<!-- <img class="controlimg" title="select Item" src="../app/img/cart-icon.png" ng-click="ShowItemsAvail()" alt="" />-->
+				<!--<div class="admin-video-controls">
+				
 
 					<img id="play-pause" class="controlimg" ng-src="../app/img/{{playorpause}}-icon.png" ng-click="ShowItemsAvail()" alt="" />
 
@@ -30,13 +30,15 @@
 					<input type="range" id="volume-bar" min="0" max="1" step="0.1" value="1">
 
 					<img id="full-screen" title="Full screen" src="../app/img/FullScreen.png" class="controlimg" alt="" />
-				</div>
+				</div>-->
 
 			</div>
-		</div>
+		
+        
+        </div>
 
-		<div class="admItemAdd">
-			<!-- <span my-test>Drag ME</span><my-test my-draggable> myaname </my-test> -->
+		<!--<div class="admItemAdd">
+			
 			<div class="addeditbuttons">
 				<div class="button-add-div">
 					<button class="admin-add-button" type="button" ng-click="addNewItem()" id="annotator-button-add" data-button-menu-id="annotator-add-menu" aria-pressed="false" aria-expanded="false">
@@ -55,15 +57,7 @@
 				<div class="each-item-div">
 					<label>Product Handle</label><input type="text" ng-model="selectedItem.ProductHandle" />
 				</div>
-				<!-- <div class="each-item-div">
-						 <label>Item Name</label><input type="text" ng-model="selectedItem.name" />
-				 </div>
-				 <div class="each-item-div">
-						 <label>Item Price</label><input type="text"  ng-model="selectedItem.price"/>
-				 </div>
-				 <div class="each-item-div">
-						 <label>Item Provider</label><input type="text" ng-model="selectedItem.redURL" />
-				 </div>-->
+				
 
 				<div class="each-item-div">
 					<label>Item Top</label><input type="text" ng-model="selectedItem.ptop" />
@@ -87,7 +81,7 @@
 			</div>
 
 
-		</div>
+		</div>-->
 	</div>
 
 </div>

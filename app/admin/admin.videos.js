@@ -1,6 +1,4 @@
-System.register(['angular2/core', 'angular2/router', '../common/carousel.component', 'angular2/http', '../httpclient', 'rxjs/Rx', '../interfaces/videoinfo'], function(exports_1, context_1) {
-    "use strict";
-    var __moduleName = context_1 && context_1.id;
+System.register(['angular2/core', 'angular2/router', '../common/carousel.component', 'angular2/http', '../httpclient', 'rxjs/Rx', '../interfaces/videoinfo'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -56,7 +54,7 @@ System.register(['angular2/core', 'angular2/router', '../common/carousel.compone
                 };
                 AdminVideos.prototype.redirectURL = function (video) {
                     console.log(video);
-                    this.router.navigate(['AdminPlay']);
+                    this.router.navigate(['AdminPlay', { id: video.videoId }]);
                     ;
                 };
                 AdminVideos = __decorate([
@@ -69,7 +67,7 @@ System.register(['angular2/core', 'angular2/router', '../common/carousel.compone
                     __metadata('design:paramtypes', [httpclient_1.HttpClient, router_1.Router])
                 ], AdminVideos);
                 return AdminVideos;
-            }());
+            })();
             exports_1("AdminVideos", AdminVideos);
         }
     }

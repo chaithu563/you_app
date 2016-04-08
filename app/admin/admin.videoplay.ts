@@ -1,5 +1,5 @@
 ﻿import { Component} from 'angular2/core';
-
+import {CORE_DIRECTIVES} from 'angular2/common';
 import {ROUTER_DIRECTIVES, RouteConfig, Router} from 'angular2/router';
 
 import {Http, HTTP_PROVIDERS, Response} from 'angular2/http';
@@ -10,13 +10,10 @@ import {videoinfo} from '../interfaces/videoinfo';
 @Component({
 	//selector: 'hp-admin',
 	providers: [HttpClient, HTTP_PROVIDERS],
-	//template: `
-	//						<div> video play </div>
-
-	//					 `,
-	templateUrl: './admin.videoplay.html',
+	
+	templateUrl: '../app/admin/admin.videoplay.html',
 	//template: require('./app.html'),
-	styleUrls: ['./admin.videoplay.css'],
+	styleUrls: ['../app/admin/admin.videoplay.css'],
 	directives: []
 })
 

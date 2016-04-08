@@ -1,6 +1,4 @@
-System.register(['angular2/core', './admin.videos', './admin.videoplay', 'angular2/http', 'angular2/router', 'rxjs/Rx', '../httpclient'], function(exports_1, context_1) {
-    "use strict";
-    var __moduleName = context_1 && context_1.id;
+System.register(['angular2/core', './admin.videos', './admin.videoplay', 'angular2/http', 'angular2/router', 'rxjs/Rx', '../httpclient'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -50,14 +48,14 @@ System.register(['angular2/core', './admin.videos', './admin.videoplay', 'angula
                     }),
                     router_1.RouteConfig([
                         { path: '/videos', component: admin_videos_1.AdminVideos, name: 'AdminHome', useAsDefault: true },
-                        { path: '/play', component: admin_videoplay_1.AdminVideoPlay, name: 'AdminPlay' },
+                        { path: '/play/:id', component: admin_videoplay_1.AdminVideoPlay, name: 'AdminPlay' },
                         // { path: '/admin/:video/...', component: AdminVideo, name: 'Users' },
                         { path: '/**', redirectTo: ['AdminHome'] }
                     ]), 
                     __metadata('design:paramtypes', [httpclient_1.HttpClient])
                 ], AdminHome);
                 return AdminHome;
-            }());
+            })();
             exports_1("AdminHome", AdminHome);
         }
     }

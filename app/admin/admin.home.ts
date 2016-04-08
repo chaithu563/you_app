@@ -17,7 +17,7 @@ import {HttpClient} from '../httpclient';
 // Routing is set up with the RouteConfig decorator
 @RouteConfig([
 		{ path: '/videos', component: AdminVideos, name: 'AdminHome', useAsDefault: true },
-		{ path: '/play', component: AdminVideoPlay, name: 'AdminPlay' },
+		{ path: '/play/:id', component: AdminVideoPlay, name: 'AdminPlay' },
  // { path: '/admin/:video/...', component: AdminVideo, name: 'Users' },
   { path: '/**', redirectTo: ['AdminHome'] }
 ])

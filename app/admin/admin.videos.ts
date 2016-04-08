@@ -1,7 +1,5 @@
 ﻿import { Component} from 'angular2/core';
-
 import {ROUTER_DIRECTIVES, RouteConfig, Router} from 'angular2/router';
-
 import {CarouselComponent } from '../common/carousel.component';
 import {Http, HTTP_PROVIDERS, Response} from 'angular2/http';
 import {HttpClient} from '../httpclient';
@@ -66,7 +64,7 @@ export class AdminVideos {
 	public redirectURL(video: videoinfo) {
 
         console.log(video);
-        this.router.navigate(['AdminPlay']);          ;
+        this.router.navigate(['AdminPlay', { id: video.videoId }]);          ;
 		}
 
 
