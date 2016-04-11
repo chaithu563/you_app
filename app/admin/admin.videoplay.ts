@@ -1,6 +1,6 @@
 ﻿import { Component} from 'angular2/core';
 import {CORE_DIRECTIVES} from 'angular2/common';
-import {ROUTER_DIRECTIVES, RouteConfig, Router} from 'angular2/router';
+import {ROUTER_DIRECTIVES, RouteConfig, Router, RouteParams} from 'angular2/router';
 
 import {Http, HTTP_PROVIDERS, Response} from 'angular2/http';
 import {HttpClient} from '../httpclient';
@@ -22,12 +22,11 @@ import {videoinfo} from '../interfaces/videoinfo';
 export class AdminVideoPlay {
 	//https://auth0.com/blog/2016/01/25/angular-2-series-part-4-component-router-in-depth/
 
-
-
-	video: videoinfo;
+    videoId: string;
 	title: string;
-	constructor(httpClient: HttpClient) {
+    constructor(httpClient: HttpClient, routeParams: RouteParams) {
 
+        this.videoId=  routeParams.get('id');
 
 	}
 

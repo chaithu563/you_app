@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/http', '../httpclient', 'rxjs/Rx'], function(exports_1) {
+System.register(['angular2/core', 'angular2/router', 'angular2/http', '../httpclient', 'rxjs/Rx'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,12 +8,15 @@ System.register(['angular2/core', 'angular2/http', '../httpclient', 'rxjs/Rx'], 
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, http_1, httpclient_1;
+    var core_1, router_1, http_1, httpclient_1;
     var AdminVideoPlay;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
+            },
+            function (router_1_1) {
+                router_1 = router_1_1;
             },
             function (http_1_1) {
                 http_1 = http_1_1;
@@ -24,7 +27,8 @@ System.register(['angular2/core', 'angular2/http', '../httpclient', 'rxjs/Rx'], 
             function (_1) {}],
         execute: function() {
             AdminVideoPlay = (function () {
-                function AdminVideoPlay(httpClient) {
+                function AdminVideoPlay(httpClient, routeParams) {
+                    this.videoId = routeParams.get('id');
                 }
                 AdminVideoPlay = __decorate([
                     core_1.Component({
@@ -35,7 +39,7 @@ System.register(['angular2/core', 'angular2/http', '../httpclient', 'rxjs/Rx'], 
                         styleUrls: ['../app/admin/admin.videoplay.css'],
                         directives: []
                     }), 
-                    __metadata('design:paramtypes', [httpclient_1.HttpClient])
+                    __metadata('design:paramtypes', [httpclient_1.HttpClient, router_1.RouteParams])
                 ], AdminVideoPlay);
                 return AdminVideoPlay;
             })();
