@@ -1,7 +1,7 @@
 ﻿import { Component} from 'angular2/core';
 import {CORE_DIRECTIVES} from 'angular2/common';
 import {ROUTER_DIRECTIVES, RouteConfig, Router, RouteParams} from 'angular2/router';
-
+//import {MediaElementPlayer} from 'build/mediaelementplayer';
 import {Http, HTTP_PROVIDERS, Response} from 'angular2/http';
 import {HttpClient} from '../httpclient';
 import 'rxjs/Rx';
@@ -27,7 +27,8 @@ export class AdminVideoPlay {
     constructor(httpClient: HttpClient, routeParams: RouteParams) {
 
         this.videoId=  routeParams.get('id');
-
+				 	new MediaElementPlayer('#videoPlayer');
+			//http://www.ghadeerrahhal.com/play-video-with-html5-and-angularjs/
 	}
 
 
