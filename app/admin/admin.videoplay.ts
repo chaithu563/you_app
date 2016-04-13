@@ -1,4 +1,5 @@
-﻿import { Component} from 'angular2/core';
+﻿ ///<reference path="../../typings/jquery/jquery.d.ts" />
+import { Component} from 'angular2/core';
 import {CORE_DIRECTIVES} from 'angular2/common';
 import {ROUTER_DIRECTIVES, RouteConfig, Router, RouteParams} from 'angular2/router';
 //import {MediaElementPlayer} from 'build/mediaelementplayer';
@@ -6,6 +7,7 @@ import {Http, HTTP_PROVIDERS, Response} from 'angular2/http';
 import {HttpClient} from '../httpclient';
 import 'rxjs/Rx';
 import {videoinfo} from '../interfaces/videoinfo';
+declare var $: JQueryStatic;
 
 @Component({
 	//selector: 'hp-admin',
@@ -26,8 +28,13 @@ export class AdminVideoPlay {
 	title: string;
     constructor(httpClient: HttpClient, routeParams: RouteParams) {
 
-        this.videoId=  routeParams.get('id');
-				 	new MediaElementPlayer('#videoPlayer');
+        this.videoId = routeParams.get('id');
+
+        setTimeout(() => {
+            new MediaElementPlayer('#videoPlayer');
+        }, 0);
+
+				 	
 			//http://www.ghadeerrahhal.com/play-video-with-html5-and-angularjs/
 	}
 

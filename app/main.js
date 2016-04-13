@@ -1,6 +1,4 @@
-System.register(['angular2/platform/browser', './admin/admin.home', 'angular2/core', './app.component', 'angular2/http', './httpclient', 'angular2/router'], function(exports_1, context_1) {
-    "use strict";
-    var __moduleName = context_1 && context_1.id;
+System.register(['angular2/platform/browser', './admin/admin.home', 'angular2/core', './app.component', 'angular2/http', './httpclient', 'angular2/router'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -56,7 +54,7 @@ System.register(['angular2/platform/browser', './admin/admin.home', 'angular2/co
                     __metadata('design:paramtypes', [])
                 ], Main);
                 return Main;
-            }());
+            })();
             browser_1.bootstrap(Main, [http_1.HTTP_PROVIDERS, router_2.ROUTER_PROVIDERS, core_1.provide(router_1.APP_BASE_HREF, { useValue: '/' })]);
         }
     }

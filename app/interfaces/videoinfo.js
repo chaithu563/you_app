@@ -1,6 +1,4 @@
-System.register([], function(exports_1, context_1) {
-    "use strict";
-    var __moduleName = context_1 && context_1.id;
+System.register([], function(exports_1) {
     var videoinfo;
     return {
         setters:[],
@@ -12,7 +10,7 @@ System.register([], function(exports_1, context_1) {
                     this.imgUrl = url;
                 }
                 return videoinfo;
-            }());
+            })();
             exports_1("videoinfo", videoinfo);
         }
     }
