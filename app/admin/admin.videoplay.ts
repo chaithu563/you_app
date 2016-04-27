@@ -1,5 +1,6 @@
-﻿ ///<reference path="../../typings/jquery/jquery.d.ts" />
+﻿ /////<reference path="../../typings/jquery/jquery.d.ts" />
 import { Component} from 'angular2/core';
+import { AfterViewInit } from 'angular2/core';
 import {CORE_DIRECTIVES} from 'angular2/common';
 import {ROUTER_DIRECTIVES, RouteConfig, Router, RouteParams} from 'angular2/router';
 //import {MediaElementPlayer} from 'build/mediaelementplayer';
@@ -7,8 +8,9 @@ import {Http, HTTP_PROVIDERS, Response} from 'angular2/http';
 import {HttpClient} from '../httpclient';
 import 'rxjs/Rx';
 import {videoinfo} from '../interfaces/videoinfo';
-declare var $: JQueryStatic;
-
+//import {YoutubeVideo} from 'YoutubeVideo';
+//declare var $: JQueryStatic;
+declare var YoutubeVideo: any;
 @Component({
 	//selector: 'hp-admin',
 	providers: [HttpClient, HTTP_PROVIDERS],
@@ -21,17 +23,29 @@ declare var $: JQueryStatic;
 
 
 
-export class AdminVideoPlay {
+export class AdminVideoPlay implements AfterViewInit {
 	//https://auth0.com/blog/2016/01/25/angular-2-series-part-4-component-router-in-depth/
 
     videoId: string;
 	title: string;
-    constructor(httpClient: HttpClient, routeParams: RouteParams) {
+	constructor(httpClient: HttpClient, routeParams: RouteParams) {
 
         this.videoId = routeParams.get('id');
 
         setTimeout(() => {
-            new MediaElementPlayer('#videoPlayer');
+					//mejs.$ = jQuery;
+					//$ = jQuery;
+           // new MediaElementPlayer('#videoPlayer');
+					//$('audio, video').mediaelementplayer({});
+					var video = new YoutubeVideo({
+						el: document.getElementsByTagName('video')[0]
+					})
+
+					video.load().then(() => {
+						video.play();
+						video.pause();
+					});
+
         }, 0);
 
 				 	
@@ -40,7 +54,10 @@ export class AdminVideoPlay {
 
 
 
-
+	ngAfterViewInit() {
+		//here you will have code where component content is ready.
+		//$('audio, video').mediaelementplayer({});
+	} 
 
 
 }
