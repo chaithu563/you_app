@@ -11,6 +11,7 @@ import {videoinfo} from '../interfaces/videoinfo';
 //import {YoutubeVideo} from 'YoutubeVideo';
 //declare var $: JQueryStatic;
 declare var YoutubeVideo: any;
+declare var MediaElementPlayer: any;
 @Component({
 	//selector: 'hp-admin',
 	providers: [HttpClient, HTTP_PROVIDERS],
@@ -35,16 +36,16 @@ export class AdminVideoPlay implements AfterViewInit {
         setTimeout(() => {
 					//mejs.$ = jQuery;
 					//$ = jQuery;
-           // new MediaElementPlayer('#videoPlayer');
+          //  new MediaElementPlayer('#videoPlayer');
 					//$('audio, video').mediaelementplayer({});
-					var video = new YoutubeVideo({
-						el: document.getElementsByTagName('video')[0]
-					})
+					//var video = new YoutubeVideo({
+					//	el: document.getElementsByTagName('video')[0]
+					//})
 
-					video.load().then(() => {
-						video.play();
-						video.pause();
-					});
+					//video.load().then(() => {
+					//	video.play();
+					//	video.pause();
+					//});
 
         }, 0);
 
@@ -57,6 +58,13 @@ export class AdminVideoPlay implements AfterViewInit {
 	ngAfterViewInit() {
 		//here you will have code where component content is ready.
 		//$('audio, video').mediaelementplayer({});
+	//	new MediaElementPlayer('#videoPlayer');
+		var player = new MediaElementPlayer('video',
+			{
+				defaultVideoWidth: 960, defaultVideoHeight: 410,
+				features: ['playpause', 'progress', 'current', 'duration', 'volume', 'fullscreen'],
+				success: function (mediaElement, domObject) { alert('success'); }
+			});
 	} 
 
 

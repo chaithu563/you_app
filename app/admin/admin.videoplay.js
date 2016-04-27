@@ -34,21 +34,27 @@ System.register(['angular2/core', 'angular2/router', 'angular2/http', '../httpcl
                     setTimeout(function () {
                         //mejs.$ = jQuery;
                         //$ = jQuery;
-                        // new MediaElementPlayer('#videoPlayer');
+                        //  new MediaElementPlayer('#videoPlayer');
                         //$('audio, video').mediaelementplayer({});
-                        var video = new YoutubeVideo({
-                            el: document.getElementsByTagName('video')[0]
-                        });
-                        video.load().then(function () {
-                            video.play();
-                            video.pause();
-                        });
+                        //var video = new YoutubeVideo({
+                        //	el: document.getElementsByTagName('video')[0]
+                        //})
+                        //video.load().then(() => {
+                        //	video.play();
+                        //	video.pause();
+                        //});
                     }, 0);
                     //http://www.ghadeerrahhal.com/play-video-with-html5-and-angularjs/
                 }
                 AdminVideoPlay.prototype.ngAfterViewInit = function () {
                     //here you will have code where component content is ready.
                     //$('audio, video').mediaelementplayer({});
+                    //	new MediaElementPlayer('#videoPlayer');
+                    var player = new MediaElementPlayer('video', {
+                        defaultVideoWidth: 960, defaultVideoHeight: 410,
+                        features: ['playpause', 'progress', 'current', 'duration', 'volume', 'fullscreen'],
+                        success: function (mediaElement, domObject) { alert('success'); }
+                    });
                 };
                 AdminVideoPlay = __decorate([
                     core_1.Component({
