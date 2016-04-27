@@ -30,31 +30,18 @@ System.register(['angular2/core', 'angular2/router', 'angular2/http', '../httpcl
         execute: function() {
             AdminVideoPlay = (function () {
                 function AdminVideoPlay(httpClient, routeParams) {
-                    this.videoId = routeParams.get('id');
-                    setTimeout(function () {
-                        //mejs.$ = jQuery;
-                        //$ = jQuery;
-                        //  new MediaElementPlayer('#videoPlayer');
-                        //$('audio, video').mediaelementplayer({});
-                        //var video = new YoutubeVideo({
-                        //	el: document.getElementsByTagName('video')[0]
-                        //})
-                        //video.load().then(() => {
-                        //	video.play();
-                        //	video.pause();
-                        //});
-                    }, 0);
+                    this.videosrc = "www.youtube.com/watch?v=" + routeParams.get('id');
+                    //setTimeout(() => {
+                    //}, 0);
                     //http://www.ghadeerrahhal.com/play-video-with-html5-and-angularjs/
                 }
                 AdminVideoPlay.prototype.ngAfterViewInit = function () {
-                    //here you will have code where component content is ready.
-                    //$('audio, video').mediaelementplayer({});
-                    //	new MediaElementPlayer('#videoPlayer');
                     var player = new MediaElementPlayer('video', {
                         defaultVideoWidth: 960, defaultVideoHeight: 410,
                         features: ['playpause', 'progress', 'current', 'duration', 'volume', 'fullscreen'],
                         success: function (mediaElement, domObject) { alert('success'); }
                     });
+                    player.setSrc(this.videosrc);
                 };
                 AdminVideoPlay = __decorate([
                     core_1.Component({

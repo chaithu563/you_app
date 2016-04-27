@@ -27,27 +27,15 @@ declare var MediaElementPlayer: any;
 export class AdminVideoPlay implements AfterViewInit {
 	//https://auth0.com/blog/2016/01/25/angular-2-series-part-4-component-router-in-depth/
 
-    videoId: string;
+	videosrc: string;
 	title: string;
 	constructor(httpClient: HttpClient, routeParams: RouteParams) {
 
-        this.videoId = routeParams.get('id');
+				this.videosrc = "www.youtube.com/watch?v=" + routeParams.get('id');
+        //setTimeout(() => {
+					
 
-        setTimeout(() => {
-					//mejs.$ = jQuery;
-					//$ = jQuery;
-          //  new MediaElementPlayer('#videoPlayer');
-					//$('audio, video').mediaelementplayer({});
-					//var video = new YoutubeVideo({
-					//	el: document.getElementsByTagName('video')[0]
-					//})
-
-					//video.load().then(() => {
-					//	video.play();
-					//	video.pause();
-					//});
-
-        }, 0);
+        //}, 0);
 
 				 	
 			//http://www.ghadeerrahhal.com/play-video-with-html5-and-angularjs/
@@ -56,15 +44,14 @@ export class AdminVideoPlay implements AfterViewInit {
 
 
 	ngAfterViewInit() {
-		//here you will have code where component content is ready.
-		//$('audio, video').mediaelementplayer({});
-	//	new MediaElementPlayer('#videoPlayer');
+
 		var player = new MediaElementPlayer('video',
 			{
 				defaultVideoWidth: 960, defaultVideoHeight: 410,
 				features: ['playpause', 'progress', 'current', 'duration', 'volume', 'fullscreen'],
 				success: function (mediaElement, domObject) { alert('success'); }
 			});
+		player.setSrc(this.videosrc);
 	} 
 
 
