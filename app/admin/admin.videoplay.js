@@ -1,6 +1,4 @@
-System.register(['angular2/core', 'angular2/router', 'angular2/http', '../httpclient', 'rxjs/Rx'], function(exports_1, context_1) {
-    "use strict";
-    var __moduleName = context_1 && context_1.id;
+System.register(['angular2/core', 'angular2/router', 'angular2/http', '../httpclient', 'rxjs/Rx'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -39,7 +37,17 @@ System.register(['angular2/core', 'angular2/router', 'angular2/http', '../httpcl
                     var player = new MediaElementPlayer('video', {
                         defaultVideoWidth: 960, defaultVideoHeight: 410,
                         features: ['playpause', 'progress', 'current', 'duration', 'volume', 'fullscreen'],
-                        success: function (mediaElement, domObject) { alert('success'); }
+                        success: function (mediaElement, domObject) {
+                            console.log(mediaElement.duration);
+                            // add event listener
+                            mediaElement.addEventListener('timeupdate', function (e) {
+                                console.log('time chnage' + mediaElement.currentTime);
+                            }, false);
+                            mediaElement.addEventListener('seeking', function (e) {
+                                console.log('seeking' + mediaElement.currentTime);
+                            }, false);
+                            // alert('success');
+                        }
                     });
                     player.setSrc(this.videosrc);
                 };
@@ -55,7 +63,7 @@ System.register(['angular2/core', 'angular2/router', 'angular2/http', '../httpcl
                     __metadata('design:paramtypes', [httpclient_1.HttpClient, router_1.RouteParams])
                 ], AdminVideoPlay);
                 return AdminVideoPlay;
-            }());
+            })();
             exports_1("AdminVideoPlay", AdminVideoPlay);
         }
     }

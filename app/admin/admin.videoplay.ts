@@ -49,7 +49,20 @@ export class AdminVideoPlay implements AfterViewInit {
 			{
 				defaultVideoWidth: 960, defaultVideoHeight: 410,
 				features: ['playpause', 'progress', 'current', 'duration', 'volume', 'fullscreen'],
-				success: function (mediaElement, domObject) { alert('success'); }
+                success: function (mediaElement, domObject) {
+
+                    console.log(mediaElement.duration);
+                    // add event listener
+                    mediaElement.addEventListener('timeupdate', function (e) {
+                        console.log('time chnage'+mediaElement.currentTime);
+                    }, false);
+
+                    mediaElement.addEventListener('seeking', function (e) {
+                        console.log('seeking'+mediaElement.currentTime);
+                    }, false);
+
+                   // alert('success');
+                }
 			});
 		player.setSrc(this.videosrc);
 	} 
