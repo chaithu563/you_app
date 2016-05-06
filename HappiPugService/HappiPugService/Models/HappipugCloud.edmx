@@ -4,20 +4,369 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="happipugCloudModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityContainer Name="happipugCloudModelStoreContainer" />
-      </Schema>
-    </edmx:StorageModels>
+    <Schema Namespace="happipugCloudModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Actor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ActorName" Type="varchar" MaxLength="255" />
+          <Property Name="ActorTypeId" Type="int" />
+          <Property Name="LanguageId" Type="int" />
+        </EntityType>
+        <EntityType Name="ActorType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TypeName" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Language">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Videos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="YoutubeID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="VideoName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="LanguageId" Type="int" />
+          <Property Name="ActorIds" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="VideoTypeId" Type="int" />
+        </EntityType>
+        <EntityType Name="VideoShopItems">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ptop" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="pleft" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="starttime" Type="decimal" Precision="28" Scale="6" />
+          <Property Name="endtime" Type="decimal" Precision="28" Scale="6" />
+          <Property Name="Video_Id" Type="int" />
+          <Property Name="ProductHandle" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="VideoType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TypeName" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <Association Name="FK__Actor__ActorType__4AB81AF0">
+          <End Role="ActorType" Type="Self.ActorType" Multiplicity="0..1" />
+          <End Role="Actor" Type="Self.Actor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ActorType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Actor">
+              <PropertyRef Name="ActorTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Actor__LanguageI__4BAC3F29">
+          <End Role="Language" Type="Self.Language" Multiplicity="0..1" />
+          <End Role="Actor" Type="Self.Actor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Language">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Actor">
+              <PropertyRef Name="LanguageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Videos__Language__5070F446">
+          <End Role="Language" Type="Self.Language" Multiplicity="0..1" />
+          <End Role="Videos" Type="Self.Videos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Language">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Videos">
+              <PropertyRef Name="LanguageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Videos__VideoTyp__5165187F">
+          <End Role="VideoType" Type="Self.VideoType" Multiplicity="0..1" />
+          <End Role="Videos" Type="Self.Videos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VideoType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Videos">
+              <PropertyRef Name="VideoTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__VideoShop__Video__5441852A">
+          <End Role="Videos" Type="Self.Videos" Multiplicity="0..1" />
+          <End Role="VideoShopItems" Type="Self.VideoShopItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Videos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VideoShopItems">
+              <PropertyRef Name="Video_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="happipugCloudModelStoreContainer">
+          <EntitySet Name="Actor" EntityType="Self.Actor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ActorType" EntityType="Self.ActorType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Language" EntityType="Self.Language" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Videos" EntityType="Self.Videos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VideoShopItems" EntityType="Self.VideoShopItems" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VideoType" EntityType="Self.VideoType" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Actor__ActorType__4AB81AF0" Association="Self.FK__Actor__ActorType__4AB81AF0">
+            <End Role="ActorType" EntitySet="ActorType" />
+            <End Role="Actor" EntitySet="Actor" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Actor__LanguageI__4BAC3F29" Association="Self.FK__Actor__LanguageI__4BAC3F29">
+            <End Role="Language" EntitySet="Language" />
+            <End Role="Actor" EntitySet="Actor" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Videos__Language__5070F446" Association="Self.FK__Videos__Language__5070F446">
+            <End Role="Language" EntitySet="Language" />
+            <End Role="Videos" EntitySet="Videos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Videos__VideoTyp__5165187F" Association="Self.FK__Videos__VideoTyp__5165187F">
+            <End Role="VideoType" EntitySet="VideoType" />
+            <End Role="Videos" EntitySet="Videos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__VideoShop__Video__5441852A" Association="Self.FK__VideoShop__Video__5441852A">
+            <End Role="Videos" EntitySet="Videos" />
+            <End Role="VideoShopItems" EntitySet="VideoShopItems" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="happipugCloudModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="happipugCloudEntities" annotation:LazyLoadingEnabled="true" />
+        <EntityContainer Name="happipugCloudEntities" annotation:LazyLoadingEnabled="true" >
+          <EntitySet Name="Actors" EntityType="happipugCloudModel.Actor" />
+          <EntitySet Name="ActorTypes" EntityType="happipugCloudModel.ActorType" />
+          <EntitySet Name="Languages" EntityType="happipugCloudModel.Language" />
+          <EntitySet Name="Videos" EntityType="happipugCloudModel.Video" />
+          <EntitySet Name="VideoShopItems" EntityType="happipugCloudModel.VideoShopItem" />
+          <EntitySet Name="VideoTypes" EntityType="happipugCloudModel.VideoType" />
+          <AssociationSet Name="FK__Actor__ActorType__3A81B327" Association="happipugCloudModel.FK__Actor__ActorType__3A81B327">
+            <End Role="ActorType" EntitySet="ActorTypes" />
+            <End Role="Actor" EntitySet="Actors" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Actor__LanguageI__3B75D760" Association="happipugCloudModel.FK__Actor__LanguageI__3B75D760">
+            <End Role="Language" EntitySet="Languages" />
+            <End Role="Actor" EntitySet="Actors" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Videos__Language__403A8C7D" Association="happipugCloudModel.FK__Videos__Language__403A8C7D">
+            <End Role="Language" EntitySet="Languages" />
+            <End Role="Video" EntitySet="Videos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Videos__VideoTyp__412EB0B6" Association="happipugCloudModel.FK__Videos__VideoTyp__412EB0B6">
+            <End Role="VideoType" EntitySet="VideoTypes" />
+            <End Role="Video" EntitySet="Videos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__VideoShop__Video__440B1D61" Association="happipugCloudModel.FK__VideoShop__Video__440B1D61">
+            <End Role="Video" EntitySet="Videos" />
+            <End Role="VideoShopItem" EntitySet="VideoShopItems" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Actor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="ActorName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ActorTypeId" Type="Int32" />
+          <Property Name="LanguageId" Type="Int32" />
+          <NavigationProperty Name="ActorType" Relationship="happipugCloudModel.FK__Actor__ActorType__3A81B327" FromRole="Actor" ToRole="ActorType" />
+          <NavigationProperty Name="Language" Relationship="happipugCloudModel.FK__Actor__LanguageI__3B75D760" FromRole="Actor" ToRole="Language" />
+        </EntityType>
+        <EntityType Name="ActorType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="TypeName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Actors" Relationship="happipugCloudModel.FK__Actor__ActorType__3A81B327" FromRole="ActorType" ToRole="Actor" />
+        </EntityType>
+        <EntityType Name="Language">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Actors" Relationship="happipugCloudModel.FK__Actor__LanguageI__3B75D760" FromRole="Language" ToRole="Actor" />
+          <NavigationProperty Name="Videos" Relationship="happipugCloudModel.FK__Videos__Language__403A8C7D" FromRole="Language" ToRole="Video" />
+        </EntityType>
+        <EntityType Name="Video">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="YoutubeID" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="VideoName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="LanguageId" Type="Int32" />
+          <Property Name="ActorIds" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="VideoTypeId" Type="Int32" />
+          <NavigationProperty Name="Language" Relationship="happipugCloudModel.FK__Videos__Language__403A8C7D" FromRole="Video" ToRole="Language" />
+          <NavigationProperty Name="VideoType" Relationship="happipugCloudModel.FK__Videos__VideoTyp__412EB0B6" FromRole="Video" ToRole="VideoType" />
+          <NavigationProperty Name="VideoShopItems" Relationship="happipugCloudModel.FK__VideoShop__Video__440B1D61" FromRole="Video" ToRole="VideoShopItem" />
+        </EntityType>
+        <EntityType Name="VideoShopItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ptop" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="pleft" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="starttime" Type="Decimal" Precision="28" Scale="6" />
+          <Property Name="endtime" Type="Decimal" Precision="28" Scale="6" />
+          <Property Name="Video_Id" Type="Int32" />
+          <Property Name="ProductHandle" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Video" Relationship="happipugCloudModel.FK__VideoShop__Video__440B1D61" FromRole="VideoShopItem" ToRole="Video" />
+        </EntityType>
+        <EntityType Name="VideoType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="TypeName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Videos" Relationship="happipugCloudModel.FK__Videos__VideoTyp__412EB0B6" FromRole="VideoType" ToRole="Video" />
+        </EntityType>
+        <Association Name="FK__Actor__ActorType__3A81B327">
+          <End Type="happipugCloudModel.ActorType" Role="ActorType" Multiplicity="0..1" />
+          <End Type="happipugCloudModel.Actor" Role="Actor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ActorType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Actor">
+              <PropertyRef Name="ActorTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Actor__LanguageI__3B75D760">
+          <End Type="happipugCloudModel.Language" Role="Language" Multiplicity="0..1" />
+          <End Type="happipugCloudModel.Actor" Role="Actor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Language">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Actor">
+              <PropertyRef Name="LanguageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Videos__Language__403A8C7D">
+          <End Type="happipugCloudModel.Language" Role="Language" Multiplicity="0..1" />
+          <End Type="happipugCloudModel.Video" Role="Video" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Language">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Video">
+              <PropertyRef Name="LanguageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Videos__VideoTyp__412EB0B6">
+          <End Type="happipugCloudModel.VideoType" Role="VideoType" Multiplicity="0..1" />
+          <End Type="happipugCloudModel.Video" Role="Video" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VideoType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Video">
+              <PropertyRef Name="VideoTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__VideoShop__Video__440B1D61">
+          <End Type="happipugCloudModel.Video" Role="Video" Multiplicity="0..1" />
+          <End Type="happipugCloudModel.VideoShopItem" Role="VideoShopItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Video">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VideoShopItem">
+              <PropertyRef Name="Video_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="happipugCloudModelStoreContainer" CdmEntityContainer="happipugCloudEntities" />
+        <EntityContainerMapping StorageEntityContainer="happipugCloudModelStoreContainer" CdmEntityContainer="happipugCloudEntities" >
+          <EntitySetMapping Name="Actors">
+            <EntityTypeMapping TypeName="happipugCloudModel.Actor">
+              <MappingFragment StoreEntitySet="Actor">
+                <ScalarProperty Name="LanguageId" ColumnName="LanguageId" />
+                <ScalarProperty Name="ActorTypeId" ColumnName="ActorTypeId" />
+                <ScalarProperty Name="ActorName" ColumnName="ActorName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ActorTypes">
+            <EntityTypeMapping TypeName="happipugCloudModel.ActorType">
+              <MappingFragment StoreEntitySet="ActorType">
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Languages">
+            <EntityTypeMapping TypeName="happipugCloudModel.Language">
+              <MappingFragment StoreEntitySet="Language">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Videos">
+            <EntityTypeMapping TypeName="happipugCloudModel.Video">
+              <MappingFragment StoreEntitySet="Videos">
+                <ScalarProperty Name="VideoTypeId" ColumnName="VideoTypeId" />
+                <ScalarProperty Name="ActorIds" ColumnName="ActorIds" />
+                <ScalarProperty Name="LanguageId" ColumnName="LanguageId" />
+                <ScalarProperty Name="VideoName" ColumnName="VideoName" />
+                <ScalarProperty Name="YoutubeID" ColumnName="YoutubeID" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VideoShopItems">
+            <EntityTypeMapping TypeName="happipugCloudModel.VideoShopItem">
+              <MappingFragment StoreEntitySet="VideoShopItems">
+                <ScalarProperty Name="ProductHandle" ColumnName="ProductHandle" />
+                <ScalarProperty Name="Video_Id" ColumnName="Video_Id" />
+                <ScalarProperty Name="endtime" ColumnName="endtime" />
+                <ScalarProperty Name="starttime" ColumnName="starttime" />
+                <ScalarProperty Name="pleft" ColumnName="pleft" />
+                <ScalarProperty Name="ptop" ColumnName="ptop" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VideoTypes">
+            <EntityTypeMapping TypeName="happipugCloudModel.VideoType">
+              <MappingFragment StoreEntitySet="VideoType">
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>
