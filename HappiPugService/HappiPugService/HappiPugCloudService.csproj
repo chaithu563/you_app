@@ -127,10 +127,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ActorController.cs" />
+    <Compile Include="Controllers\ActorTypeController.cs" />
+    <Compile Include="Controllers\LanguageController.cs" />
     <Compile Include="Controllers\TokenController.cs" />
+    <Compile Include="Controllers\VideoController.cs" />
+    <Compile Include="Controllers\VideoShopItemController.cs" />
+    <Compile Include="Controllers\VideoTypeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Actor.cs">
+      <DependentUpon>HappipugCloud.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ActorType.cs">
+      <DependentUpon>HappipugCloud.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\HappipugCloud.Context.cs">
       <AutoGen>True</AutoGen>
@@ -146,6 +157,18 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>HappipugCloud.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Language.cs">
+      <DependentUpon>HappipugCloud.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Video.cs">
+      <DependentUpon>HappipugCloud.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VideoShopItem.cs">
+      <DependentUpon>HappipugCloud.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VideoType.cs">
+      <DependentUpon>HappipugCloud.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

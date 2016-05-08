@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4e694658abd94778be6470008f4c4246" Name="Diagram1" >
+        <EntityTypeShape EntityType="happipugCloudModel.Actor" Width="1.5" PointX="6" PointY="3.5" />
+        <EntityTypeShape EntityType="happipugCloudModel.ActorType" Width="1.5" PointX="3.75" PointY="0.75" />
+        <EntityTypeShape EntityType="happipugCloudModel.Language" Width="1.5" PointX="0.75" PointY="3.625" />
+        <EntityTypeShape EntityType="happipugCloudModel.Video" Width="1.5" PointX="3" PointY="3.125" />
+        <EntityTypeShape EntityType="happipugCloudModel.VideoShopItem" Width="1.5" PointX="5.25" PointY="7.25" />
+        <EntityTypeShape EntityType="happipugCloudModel.VideoType" Width="1.5" PointX="0.75" PointY="0.75" />
+        <AssociationConnector Association="happipugCloudModel.FK__Actor__ActorType__3A81B327" />
+        <AssociationConnector Association="happipugCloudModel.FK__Actor__LanguageI__3B75D760" />
+        <AssociationConnector Association="happipugCloudModel.FK__Videos__Language__403A8C7D" />
+        <AssociationConnector Association="happipugCloudModel.FK__Videos__VideoTyp__412EB0B6" />
+        <AssociationConnector Association="happipugCloudModel.FK__VideoShop__Video__440B1D61" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
