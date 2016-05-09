@@ -18,15 +18,16 @@ import {videoinfo} from '../interfaces/videoinfo';
 
 
 export class AdminVideos {
-	//https://auth0.com/blog/2016/01/25/angular-2-series-part-4-component-router-in-depth/
+    //https://auth0.com/blog/2016/01/25/angular-2-series-part-4-component-router-in-depth/
 
 
+    httpclient: HttpClient;
 
 	videos: videoinfo[];
     title: string;
     router: Router;
     constructor(httpClient: HttpClient, router: Router) {
-		
+        this.httpclient = httpClient;
         this.router = router;
 		this.videos = [];
 		this.title = "Trailors";
@@ -64,10 +65,31 @@ export class AdminVideos {
 	public redirectURL(video: videoinfo) {
 
         console.log(video);
-        this.router.navigate(['AdminPlay', { id: video.videoId }]);          ;
+        this.checkAndAddVideo(video) ;
 		}
 
+    public checkAndAddVideo(video: videoinfo) {
 
+
+        var vidInfo = this.httpclient.get('http://youapihappipug.azurewebsites.net/api/video/' + video.videoId)
+
+            .map((res: Response) => res.json())
+            .map((res: any) => {
+
+                var myvideos = res;
+
+				return myvideos;
+
+            }
+
+            )
+            .subscribe(res => {
+
+                console.log(res);
+                this.router.navigate(['AdminPlay', { id: res.videoId }]);          
+               
+            });
+    }
 
 }
 

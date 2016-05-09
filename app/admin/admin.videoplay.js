@@ -29,9 +29,6 @@ System.register(['angular2/core', 'angular2/router', 'angular2/http', '../httpcl
             AdminVideoPlay = (function () {
                 function AdminVideoPlay(httpClient, routeParams) {
                     this.videosrc = "www.youtube.com/watch?v=" + routeParams.get('id');
-                    //setTimeout(() => {
-                    //}, 0);
-                    //http://www.ghadeerrahhal.com/play-video-with-html5-and-angularjs/
                 }
                 AdminVideoPlay.prototype.ngAfterViewInit = function () {
                     var player = new MediaElementPlayer('video', {

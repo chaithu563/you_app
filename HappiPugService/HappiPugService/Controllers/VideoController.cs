@@ -19,9 +19,9 @@ namespace HappiPugCloudService.Controllers
         }
 
         // GET api/video/5
-        public Video Get(int id)
+        public Video Get(string id)
         {
-            return hpobj.Videos.First(x=>x.Id==id);
+            return hpobj.Videos.First(x=>x.YoutubeID.Equals(id));
         }
 
         // POST api/video

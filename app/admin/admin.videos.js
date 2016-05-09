@@ -34,6 +34,7 @@ System.register(['angular2/core', 'angular2/router', '../common/carousel.compone
         execute: function() {
             AdminVideos = (function () {
                 function AdminVideos(httpClient, router) {
+                    this.httpclient = httpClient;
                     this.router = router;
                     this.videos = [];
                     this.title = "Trailors";
@@ -54,8 +55,20 @@ System.register(['angular2/core', 'angular2/router', '../common/carousel.compone
                 };
                 AdminVideos.prototype.redirectURL = function (video) {
                     console.log(video);
-                    this.router.navigate(['AdminPlay', { id: video.videoId }]);
-                    ;
+                    this.checkAndAddVideo(video);
+                };
+                AdminVideos.prototype.checkAndAddVideo = function (video) {
+                    var _this = this;
+                    var vidInfo = this.httpclient.get('http://youapihappipug.azurewebsites.net/api/video/' + video.videoId)
+                        .map(function (res) { return res.json(); })
+                        .map(function (res) {
+                        var myvideos = res;
+                        return myvideos;
+                    })
+                        .subscribe(function (res) {
+                        console.log(res);
+                        _this.router.navigate(['AdminPlay', { id: res.videoId }]);
+                    });
                 };
                 AdminVideos = __decorate([
                     core_1.Component({

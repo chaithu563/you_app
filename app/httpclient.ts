@@ -27,4 +27,12 @@ export class HttpClient {
             headers: headers
         });
     }
+
+    delete(url) {
+        let headers = new Headers();
+        this.createAuthorizationHeader(headers);
+        return this.http.delete(url, {
+            headers: headers
+        });
+    }
 }

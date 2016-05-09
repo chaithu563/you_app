@@ -32,13 +32,7 @@ export class AdminVideoPlay implements AfterViewInit {
 	constructor(httpClient: HttpClient, routeParams: RouteParams) {
 
 				this.videosrc = "www.youtube.com/watch?v=" + routeParams.get('id');
-        //setTimeout(() => {
-					
-
-        //}, 0);
-
-				 	
-			//http://www.ghadeerrahhal.com/play-video-with-html5-and-angularjs/
+     
 	}
 
 

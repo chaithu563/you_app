@@ -41,6 +41,13 @@ System.register(['angular2/http', 'angular2/core'], function(exports_1) {
                         headers: headers
                     });
                 };
+                HttpClient.prototype.delete = function (url) {
+                    var headers = new http_1.Headers();
+                    this.createAuthorizationHeader(headers);
+                    return this.http.delete(url, {
+                        headers: headers
+                    });
+                };
                 HttpClient = __decorate([
                     core_1.Injectable(), 
                     __metadata('design:paramtypes', [http_1.Http])
