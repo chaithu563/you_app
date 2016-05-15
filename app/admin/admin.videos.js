@@ -47,7 +47,8 @@ System.register(['angular2/core', 'angular2/router', '../common/carousel.compone
                         .map(function (res) {
                         var myvideos = new Array();
                         res.items.forEach(function (item, i) {
-                            myvideos.push(new videoinfo_1.videoinfo(item.snippet.resourceId.videoId, item.snippet.title, item.snippet.thumbnails.medium.url));
+                            //myvideos.push(new videoinfo(item.snippet.resourceId.videoId, item.snippet.title, item.snippet.thumbnails.medium.url));
+                            myvideos.push(new videoinfo_1.videoinfo(null, item.snippet.title, item.snippet.resourceId.videoId, null, null, null, item.snippet.thumbnails.medium.url));
                         });
                         return myvideos;
                     })
@@ -59,7 +60,7 @@ System.register(['angular2/core', 'angular2/router', '../common/carousel.compone
                 };
                 AdminVideos.prototype.checkAndAddVideo = function (video) {
                     var _this = this;
-                    var vidInfo = this.httpclient.get('http://youapihappipug.azurewebsites.net/api/video/' + video.videoId)
+                    var vidInfo = this.httpclient.get('http://youapihappipug.azurewebsites.net/api/video/' + video.YoutubeID)
                         .map(function (res) { return res.json(); })
                         .map(function (res) {
                         var myvideos = res;
@@ -67,8 +68,22 @@ System.register(['angular2/core', 'angular2/router', '../common/carousel.compone
                     })
                         .subscribe(function (res) {
                         console.log(res);
-                        _this.router.navigate(['AdminPlay', { id: res.videoId }]);
+                        if (res != null) {
+                            _this.router.navigate(['AdminPlay', { id: res.YoutubeID }]);
+                        }
+                        else {
+                            _this.httpclient.post('http://localhost/HappiPugCloudService/api/video', JSON.stringify(video))
+                                .map(function (response) { return response.json(); })
+                                .subscribe(function (res) {
+                                console.log('success');
+                                _this.router.navigate(['AdminPlay', { id: res.YoutubeID }]);
+                            }, _this.logError, function () { return console.log('Authentication Complete'); });
+                        }
                     });
+                };
+                AdminVideos.prototype.logError = function (error) {
+                    console.log(error);
+                    //return Observable.throw(error.json().error || 'Server error');
                 };
                 AdminVideos = __decorate([
                     core_1.Component({

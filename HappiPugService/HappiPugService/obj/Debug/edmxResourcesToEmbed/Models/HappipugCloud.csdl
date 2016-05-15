@@ -64,7 +64,7 @@
     <Property Name="YoutubeID" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Name="VideoName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Name="LanguageId" Type="Int32" />
-    <Property Name="ActorIds" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="ActorIds" Type="String" MaxLength="254" FixedLength="false" Unicode="false" />
     <Property Name="VideoTypeId" Type="Int32" />
     <NavigationProperty Name="Language" Relationship="happipugCloudModel.FK__Videos__Language__403A8C7D" FromRole="Video" ToRole="Language" />
     <NavigationProperty Name="VideoType" Relationship="happipugCloudModel.FK__Videos__VideoTyp__412EB0B6" FromRole="Video" ToRole="VideoType" />

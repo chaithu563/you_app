@@ -26,6 +26,7 @@ System.register(['angular2/http', 'angular2/core'], function(exports_1) {
                 HttpClient.prototype.createAuthorizationHeader = function (headers) {
                     headers.append('Authorization', 'Bearer ' +
                         localStorage.getItem('apitoken'));
+                    headers.append('Content-Type', 'application/json');
                 };
                 HttpClient.prototype.get = function (url) {
                     var headers = new http_1.Headers();

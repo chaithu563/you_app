@@ -9,7 +9,9 @@ export class HttpClient {
 
     createAuthorizationHeader(headers: Headers) {
         headers.append('Authorization', 'Bearer ' +
-					localStorage.getItem('apitoken'));
+            localStorage.getItem('apitoken'));
+        headers.append('Content-Type', 'application/json');
+
     }
 
     get(url) {

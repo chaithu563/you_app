@@ -4,10 +4,14 @@ System.register([], function(exports_1) {
         setters:[],
         execute: function() {
             videoinfo = (function () {
-                function videoinfo(id, name, url) {
-                    this.videoId = id;
-                    this.videoName = name;
-                    this.imgUrl = url;
+                function videoinfo(id, name, youtubeId, languageId, actorIds, videoTypeId, imgUrl) {
+                    this.Id = id;
+                    this.VideoName = name;
+                    this.YoutubeID = youtubeId;
+                    this.LanguageId = languageId;
+                    this.ActorIds = actorIds;
+                    this.VideoTypeId = videoTypeId;
+                    this.ImgUrl = imgUrl;
                 }
                 return videoinfo;
             })();

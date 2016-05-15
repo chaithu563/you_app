@@ -30,3 +30,4 @@ C:\chaitanya\raja\myshop\you_app\HappiPugService\HappiPugService\bin\System.Web.
 C:\chaitanya\raja\myshop\you_app\HappiPugService\HappiPugService\bin\System.Web.WebPages.Razor.xml
 C:\chaitanya\raja\myshop\you_app\HappiPugService\HappiPugService\obj\Release\HappiPugService.dll
 C:\chaitanya\raja\myshop\you_app\HappiPugService\HappiPugService\obj\Release\HappiPugService.pdb
+C:\chaitanya\raja\myshop\you_app\HappiPugService\HappiPugService\obj\Release\HappiPugCloudService.csprojResolveAssemblyReference.cache

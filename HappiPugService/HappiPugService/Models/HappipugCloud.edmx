@@ -36,7 +36,7 @@
           <Property Name="YoutubeID" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="VideoName" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="LanguageId" Type="int" />
-          <Property Name="ActorIds" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ActorIds" Type="varchar" MaxLength="254" />
           <Property Name="VideoTypeId" Type="int" />
         </EntityType>
         <EntityType Name="VideoShopItems">
@@ -82,7 +82,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Videos__Language__5070F446">
+        <Association Name="FK__Videos__Language__5BE2A6F2">
           <End Role="Language" Type="Self.Language" Multiplicity="0..1" />
           <End Role="Videos" Type="Self.Videos" Multiplicity="*" />
           <ReferentialConstraint>
@@ -94,7 +94,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Videos__VideoTyp__5165187F">
+        <Association Name="FK__Videos__VideoTyp__5CD6CB2B">
           <End Role="VideoType" Type="Self.VideoType" Multiplicity="0..1" />
           <End Role="Videos" Type="Self.Videos" Multiplicity="*" />
           <ReferentialConstraint>
@@ -133,11 +133,11 @@
             <End Role="Language" EntitySet="Language" />
             <End Role="Actor" EntitySet="Actor" />
           </AssociationSet>
-          <AssociationSet Name="FK__Videos__Language__5070F446" Association="Self.FK__Videos__Language__5070F446">
+          <AssociationSet Name="FK__Videos__Language__5BE2A6F2" Association="Self.FK__Videos__Language__5BE2A6F2">
             <End Role="Language" EntitySet="Language" />
             <End Role="Videos" EntitySet="Videos" />
           </AssociationSet>
-          <AssociationSet Name="FK__Videos__VideoTyp__5165187F" Association="Self.FK__Videos__VideoTyp__5165187F">
+          <AssociationSet Name="FK__Videos__VideoTyp__5CD6CB2B" Association="Self.FK__Videos__VideoTyp__5CD6CB2B">
             <End Role="VideoType" EntitySet="VideoType" />
             <End Role="Videos" EntitySet="Videos" />
           </AssociationSet>
@@ -214,7 +214,7 @@
           <Property Name="YoutubeID" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="VideoName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="LanguageId" Type="Int32" />
-          <Property Name="ActorIds" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ActorIds" Type="String" MaxLength="254" FixedLength="false" Unicode="false" />
           <Property Name="VideoTypeId" Type="Int32" />
           <NavigationProperty Name="Language" Relationship="happipugCloudModel.FK__Videos__Language__403A8C7D" FromRole="Video" ToRole="Language" />
           <NavigationProperty Name="VideoType" Relationship="happipugCloudModel.FK__Videos__VideoTyp__412EB0B6" FromRole="Video" ToRole="VideoType" />

@@ -22,7 +22,7 @@ export class AdminVideos {
 
 
     httpclient: HttpClient;
-
+    newvid: videoinfo;
 	videos: videoinfo[];
     title: string;
     router: Router;
@@ -48,7 +48,8 @@ export class AdminVideos {
 
 				res.items.forEach(function (item, i) {
 
-					myvideos.push(new videoinfo(item.snippet.resourceId.videoId, item.snippet.title, item.snippet.thumbnails.medium.url));
+					//myvideos.push(new videoinfo(item.snippet.resourceId.videoId, item.snippet.title, item.snippet.thumbnails.medium.url));
+                    myvideos.push(new videoinfo(null, item.snippet.title, item.snippet.resourceId.videoId, null, null, null, item.snippet.thumbnails.medium.url ));
 
 				})
 
@@ -71,7 +72,7 @@ export class AdminVideos {
     public checkAndAddVideo(video: videoinfo) {
 
 
-        var vidInfo = this.httpclient.get('http://youapihappipug.azurewebsites.net/api/video/' + video.videoId)
+        var vidInfo = this.httpclient.get('http://youapihappipug.azurewebsites.net/api/video/' + video.YoutubeID)
 
             .map((res: Response) => res.json())
             .map((res: any) => {
@@ -86,9 +87,35 @@ export class AdminVideos {
             .subscribe(res => {
 
                 console.log(res);
-                this.router.navigate(['AdminPlay', { id: res.videoId }]);          
-               
+                if (res != null) {
+                    this.router.navigate(['AdminPlay', { id: res.YoutubeID }]);
+                }
+                else {
+
+
+                    this.httpclient.post('http://localhost/HappiPugCloudService/api/video', JSON.stringify(video))
+                     //   .map((res: Response) => res.json())
+                     //   .map((res: any) => console.log(res))
+                     //.catch(this.handleError);
+
+                        .map(response => response.json())
+                        .subscribe(
+                        res => {
+                            console.log('success');
+                            this.router.navigate(['AdminPlay', { id: res.YoutubeID }]);
+                        },
+                        this.logError,
+                        () => console.log('Authentication Complete')
+                        );
+                } 
             });
+         
+    }
+
+
+    public logError(error: Response) {
+        console.log(error);
+        //return Observable.throw(error.json().error || 'Server error');
     }
 
 }

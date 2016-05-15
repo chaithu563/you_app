@@ -28,6 +28,6 @@ C:\chaitanya\raja\myshop\you_app\HappiPugService\HappiPugService\bin\System.Web.
 C:\chaitanya\raja\myshop\you_app\HappiPugService\HappiPugService\bin\System.Web.WebPages.xml
 C:\chaitanya\raja\myshop\you_app\HappiPugService\HappiPugService\bin\System.Web.WebPages.Deployment.xml
 C:\chaitanya\raja\myshop\you_app\HappiPugService\HappiPugService\bin\System.Web.WebPages.Razor.xml
-C:\chaitanya\raja\myshop\you_app\HappiPugService\HappiPugService\obj\Debug\HappiPugCloudService.csprojResolveAssemblyReference.cache
 C:\chaitanya\raja\myshop\you_app\HappiPugService\HappiPugService\obj\Debug\HappiPugService.dll
 C:\chaitanya\raja\myshop\you_app\HappiPugService\HappiPugService\obj\Debug\HappiPugService.pdb
+C:\chaitanya\raja\myshop\you_app\HappiPugService\HappiPugService\obj\Debug\HappiPugCloudService.csprojResolveAssemblyReference.cache

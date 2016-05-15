@@ -21,17 +21,29 @@ namespace HappiPugCloudService.Controllers
         // GET api/video/5
         public Video Get(string id)
         {
-            return hpobj.Videos.First(x=>x.YoutubeID.Equals(id));
+            Video ob = new Video();
+            try
+            {
+
+                ob= hpobj.Videos.First(x => x.YoutubeID.Equals(id)); ;
+            }
+            catch(Exception ex)
+            {
+                ob = null;
+             
+            }
+            return ob;
         }
 
         // POST api/video
-        public void Post([FromBody]Video item)
+        public Video Post([FromBody]Video item)
         {
             Video vidObj = new Video() { VideoName = item.VideoName, YoutubeID = item.YoutubeID, LanguageId = item.LanguageId, VideoTypeId = item.VideoTypeId };
 
             hpobj.Videos.Add(vidObj);
 
             hpobj.SaveChanges();
+            return vidObj;
         }
 
         // PUT api/video/5
