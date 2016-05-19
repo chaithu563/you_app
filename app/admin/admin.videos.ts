@@ -48,8 +48,7 @@ export class AdminVideos {
 
 				res.items.forEach(function (item, i) {
 
-					//myvideos.push(new videoinfo(item.snippet.resourceId.videoId, item.snippet.title, item.snippet.thumbnails.medium.url));
-                    myvideos.push(new videoinfo(null, item.snippet.title, item.snippet.resourceId.videoId, null, null, null, item.snippet.thumbnails.medium.url ));
+		    myvideos.push(new videoinfo(null, item.snippet.title, item.snippet.resourceId.videoId, null, null, null, item.snippet.thumbnails.medium.url ));
 
 				})
 
@@ -88,21 +87,19 @@ export class AdminVideos {
 
                 console.log(res);
                 if (res != null) {
-                    this.router.navigate(['AdminPlay', { id: res.YoutubeID }]);
+                    this.router.navigate(['AdminPlay', { id: res.YoutubeID, dbid: res.Id }]);
                 }
                 else {
 
 
                     this.httpclient.post('http://localhost/HappiPugCloudService/api/video', JSON.stringify(video))
-                     //   .map((res: Response) => res.json())
-                     //   .map((res: any) => console.log(res))
-                     //.catch(this.handleError);
+
 
                         .map(response => response.json())
                         .subscribe(
                         res => {
                             console.log('success');
-                            this.router.navigate(['AdminPlay', { id: res.YoutubeID }]);
+                            this.router.navigate(['AdminPlay', { id: res.YoutubeID, dbid: res.Id  }]);
                         },
                         this.logError,
                         () => console.log('Authentication Complete')

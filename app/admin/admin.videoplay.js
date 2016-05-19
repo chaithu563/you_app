@@ -28,7 +28,9 @@ System.register(['angular2/core', 'angular2/router', 'angular2/http', '../httpcl
         execute: function() {
             AdminVideoPlay = (function () {
                 function AdminVideoPlay(httpClient, routeParams) {
+                    this.vdbid = routeParams.get('dbid');
                     this.videosrc = "www.youtube.com/watch?v=" + routeParams.get('id');
+                    this.httpclient = httpClient;
                 }
                 AdminVideoPlay.prototype.ngAfterViewInit = function () {
                     var player = new MediaElementPlayer('video', {
@@ -39,6 +41,7 @@ System.register(['angular2/core', 'angular2/router', 'angular2/http', '../httpcl
                             // add event listener
                             mediaElement.addEventListener('timeupdate', function (e) {
                                 console.log('time chnage' + mediaElement.currentTime);
+                                this.curtime = mediaElement.currentTime;
                             }, false);
                             mediaElement.addEventListener('seeking', function (e) {
                                 console.log('seeking' + mediaElement.currentTime);
@@ -47,6 +50,28 @@ System.register(['angular2/core', 'angular2/router', 'angular2/http', '../httpcl
                         }
                     });
                     player.setSrc(this.videosrc);
+                };
+                AdminVideoPlay.prototype.addNewItem = function () {
+                    var _this = this;
+                    // var curTime = (document.getElementById('MyAdminVideo1').currentTime);
+                    var item = { ProductHandle: null, PTop: 0, PLeft: 0, StartTime: this.curtime, EndTime: this.curtime, Video_Id: this.vdbid };
+                    //dataServices.addNewItem(item).then(function (data) {
+                    //    console.log(data);
+                    //    $scope.selectedItem = data.data.data;
+                    //    // handlePlusForItems();
+                    //    loadItemsData();
+                    //});
+                    this.httpclient.post('http://localhost/HappiPugCloudService/api/VideoShopItem', JSON.stringify(item))
+                        .map(function (response) { return response.json(); })
+                        .subscribe(function (res) {
+                        console.log('success');
+                        _this.shopinfo = res;
+                        console.log(_this.shopinfo);
+                    });
+                };
+                AdminVideoPlay.prototype.saveItem = function () {
+                };
+                AdminVideoPlay.prototype.deleteItem = function () {
                 };
                 AdminVideoPlay = __decorate([
                     core_1.Component({

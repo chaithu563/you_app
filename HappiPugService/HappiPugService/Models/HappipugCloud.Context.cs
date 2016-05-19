@@ -29,7 +29,7 @@ namespace HappiPugCloudService.Models
         public DbSet<ActorType> ActorTypes { get; set; }
         public DbSet<Language> Languages { get; set; }
         public DbSet<Video> Videos { get; set; }
-        public DbSet<VideoShopItem> VideoShopItems { get; set; }
         public DbSet<VideoType> VideoTypes { get; set; }
+        public DbSet<VideoShopItem> VideoShopItems { get; set; }
     }
 }

@@ -15,9 +15,6 @@
 
 			<div class="videodiv">
 
-				<!--<video id="MyAdminVideo1">
-					<source src="../app/video/sreemanthudu.mp4" type="video/mp4">
-				</video>-->
 
 
 
@@ -43,11 +40,11 @@
         
         </div>
 
-		<!--<div class="admItemAdd">
+		<div class="admItemAdd">
 			
 			<div class="addeditbuttons">
 				<div class="button-add-div">
-					<button class="admin-add-button" type="button" ng-click="addNewItem()" id="annotator-button-add" data-button-menu-id="annotator-add-menu" aria-pressed="false" aria-expanded="false">
+					<button class="admin-add-button" type="button" (click)="addNewItem()" id="annotator-button-add" data-button-menu-id="annotator-add-menu" aria-pressed="false" aria-expanded="false">
 						<span style="font-size: large; margin-right: 20%">+</span><span style="font-size: medium">Add</span>
 					</button>
 				</div>
@@ -61,33 +58,37 @@
 			</div>
 			<div class="item-details">
 				<div class="each-item-div">
-					<label>Product Handle</label><input type="text" ng-model="selectedItem.ProductHandle" />
+					<label>Product Handle</label><input type="text" [(ngModel)]="shopinfo.ProductHandle" />
 				</div>
 				
 
 				<div class="each-item-div">
-					<label>Item Top</label><input type="text" ng-model="selectedItem.ptop" />
+					<label>Item Top</label><input type="text"  [(ngModel)]="shopinfo.PTop" />
 				</div>
 				<div class="each-item-div">
-					<label>Item Left</label><input type="text" ng-model="selectedItem.pleft" />
+					<label>Item Left</label><input type="text"  [(ngModel)]="shopinfo.PLeft" />
 				</div>
 				<div class="each-item-div">
-					<button ng-click="selectedItem.starttime=currentTime">Set StartTime</button><input type="text" ng-model="selectedItem.starttime" />
+					<button (click)="shopinfo.StartTime=currentTime">Set StartTime</button><input type="text"  [(ngModel)]="shopinfo.StartTime" />
 				</div>
 				<div class="each-item-div">
-					<button ng-click="selectedItem.endtime=currentTime">Set EndTime</button><input type="text" ng-model="selectedItem.endtime" />
+					<button (click)="shopinfo.EndTime=currentTime">Set EndTime</button><input type="text"  [(ngModel)]="shopinfo.EndTime" />
 				</div>
 
 			</div>
 
-			<div class="button-delete-div" ng-if="selectedItem">
-				<button class="admin-add-button" type="button" ng-click="deleteItem(selectedItem.Id)" data-button-menu-id="annotator-add-menu" aria-pressed="false" aria-expanded="false">
-					<span style="font-size: large; margin-right: 20%">+</span><span style="font-size: medium">Delete</span>
+			<div class="button-delete-div" *ngIf="shopinfo">
+				<button class="admin-add-button" type="button" (click)="deleteItem(shopinfo.Id)" data-button-menu-id="annotator-add-menu" aria-pressed="false" aria-expanded="false">
+					<span style="font-size: large; margin-right: 20%">*</span><span style="font-size: medium">Delete</span>
+				</button>
+
+                <button class="admin-add-button" type="button" (click)="saveItem(shopinfo.Id)" data-button-menu-id="annotator-add-menu" aria-pressed="false" aria-expanded="false">
+					<span style="font-size: large; margin-right: 20%">-</span><span style="font-size: medium">Save</span>
 				</button>
 			</div>
 
 
-		</div>-->
+		</div>
 	</div>
 
 </div>

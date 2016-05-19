@@ -9,13 +9,13 @@
         <EntityTypeShape EntityType="happipugCloudModel.ActorType" Width="1.5" PointX="3.75" PointY="0.75" />
         <EntityTypeShape EntityType="happipugCloudModel.Language" Width="1.5" PointX="0.75" PointY="3.625" />
         <EntityTypeShape EntityType="happipugCloudModel.Video" Width="1.5" PointX="3" PointY="3.125" />
-        <EntityTypeShape EntityType="happipugCloudModel.VideoShopItem" Width="1.5" PointX="5.25" PointY="7.25" />
         <EntityTypeShape EntityType="happipugCloudModel.VideoType" Width="1.5" PointX="0.75" PointY="0.75" />
         <AssociationConnector Association="happipugCloudModel.FK__Actor__ActorType__3A81B327" />
         <AssociationConnector Association="happipugCloudModel.FK__Actor__LanguageI__3B75D760" />
         <AssociationConnector Association="happipugCloudModel.FK__Videos__Language__403A8C7D" />
         <AssociationConnector Association="happipugCloudModel.FK__Videos__VideoTyp__412EB0B6" />
-        <AssociationConnector Association="happipugCloudModel.FK__VideoShop__Video__440B1D61" />
+        <EntityTypeShape EntityType="happipugCloudModel.VideoShopItem" Width="1.5" PointX="5.25" PointY="7.25" />
+        <AssociationConnector Association="happipugCloudModel.FK__VideoShop__Video__5441852A" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

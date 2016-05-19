@@ -15,10 +15,10 @@ namespace HappiPugCloudService.Models
     public partial class VideoShopItem
     {
         public int Id { get; set; }
-        public decimal ptop { get; set; }
-        public decimal pleft { get; set; }
-        public Nullable<decimal> starttime { get; set; }
-        public Nullable<decimal> endtime { get; set; }
+        public decimal PTop { get; set; }
+        public decimal PLeft { get; set; }
+        public Nullable<decimal> StartTime { get; set; }
+        public Nullable<decimal> EndTime { get; set; }
         public Nullable<int> Video_Id { get; set; }
         public string ProductHandle { get; set; }
     

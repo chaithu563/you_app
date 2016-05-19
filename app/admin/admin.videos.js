@@ -47,7 +47,6 @@ System.register(['angular2/core', 'angular2/router', '../common/carousel.compone
                         .map(function (res) {
                         var myvideos = new Array();
                         res.items.forEach(function (item, i) {
-                            //myvideos.push(new videoinfo(item.snippet.resourceId.videoId, item.snippet.title, item.snippet.thumbnails.medium.url));
                             myvideos.push(new videoinfo_1.videoinfo(null, item.snippet.title, item.snippet.resourceId.videoId, null, null, null, item.snippet.thumbnails.medium.url));
                         });
                         return myvideos;
@@ -69,14 +68,14 @@ System.register(['angular2/core', 'angular2/router', '../common/carousel.compone
                         .subscribe(function (res) {
                         console.log(res);
                         if (res != null) {
-                            _this.router.navigate(['AdminPlay', { id: res.YoutubeID }]);
+                            _this.router.navigate(['AdminPlay', { id: res.YoutubeID, dbid: res.Id }]);
                         }
                         else {
                             _this.httpclient.post('http://localhost/HappiPugCloudService/api/video', JSON.stringify(video))
                                 .map(function (response) { return response.json(); })
                                 .subscribe(function (res) {
                                 console.log('success');
-                                _this.router.navigate(['AdminPlay', { id: res.YoutubeID }]);
+                                _this.router.navigate(['AdminPlay', { id: res.YoutubeID, dbid: res.Id }]);
                             }, _this.logError, function () { return console.log('Authentication Complete'); });
                         }
                     });

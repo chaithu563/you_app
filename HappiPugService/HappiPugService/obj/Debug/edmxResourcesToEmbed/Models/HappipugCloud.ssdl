@@ -39,10 +39,10 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="ptop" Type="decimal" Precision="18" Scale="0" Nullable="false" />
-    <Property Name="pleft" Type="decimal" Precision="18" Scale="0" Nullable="false" />
-    <Property Name="starttime" Type="decimal" Precision="28" Scale="6" />
-    <Property Name="endtime" Type="decimal" Precision="28" Scale="6" />
+    <Property Name="PTop" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="PLeft" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="StartTime" Type="decimal" Precision="28" Scale="6" />
+    <Property Name="EndTime" Type="decimal" Precision="28" Scale="6" />
     <Property Name="Video_Id" Type="int" />
     <Property Name="ProductHandle" Type="varchar(max)" />
   </EntityType>

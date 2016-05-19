@@ -11,7 +11,7 @@ namespace HappiPugCloudService.Controllers
     public class VideoShopItemController : ApiController
     {
         happipugCloudEntities hpobj = new happipugCloudEntities();
-
+        
         // GET api/video
         public IEnumerable<VideoShopItem> Get()
         {
@@ -25,13 +25,14 @@ namespace HappiPugCloudService.Controllers
         }
 
         // POST api/video
-        public void Post([FromBody]VideoShopItem item)
+        public VideoShopItem Post([FromBody]VideoShopItem item)
         {
-            VideoShopItem vidObj = new VideoShopItem() { ProductHandle = item.ProductHandle, ptop = item.ptop, pleft = item.pleft, starttime = item.starttime,endtime=item.endtime };
+            VideoShopItem vidObj = new VideoShopItem() { ProductHandle = item.ProductHandle, PTop = item.PTop, PLeft = item.PLeft, StartTime = item.StartTime,EndTime=item.EndTime };
 
             hpobj.VideoShopItems.Add(vidObj);
 
             hpobj.SaveChanges();
+            return vidObj;
         }
 
         // PUT api/video/5
@@ -39,10 +40,10 @@ namespace HappiPugCloudService.Controllers
         {
             VideoShopItem vidObj = hpobj.VideoShopItems.First(x => x.Id == id);
             vidObj.ProductHandle = item.ProductHandle;
-            vidObj.ptop = item.ptop;
-            vidObj.pleft = item.pleft;
-            vidObj.starttime = item.starttime;
-            vidObj.endtime = item.endtime;
+            vidObj.PTop = item.PTop;
+            vidObj.PLeft = item.PLeft;
+            vidObj.StartTime = item.StartTime;
+            vidObj.EndTime = item.EndTime;
             hpobj.SaveChanges();
 
         }
