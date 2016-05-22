@@ -1,0 +1,44 @@
+﻿<div class="addeditbuttons">
+				<div class="button-add-div">
+					<button class="admin-add-button" type="button" (click)="addFun1()" id="annotator-button-add" data-button-menu-id="annotator-add-menu" aria-pressed="false" aria-expanded="false">
+						<span style="font-size: large; margin-right: 20%">+</span><span style="font-size: medium">Add</span>
+					</button>
+				</div>
+
+
+				<div class="button-edit-div">
+					<button class="admin-add-button" type="button" onclick=";return false;" id="Button1" data-button-menu-id="annotator-add-menu" aria-pressed="false" aria-expanded="false">
+						<span style="font-size: medium">View</span>
+					</button>
+				</div>
+			</div>
+			<div class="item-details">
+				<div class="each-item-div">
+					<label>Product Handle</label><input type="text" [(ngModel)]="vdbid" />
+				</div>
+				
+
+				<div class="each-item-div">
+					<label>Item Top</label><input type="text"  [(ngModel)]="shopitem.PTop" />
+				</div>
+				<div class="each-item-div">
+					<label>Item Left</label><input type="text"  [(ngModel)]="shopitem.PLeft" />
+				</div>
+				<div class="each-item-div">
+					<button (click)="shopitem.StartTime=currentTime">Set StartTime</button><input type="text"  [(ngModel)]="shopitem.StartTime" />
+				</div>
+				<div class="each-item-div">
+					<button (click)="shopitem.EndTime=currentTime">Set EndTime</button><input type="text"  [(ngModel)]="shopitem.EndTime" />
+				</div>
+
+			</div>
+
+			<div class="button-delete-div" *ngIf="shopitem">
+				<button class="admin-add-button" type="button" (click)="deleteFun1(shopitem.Id)" data-button-menu-id="annotator-add-menu" aria-pressed="false" aria-expanded="false">
+					<span style="font-size: large; margin-right: 20%">*</span><span style="font-size: medium">Delete</span>
+				</button>
+
+                <button class="admin-add-button" type="button" (click)="saveFun1(shopitem)" data-button-menu-id="annotator-add-menu" aria-pressed="false" aria-expanded="false">
+					<span style="font-size: large; margin-right: 20%">-</span><span style="font-size: medium">Save</span>
+				</button>
+			</div>

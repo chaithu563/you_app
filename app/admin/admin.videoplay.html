@@ -42,7 +42,8 @@
 
 		<div class="admItemAdd">
 			
-			<div class="addeditbuttons">
+            <hp-shopinfo [shopitem]="shopinfo"  (addFun)="addNewItem($event)" (saveFun)="saveFun($event)"  (deleteFun)="deleteFun($event)" > </hp-shopinfo>
+		<!--	<div class="addeditbuttons">
 				<div class="button-add-div">
 					<button class="admin-add-button" type="button" (click)="addNewItem()" id="annotator-button-add" data-button-menu-id="annotator-add-menu" aria-pressed="false" aria-expanded="false">
 						<span style="font-size: large; margin-right: 20%">+</span><span style="font-size: medium">Add</span>
@@ -58,7 +59,7 @@
 			</div>
 			<div class="item-details">
 				<div class="each-item-div">
-					<label>Product Handle</label><input type="text" [(ngModel)]="shopinfo.ProductHandle" />
+					<label>Product Handle</label><input type="text" [(ngModel)]="vdbid" />
 				</div>
 				
 
@@ -85,7 +86,7 @@
                 <button class="admin-add-button" type="button" (click)="saveItem(shopinfo.Id)" data-button-menu-id="annotator-add-menu" aria-pressed="false" aria-expanded="false">
 					<span style="font-size: large; margin-right: 20%">-</span><span style="font-size: medium">Save</span>
 				</button>
-			</div>
+			</div>-->
 
 
 		</div>

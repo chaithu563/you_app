@@ -4,11 +4,12 @@ import { AfterViewInit } from 'angular2/core';
 import { CORE_DIRECTIVES, FORM_DIRECTIVES } from 'angular2/common';
 import {ROUTER_DIRECTIVES, RouteConfig, Router, RouteParams} from 'angular2/router';
 //import {MediaElementPlayer} from 'build/mediaelementplayer';
-import {Http, HTTP_PROVIDERS, Response} from 'angular2/http';
+import { Http, HTTP_PROVIDERS, Response, Headers, RequestOptions } from 'angular2/http';
 import {HttpClient} from '../httpclient';
 import 'rxjs/Rx';
 import {videoinfo } from '../interfaces/videoinfo';
 import {shopitem } from '../interfaces/shopitem';
+import {shopitemComponent } from '../admin/shopinfo.component';
 //import {YoutubeVideo} from 'YoutubeVideo';
 //declare var $: JQueryStatic;
 declare var YoutubeVideo: any;
@@ -21,7 +22,7 @@ declare var MediaElementPlayer: any;
 	templateUrl: '../app/admin/admin.videoplay.html',
 	//template: require('./app.html'),
 	styleUrls: ['../app/admin/admin.videoplay.css'],
-	directives: []
+    directives: [CORE_DIRECTIVES, shopitemComponent]
 })
 
 
@@ -32,13 +33,16 @@ export class AdminVideoPlay implements AfterViewInit {
 	videosrc: string;
     title: string;
     curtime: number;
-    shopinfo: shopitem;
+     shopinfo: shopitem;
     vdbid: string;
+    http: Http;
     httpclient: HttpClient;
-	constructor(httpClient: HttpClient, routeParams: RouteParams) {
+	constructor(httpClient: HttpClient, routeParams: RouteParams,http: Http) {
                 this.vdbid = routeParams.get('dbid');
 				this.videosrc = "www.youtube.com/watch?v=" + routeParams.get('id');
-                this.httpclient = httpClient;
+        this.httpclient = httpClient;
+        this.http = http;
+        this.shopinfo = { ProductHandle: null, PTop: 0, PLeft: 0, StartTime: this.curtime, EndTime: this.curtime, Video_Id: this.vdbid };
 	}
 
 
@@ -72,15 +76,11 @@ export class AdminVideoPlay implements AfterViewInit {
       public  addNewItem()
       {
          // var curTime = (document.getElementById('MyAdminVideo1').currentTime);
-          var item = { ProductHandle: null, PTop: 0, PLeft: 0, StartTime: this.curtime, EndTime: this.curtime, Video_Id: this.vdbid };
-          //dataServices.addNewItem(item).then(function (data) {
-          //    console.log(data);
-          //    $scope.selectedItem = data.data.data;
-          //    // handlePlusForItems();
-          //    loadItemsData();
-          //});
+          var item = { ProductHandle: null, PTop: 2, PLeft: 0, StartTime: this.curtime, EndTime: this.curtime, Video_Id: this.vdbid };
+          var headers = new Headers({ 'Content-Type': 'application/json' });
+         var options = new RequestOptions({ headers: headers });
 
-          this.httpclient.post('http://localhost/HappiPugCloudService/api/VideoShopItem', JSON.stringify(item))
+          this.http.post('http://localhost/HappiPugCloudService/api/VideoShopItem', JSON.stringify(item), options)
 
 
               .map(response => response.json())
@@ -88,6 +88,7 @@ export class AdminVideoPlay implements AfterViewInit {
               res => {
                   console.log('success');
                   this.shopinfo = res;
+                  this.vdbid = '90';
                   console.log(this.shopinfo);
               }
              
@@ -102,12 +103,13 @@ export class AdminVideoPlay implements AfterViewInit {
 
     public saveItem() {
 
-
+        console.log("item saved");
 
     }
 
     public deleteItem() {
 
+        console.log("item deleted");
 
     }
 

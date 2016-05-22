@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', 'angular2/http', '../httpclient', 'rxjs/Rx'], function(exports_1) {
+System.register(['angular2/core', 'angular2/common', 'angular2/router', 'angular2/http', '../httpclient', 'rxjs/Rx', '../admin/shopinfo.component'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,12 +8,15 @@ System.register(['angular2/core', 'angular2/router', 'angular2/http', '../httpcl
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, http_1, httpclient_1;
+    var core_1, common_1, router_1, http_1, httpclient_1, shopinfo_component_1;
     var AdminVideoPlay;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
+            },
+            function (common_1_1) {
+                common_1 = common_1_1;
             },
             function (router_1_1) {
                 router_1 = router_1_1;
@@ -24,13 +27,18 @@ System.register(['angular2/core', 'angular2/router', 'angular2/http', '../httpcl
             function (httpclient_1_1) {
                 httpclient_1 = httpclient_1_1;
             },
-            function (_1) {}],
+            function (_1) {},
+            function (shopinfo_component_1_1) {
+                shopinfo_component_1 = shopinfo_component_1_1;
+            }],
         execute: function() {
             AdminVideoPlay = (function () {
-                function AdminVideoPlay(httpClient, routeParams) {
+                function AdminVideoPlay(httpClient, routeParams, http) {
                     this.vdbid = routeParams.get('dbid');
                     this.videosrc = "www.youtube.com/watch?v=" + routeParams.get('id');
                     this.httpclient = httpClient;
+                    this.http = http;
+                    this.shopinfo = { ProductHandle: null, PTop: 0, PLeft: 0, StartTime: this.curtime, EndTime: this.curtime, Video_Id: this.vdbid };
                 }
                 AdminVideoPlay.prototype.ngAfterViewInit = function () {
                     var player = new MediaElementPlayer('video', {
@@ -54,24 +62,23 @@ System.register(['angular2/core', 'angular2/router', 'angular2/http', '../httpcl
                 AdminVideoPlay.prototype.addNewItem = function () {
                     var _this = this;
                     // var curTime = (document.getElementById('MyAdminVideo1').currentTime);
-                    var item = { ProductHandle: null, PTop: 0, PLeft: 0, StartTime: this.curtime, EndTime: this.curtime, Video_Id: this.vdbid };
-                    //dataServices.addNewItem(item).then(function (data) {
-                    //    console.log(data);
-                    //    $scope.selectedItem = data.data.data;
-                    //    // handlePlusForItems();
-                    //    loadItemsData();
-                    //});
-                    this.httpclient.post('http://localhost/HappiPugCloudService/api/VideoShopItem', JSON.stringify(item))
+                    var item = { ProductHandle: null, PTop: 2, PLeft: 0, StartTime: this.curtime, EndTime: this.curtime, Video_Id: this.vdbid };
+                    var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+                    var options = new http_1.RequestOptions({ headers: headers });
+                    this.http.post('http://localhost/HappiPugCloudService/api/VideoShopItem', JSON.stringify(item), options)
                         .map(function (response) { return response.json(); })
                         .subscribe(function (res) {
                         console.log('success');
                         _this.shopinfo = res;
+                        _this.vdbid = '90';
                         console.log(_this.shopinfo);
                     });
                 };
                 AdminVideoPlay.prototype.saveItem = function () {
+                    console.log("item saved");
                 };
                 AdminVideoPlay.prototype.deleteItem = function () {
+                    console.log("item deleted");
                 };
                 AdminVideoPlay = __decorate([
                     core_1.Component({
@@ -80,9 +87,9 @@ System.register(['angular2/core', 'angular2/router', 'angular2/http', '../httpcl
                         templateUrl: '../app/admin/admin.videoplay.html',
                         //template: require('./app.html'),
                         styleUrls: ['../app/admin/admin.videoplay.css'],
-                        directives: []
+                        directives: [common_1.CORE_DIRECTIVES, shopinfo_component_1.shopitemComponent]
                     }), 
-                    __metadata('design:paramtypes', [httpclient_1.HttpClient, router_1.RouteParams])
+                    __metadata('design:paramtypes', [httpclient_1.HttpClient, router_1.RouteParams, http_1.Http])
                 ], AdminVideoPlay);
                 return AdminVideoPlay;
             })();
