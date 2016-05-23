@@ -1,9 +1,10 @@
 ﻿ /////<reference path="../../typings/jquery/jquery.d.ts" />
 import { Component} from '@angular/core';
-import { AfterViewInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { CORE_DIRECTIVES, FORM_DIRECTIVES } from '@angular/common';
 import {ROUTER_DIRECTIVES, RouteConfig, Router, RouteParams} from '@angular/router-deprecated';
 //import {MediaElementPlayer} from 'build/mediaelementplayer';
+import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { Http, HTTP_PROVIDERS, Response, Headers, RequestOptions } from '@angular/http';
 import {HttpClient} from '../httpclient';
 import 'rxjs/Rx';
@@ -22,7 +23,8 @@ declare var MediaElementPlayer: any;
 	templateUrl: '../app/admin/admin.videoplay.html',
 	//template: require('./app.html'),
 	styleUrls: ['../app/admin/admin.videoplay.css'],
-    directives: [CORE_DIRECTIVES, shopitemComponent]
+    directives: [CORE_DIRECTIVES, shopitemComponent],
+    changeDetection: ChangeDetectionStrategy.Default
 })
 
 
@@ -37,7 +39,7 @@ export class AdminVideoPlay implements AfterViewInit {
     vdbid: string;
     http: Http;
     httpclient: HttpClient;
-	constructor(httpClient: HttpClient, routeParams: RouteParams,http: Http) {
+    constructor(httpClient: HttpClient, routeParams: RouteParams, http: Http, private cd: ChangeDetectorRef) {
                 this.vdbid = routeParams.get('dbid');
 				this.videosrc = "www.youtube.com/watch?v=" + routeParams.get('id');
         this.httpclient = httpClient;
@@ -72,11 +74,17 @@ export class AdminVideoPlay implements AfterViewInit {
 		player.setSrc(this.videosrc);
 	} 
 
-  
+    ngOnInit() {
+        //this.addNewItem.subscribe(() => {
+           
+        //    this.cd.markForCheck(); // marks path
+        //})
+  }
       public  addNewItem()
       {
          // var curTime = (document.getElementById('MyAdminVideo1').currentTime);
           var item = { ProductHandle: null, PTop: 2, PLeft: 0, StartTime: this.curtime, EndTime: this.curtime, Video_Id: this.vdbid };
+          this.shopinfo = item;
           var headers = new Headers({ 'Content-Type': 'application/json' });
          var options = new RequestOptions({ headers: headers });
 

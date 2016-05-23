@@ -1,4 +1,4 @@
-System.register(['@angular/core', '@angular/common', '../interfaces/shopitem'], function(exports_1, context_1) {
+System.register(['@angular/core', '@angular/common'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['@angular/core', '@angular/common', '../interfaces/shopitem'], 
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, common_1, shopitem_1;
+    var core_1, common_1;
     var shopitemComponent;
     return {
         setters:[
@@ -19,19 +19,25 @@ System.register(['@angular/core', '@angular/common', '../interfaces/shopitem'], 
             },
             function (common_1_1) {
                 common_1 = common_1_1;
-            },
-            function (shopitem_1_1) {
-                shopitem_1 = shopitem_1_1;
             }],
         execute: function() {
             shopitemComponent = (function () {
-                function shopitemComponent() {
+                function shopitemComponent(cd) {
+                    this.cd = cd;
                     this.saveFun = new core_1.EventEmitter();
                     this.addFun = new core_1.EventEmitter();
                     this.deleteFun = new core_1.EventEmitter();
                 }
-                //constructor() {
-                //}
+                shopitemComponent.prototype.ngOnInit = function () {
+                    //this.shopitem.subscribe(() => {
+                    //    console.log('deted'); // application state changed
+                    //    this.cd.markForCheck(); 
+                    //})
+                    this.cd.markForCheck();
+                };
+                shopitemComponent.prototype.ngOnChanges = function (changes) {
+                    console.log(changes + 'chaned');
+                };
                 shopitemComponent.prototype.saveFun1 = function (shop) {
                     this.saveFun.next(shop);
                 };
@@ -55,19 +61,21 @@ System.register(['@angular/core', '@angular/common', '../interfaces/shopitem'], 
                 ], shopitemComponent.prototype, "deleteFun", void 0);
                 __decorate([
                     core_1.Input(), 
-                    __metadata('design:type', shopitem_1.shopitem)
+                    __metadata('design:type', (typeof (_a = typeof core_1.Observable !== 'undefined' && core_1.Observable) === 'function' && _a) || Object)
                 ], shopitemComponent.prototype, "shopitem", void 0);
                 shopitemComponent = __decorate([
                     core_1.Component({
                         selector: 'hp-shopinfo',
                         //providers: [HttpClient, HTTP_PROVIDERS],
                         templateUrl: '../app/admin/admin.shopinfo.html',
-                        directives: [common_1.CORE_DIRECTIVES],
-                        styleUrls: ['../app/admin/admin.videoplay.css']
+                        directives: [common_1.CORE_DIRECTIVES, common_1.FORM_DIRECTIVES],
+                        styleUrls: ['../app/admin/admin.videoplay.css'],
+                        changeDetection: core_1.ChangeDetectionStrategy.Default
                     }), 
-                    __metadata('design:paramtypes', [])
+                    __metadata('design:paramtypes', [core_1.ChangeDetectorRef])
                 ], shopitemComponent);
                 return shopitemComponent;
+                var _a;
             }());
             exports_1("shopitemComponent", shopitemComponent);
         }

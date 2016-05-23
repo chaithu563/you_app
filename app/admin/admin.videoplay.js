@@ -10,12 +10,14 @@ System.register(['@angular/core', '@angular/common', '@angular/router-deprecated
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, common_1, router_deprecated_1, http_1, httpclient_1, shopinfo_component_1;
+    var core_1, core_2, common_1, router_deprecated_1, core_3, http_1, httpclient_1, shopinfo_component_1;
     var AdminVideoPlay;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
+                core_2 = core_1_1;
+                core_3 = core_1_1;
             },
             function (common_1_1) {
                 common_1 = common_1_1;
@@ -35,7 +37,8 @@ System.register(['@angular/core', '@angular/common', '@angular/router-deprecated
             }],
         execute: function() {
             AdminVideoPlay = (function () {
-                function AdminVideoPlay(httpClient, routeParams, http) {
+                function AdminVideoPlay(httpClient, routeParams, http, cd) {
+                    this.cd = cd;
                     this.vdbid = routeParams.get('dbid');
                     this.videosrc = "www.youtube.com/watch?v=" + routeParams.get('id');
                     this.httpclient = httpClient;
@@ -61,10 +64,16 @@ System.register(['@angular/core', '@angular/common', '@angular/router-deprecated
                     });
                     player.setSrc(this.videosrc);
                 };
+                AdminVideoPlay.prototype.ngOnInit = function () {
+                    //this.addNewItem.subscribe(() => {
+                    //    this.cd.markForCheck(); // marks path
+                    //})
+                };
                 AdminVideoPlay.prototype.addNewItem = function () {
                     var _this = this;
                     // var curTime = (document.getElementById('MyAdminVideo1').currentTime);
                     var item = { ProductHandle: null, PTop: 2, PLeft: 0, StartTime: this.curtime, EndTime: this.curtime, Video_Id: this.vdbid };
+                    this.shopinfo = item;
                     var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
                     var options = new http_1.RequestOptions({ headers: headers });
                     this.http.post('http://localhost/HappiPugCloudService/api/VideoShopItem', JSON.stringify(item), options)
@@ -89,9 +98,10 @@ System.register(['@angular/core', '@angular/common', '@angular/router-deprecated
                         templateUrl: '../app/admin/admin.videoplay.html',
                         //template: require('./app.html'),
                         styleUrls: ['../app/admin/admin.videoplay.css'],
-                        directives: [common_1.CORE_DIRECTIVES, shopinfo_component_1.shopitemComponent]
+                        directives: [common_1.CORE_DIRECTIVES, shopinfo_component_1.shopitemComponent],
+                        changeDetection: core_3.ChangeDetectionStrategy.Default
                     }), 
-                    __metadata('design:paramtypes', [httpclient_1.HttpClient, router_deprecated_1.RouteParams, http_1.Http])
+                    __metadata('design:paramtypes', [httpclient_1.HttpClient, router_deprecated_1.RouteParams, http_1.Http, core_2.ChangeDetectorRef])
                 ], AdminVideoPlay);
                 return AdminVideoPlay;
             }());
