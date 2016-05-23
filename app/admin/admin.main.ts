@@ -1,4 +1,4 @@
-﻿import { bootstrap} from '@angular/platform-browser-dynamic';
+﻿import {bootstrap} from '@angular/platform-browser-dynamic';
 import {provide} from '@angular/core';
 import {AdminHome} from './admin.home';
 import {HTTP_PROVIDERS} from '@angular/http';
