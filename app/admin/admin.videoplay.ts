@@ -1,10 +1,10 @@
 ﻿ /////<reference path="../../typings/jquery/jquery.d.ts" />
-import { Component} from 'angular2/core';
-import { AfterViewInit } from 'angular2/core';
-import { CORE_DIRECTIVES, FORM_DIRECTIVES } from 'angular2/common';
-import {ROUTER_DIRECTIVES, RouteConfig, Router, RouteParams} from 'angular2/router';
+import { Component} from '@angular/core';
+import { AfterViewInit } from '@angular/core';
+import { CORE_DIRECTIVES, FORM_DIRECTIVES } from '@angular/common';
+import {ROUTER_DIRECTIVES, RouteConfig, Router, RouteParams} from '@angular/router-deprecated';
 //import {MediaElementPlayer} from 'build/mediaelementplayer';
-import { Http, HTTP_PROVIDERS, Response, Headers, RequestOptions } from 'angular2/http';
+import { Http, HTTP_PROVIDERS, Response, Headers, RequestOptions } from '@angular/http';
 import {HttpClient} from '../httpclient';
 import 'rxjs/Rx';
 import {videoinfo } from '../interfaces/videoinfo';

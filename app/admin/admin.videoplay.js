@@ -1,4 +1,6 @@
-System.register(['angular2/core', 'angular2/common', 'angular2/router', 'angular2/http', '../httpclient', 'rxjs/Rx', '../admin/shopinfo.component'], function(exports_1) {
+System.register(['@angular/core', '@angular/common', '@angular/router-deprecated', '@angular/http', '../httpclient', 'rxjs/Rx', '../admin/shopinfo.component'], function(exports_1, context_1) {
+    "use strict";
+    var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,7 +10,7 @@ System.register(['angular2/core', 'angular2/common', 'angular2/router', 'angular
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, common_1, router_1, http_1, httpclient_1, shopinfo_component_1;
+    var core_1, common_1, router_deprecated_1, http_1, httpclient_1, shopinfo_component_1;
     var AdminVideoPlay;
     return {
         setters:[
@@ -18,8 +20,8 @@ System.register(['angular2/core', 'angular2/common', 'angular2/router', 'angular
             function (common_1_1) {
                 common_1 = common_1_1;
             },
-            function (router_1_1) {
-                router_1 = router_1_1;
+            function (router_deprecated_1_1) {
+                router_deprecated_1 = router_deprecated_1_1;
             },
             function (http_1_1) {
                 http_1 = http_1_1;
@@ -89,10 +91,10 @@ System.register(['angular2/core', 'angular2/common', 'angular2/router', 'angular
                         styleUrls: ['../app/admin/admin.videoplay.css'],
                         directives: [common_1.CORE_DIRECTIVES, shopinfo_component_1.shopitemComponent]
                     }), 
-                    __metadata('design:paramtypes', [httpclient_1.HttpClient, router_1.RouteParams, http_1.Http])
+                    __metadata('design:paramtypes', [httpclient_1.HttpClient, router_deprecated_1.RouteParams, http_1.Http])
                 ], AdminVideoPlay);
                 return AdminVideoPlay;
-            })();
+            }());
             exports_1("AdminVideoPlay", AdminVideoPlay);
         }
     }

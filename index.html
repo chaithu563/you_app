@@ -9,43 +9,46 @@
 	<link href="app/content/header/header.common.css" rel="stylesheet" />
     <!-- 1. Load libraries -->
     <!-- IE required polyfills, in this exact order -->
-    <script src="node_modules/es6-shim/es6-shim.min.js"></script>
-    <script src="node_modules/systemjs/dist/system-polyfills.js"></script>
-	
-    <script src="node_modules/angular2/bundles/angular2-polyfills.js"></script>
-    <script src="node_modules/systemjs/dist/system.src.js"></script>
-    <script src="node_modules/rxjs/bundles/Rx.js"></script>
-    <script src="node_modules/angular2/bundles/angular2.dev.js"></script>
-    <script src="node_modules/angular2/bundles/router.min.js"></script>
-    <script src="node_modules/angular2/bundles/http.min.js"></script>
-    <!--<script src="node_modules/angular2/bootstrap.js"></script>-->
-    <script src="node_modules/ng2-bootstrap/ng2-bootstrap.js"></script>
+   
+	<script src="node_modules/typescript/lib/typescript.js"></script>
+
+	<script src="node_modules/es6-shim/es6-shim.min.js"></script>
+	<script src="node_modules/systemjs/dist/system-polyfills.js"></script>
+	<script src="node_modules/zone.js/dist/zone.js"></script>
+	<script src="node_modules/reflect-metadata/Reflect.js"></script>
+	<script src="node_modules/systemjs/dist/system.src.js"></script>
+
+	<script src="node_modules/rxjs/bundles/Rx.js"></script>
+	<!-- remove for bundle usage -->
+	<script src="systemjs.config.js"></script>
+
     <!-- 2. Configure SystemJS -->
 
 	
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
     <link href="node_modules/mediaelement/src/css/mediaelementplayer.css" rel="stylesheet" />
 	<script src="node_modules/mediaelement/build/mediaelement-and-player.js"></script>
-	
+
+	<script src="node_modules/ng2-bootstrap/bundles/ng2-bootstrap.min.js"></script>
     <script>
-        System.config({
-            transpiler: 'typescript',
-            globalEvaluationScope: false,
-            typescriptOptions: { emitDecoratorMetadata: true },
-        packages: {
-              "app": {
-                format: 'register',
-                defaultExtension: 'js'
-              },
-           "node_modules/ng2-bootstrap": {
-                  defaultExtension: 'js'
-               }
-          },
-         paths: {
-         	"ng2-bootstrap/ng2-bootstrap": "node_modules/ng2-bootstrap/ng2-bootstrap",
-         	"moment": "node_modules/ng2-bootstrap/node_modules/moment/moment"
-				 }
-      });
+      //  System.config({
+      //      transpiler: 'typescript',
+      //      globalEvaluationScope: false,
+      //      typescriptOptions: { emitDecoratorMetadata: true },
+      //  packages: {
+      //        "app": {
+      //          format: 'register',
+      //          defaultExtension: 'js'
+      //        },
+      //     "node_modules/ng2-bootstrap": {
+      //            defaultExtension: 'js'
+      //         }
+      //    },
+      //   paths: {
+      //   	"ng2-bootstrap/ng2-bootstrap": "node_modules/ng2-bootstrap/ng2-bootstrap",
+      //   	"moment": "node_modules/ng2-bootstrap/node_modules/moment/moment"
+	  //  		 }
+      //});
       System.import('app/main')
             .then(null, console.error.bind(console));
     </script>

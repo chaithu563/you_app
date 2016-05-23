@@ -1,8 +1,8 @@
-﻿import { Component} from 'angular2/core';
+﻿import { Component} from '@angular/core';
 import {AdminVideos} from './admin.videos';
 import {AdminVideoPlay} from './admin.videoplay';
-import {Http, HTTP_PROVIDERS, Response} from 'angular2/http';
-import {ROUTER_DIRECTIVES, RouteConfig, Router} from 'angular2/router';
+import {Http, HTTP_PROVIDERS, Response} from '@angular/http';
+import {ROUTER_DIRECTIVES, RouteConfig, Router} from '@angular/router-deprecated';
 import 'rxjs/Rx';
 import {HttpClient} from '../httpclient';
 @Component({

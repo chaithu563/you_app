@@ -1,7 +1,7 @@
-import { Component} from 'angular2/core';
+import { Component} from '@angular/core';
 import {HeaderComponent} from './content/header/header.component';
 import {BodyComponent} from './content/body/body.component';
-import {Http, HTTP_PROVIDERS, Response} from 'angular2/http';
+import {Http, HTTP_PROVIDERS, Response} from '@angular/http';
 import {HttpClient} from './httpclient';
 import 'rxjs/Rx';
 @Component({

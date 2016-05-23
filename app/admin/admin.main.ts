@@ -1,9 +1,9 @@
-﻿import {bootstrap}    from 'angular2/platform/browser';
-import {provide} from 'angular2/core';
+﻿import { bootstrap} from '@angular/platform-browser-dynamic';
+import {provide} from '@angular/core';
 import {AdminHome} from './admin.home';
-import {HTTP_PROVIDERS} from 'angular2/http';
-import {ROUTER_DIRECTIVES, RouteConfig, Router, APP_BASE_HREF} from 'angular2/router';
-import {ROUTER_PROVIDERS, LocationStrategy, PathLocationStrategy} from 'angular2/router';
+import {HTTP_PROVIDERS} from '@angular/http';
+import {ROUTER_DIRECTIVES, RouteConfig, Router, APP_BASE_HREF} from '@angular/router-deprecated';
+import {ROUTER_PROVIDERS, LocationStrategy, PathLocationStrategy} from '@angular/router-deprecated';
 
 
 // Routing is set up with the RouteConfig decorator
@@ -13,7 +13,7 @@ import {ROUTER_PROVIDERS, LocationStrategy, PathLocationStrategy} from 'angular2
   //  { path: '/**', redirectTo: ['AdminHome'] }
 ])
 
-class AdminMain {
+export class AdminMain {
 
 }
 bootstrap(AdminMain, [HTTP_PROVIDERS, ROUTER_PROVIDERS, provide(APP_BASE_HREF, { useValue: '/' })]);

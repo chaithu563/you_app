@@ -1,6 +1,6 @@
-﻿import { Component, Input, Output, EventEmitter} from 'angular2/core';
-import {CORE_DIRECTIVES } from 'angular2/common';
-import { Http, HTTP_PROVIDERS, Response } from 'angular2/http';
+﻿import { Component, Input, Output, EventEmitter} from '@angular/core';
+import {CORE_DIRECTIVES } from '@angular/common';
+import { Http, HTTP_PROVIDERS, Response } from '@angular/http';
 //import {HttpClient} from './httpclient';
 import {shopitem } from '../interfaces/shopitem';
 @Component({

@@ -1,4 +1,6 @@
-System.register(['angular2/core', './admin.videos', './admin.videoplay', 'angular2/http', 'angular2/router', 'rxjs/Rx', '../httpclient'], function(exports_1) {
+System.register(['@angular/core', './admin.videos', './admin.videoplay', '@angular/http', '@angular/router-deprecated', 'rxjs/Rx', '../httpclient'], function(exports_1, context_1) {
+    "use strict";
+    var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,7 +10,7 @@ System.register(['angular2/core', './admin.videos', './admin.videoplay', 'angula
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, admin_videos_1, admin_videoplay_1, http_1, router_1, httpclient_1;
+    var core_1, admin_videos_1, admin_videoplay_1, http_1, router_deprecated_1, httpclient_1;
     var AdminHome;
     return {
         setters:[
@@ -24,8 +26,8 @@ System.register(['angular2/core', './admin.videos', './admin.videoplay', 'angula
             function (http_1_1) {
                 http_1 = http_1_1;
             },
-            function (router_1_1) {
-                router_1 = router_1_1;
+            function (router_deprecated_1_1) {
+                router_deprecated_1 = router_deprecated_1_1;
             },
             function (_1) {},
             function (httpclient_1_1) {
@@ -44,9 +46,9 @@ System.register(['angular2/core', './admin.videos', './admin.videoplay', 'angula
                         //selector: 'hp-admin',
                         providers: [httpclient_1.HttpClient, http_1.HTTP_PROVIDERS],
                         template: "\n\t\t\t\t\t\t\t\t\t<h1>admin</h1>\t\t\t\t<router-outlet></router-outlet>\n\t\t\t\t\t\t",
-                        directives: [router_1.ROUTER_DIRECTIVES]
+                        directives: [router_deprecated_1.ROUTER_DIRECTIVES]
                     }),
-                    router_1.RouteConfig([
+                    router_deprecated_1.RouteConfig([
                         { path: '/videos', component: admin_videos_1.AdminVideos, name: 'AdminHome', useAsDefault: true },
                         { path: '/play/:id', component: admin_videoplay_1.AdminVideoPlay, name: 'AdminPlay' },
                         // { path: '/admin/:video/...', component: AdminVideo, name: 'Users' },
@@ -55,7 +57,7 @@ System.register(['angular2/core', './admin.videos', './admin.videoplay', 'angula
                     __metadata('design:paramtypes', [httpclient_1.HttpClient])
                 ], AdminHome);
                 return AdminHome;
-            })();
+            }());
             exports_1("AdminHome", AdminHome);
         }
     }
