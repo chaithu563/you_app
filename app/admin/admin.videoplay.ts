@@ -1,6 +1,6 @@
 ﻿ /////<reference path="../../typings/jquery/jquery.d.ts" />
-import { Component} from '@angular/core';
-import { AfterViewInit, ChangeDetectorRef } from '@angular/core';
+
+import { AfterViewInit, AfterViewChecked} from '@angular/core';
 import { CORE_DIRECTIVES, FORM_DIRECTIVES } from '@angular/common';
 import {ROUTER_DIRECTIVES, RouteConfig, Router, RouteParams} from '@angular/router-deprecated';
 //import {MediaElementPlayer} from 'build/mediaelementplayer';
@@ -24,12 +24,12 @@ declare var MediaElementPlayer: any;
 	//template: require('./app.html'),
 	styleUrls: ['../app/admin/admin.videoplay.css'],
     directives: [CORE_DIRECTIVES, shopitemComponent],
-    changeDetection: ChangeDetectionStrategy.Default
+		changeDetection: ChangeDetectionStrategy.Default 
 })
 
 
 
-export class AdminVideoPlay implements AfterViewInit {
+export class AdminVideoPlay implements AfterViewInit, AfterViewChecked {
 	//https://auth0.com/blog/2016/01/25/angular-2-series-part-4-component-router-in-depth/
 
 	videosrc: string;
@@ -44,7 +44,8 @@ export class AdminVideoPlay implements AfterViewInit {
 				this.videosrc = "www.youtube.com/watch?v=" + routeParams.get('id');
         this.httpclient = httpClient;
         this.http = http;
-        this.shopinfo = { ProductHandle: null, PTop: 0, PLeft: 0, StartTime: this.curtime, EndTime: this.curtime, Video_Id: this.vdbid };
+        this.shopinfo = { Id: 1, ProductHandle: null, PTop: 0, PLeft: 0, StartTime: this.curtime, EndTime: this.curtime, Video_Id: this.vdbid };
+				//this.cd.detectChanges();
 	}
 
 
@@ -80,11 +81,28 @@ export class AdminVideoPlay implements AfterViewInit {
         //    this.cd.markForCheck(); // marks path
         //})
   }
+
+		ngOnChanges() { // <------
+		
+			var newitem = new shopitem(11, 2, 0, this.curtime, this.curtime, "", 1);
+			this.shopinfo = newitem;
+		}
+
+		ngAfterViewChecked() {
+			console.log('GrandChild: in ngAfterViewChecked');
+			var newitem = new shopitem(11, 2, 0, this.curtime, this.curtime, "", 1);
+			this.shopinfo = newitem;
+		}
+
       public  addNewItem()
       {
          // var curTime = (document.getElementById('MyAdminVideo1').currentTime);
+				var newitem = new shopitem(11,  2,  0,  this.curtime,  this.curtime, "", 1 );
+				
+				this.cd.detectChanges()
+
           var item = { ProductHandle: null, PTop: 2, PLeft: 0, StartTime: this.curtime, EndTime: this.curtime, Video_Id: this.vdbid };
-          this.shopinfo = item;
+          this.shopinfo = newitem;
           var headers = new Headers({ 'Content-Type': 'application/json' });
          var options = new RequestOptions({ headers: headers });
 

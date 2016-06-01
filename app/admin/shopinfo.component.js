@@ -1,4 +1,4 @@
-System.register(['@angular/core', '@angular/common'], function(exports_1, context_1) {
+System.register(['@angular/core', '@angular/common', '../httpclient'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['@angular/core', '@angular/common'], function(exports_1, contex
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, common_1;
+    var core_1, common_1, httpclient_1;
     var shopitemComponent;
     return {
         setters:[
@@ -19,14 +19,24 @@ System.register(['@angular/core', '@angular/common'], function(exports_1, contex
             },
             function (common_1_1) {
                 common_1 = common_1_1;
+            },
+            function (httpclient_1_1) {
+                httpclient_1 = httpclient_1_1;
             }],
         execute: function() {
             shopitemComponent = (function () {
-                function shopitemComponent(cd) {
+                function shopitemComponent(httpClient, cd) {
                     this.cd = cd;
                     this.saveFun = new core_1.EventEmitter();
                     this.addFun = new core_1.EventEmitter();
                     this.deleteFun = new core_1.EventEmitter();
+                    this.testname = 'chaitanya';
+                    //		cd.detach();
+                    //setInterval(() => {
+                    //	this.cd.detectChanges();
+                    //}, 5000);
+                    //	this.cd.detectChanges();
+                    this.httpclient = httpClient;
                 }
                 shopitemComponent.prototype.ngOnInit = function () {
                     //this.shopitem.subscribe(() => {
@@ -36,7 +46,8 @@ System.register(['@angular/core', '@angular/common'], function(exports_1, contex
                     this.cd.markForCheck();
                 };
                 shopitemComponent.prototype.ngOnChanges = function (changes) {
-                    console.log(changes + 'chaned');
+                    console.log('Change detected:', changes['shopitem'].currentValue);
+                    this.shopitem = changes['shopitem'].currentValue;
                 };
                 shopitemComponent.prototype.saveFun1 = function (shop) {
                     this.saveFun.next(shop);
@@ -45,7 +56,24 @@ System.register(['@angular/core', '@angular/common'], function(exports_1, contex
                     this.deleteFun.next(shop);
                 };
                 shopitemComponent.prototype.addFun1 = function () {
-                    this.addFun.next();
+                    var _this = this;
+                    //this.addFun.next();
+                    //	this.cd.detectChanges();
+                    this.testname = 'chaitanyachange';
+                    this.shopitem.PTop = 2;
+                    //setInterval(() => {
+                    //	this.shopitem.PTop = 2;
+                    //}, 5000);
+                    this.httpclient.post('http://localhost/HappiPugCloudService/api/VideoShopItem', JSON.stringify(this.shopitem))
+                        .map(function (response) { return response.json(); })
+                        .subscribe(function (res) {
+                        console.log('success');
+                        _this.shopitem = res;
+                        _this.shopitem.PLeft = 2;
+                        //	this.vdbid = '90';
+                        _this.cd.detectChanges();
+                        console.log(_this.shopitem);
+                    });
                 };
                 __decorate([
                     core_1.Output(), 
@@ -72,7 +100,7 @@ System.register(['@angular/core', '@angular/common'], function(exports_1, contex
                         styleUrls: ['../app/admin/admin.videoplay.css'],
                         changeDetection: core_1.ChangeDetectionStrategy.Default
                     }), 
-                    __metadata('design:paramtypes', [core_1.ChangeDetectorRef])
+                    __metadata('design:paramtypes', [httpclient_1.HttpClient, core_1.ChangeDetectorRef])
                 ], shopitemComponent);
                 return shopitemComponent;
                 var _a;

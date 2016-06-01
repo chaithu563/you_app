@@ -1,4 +1,5 @@
-System.register(['@angular/core', '@angular/common', '@angular/router-deprecated', '@angular/http', '../httpclient', 'rxjs/Rx', '../admin/shopinfo.component'], function(exports_1, context_1) {
+/////<reference path="../../typings/jquery/jquery.d.ts" />
+System.register(['@angular/common', '@angular/router-deprecated', '@angular/core', '@angular/http', '../httpclient', 'rxjs/Rx', '../interfaces/shopitem', '../admin/shopinfo.component'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,20 +11,18 @@ System.register(['@angular/core', '@angular/common', '@angular/router-deprecated
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, core_2, common_1, router_deprecated_1, core_3, http_1, httpclient_1, shopinfo_component_1;
+    var common_1, router_deprecated_1, core_1, http_1, httpclient_1, shopitem_1, shopinfo_component_1;
     var AdminVideoPlay;
     return {
         setters:[
-            function (core_1_1) {
-                core_1 = core_1_1;
-                core_2 = core_1_1;
-                core_3 = core_1_1;
-            },
             function (common_1_1) {
                 common_1 = common_1_1;
             },
             function (router_deprecated_1_1) {
                 router_deprecated_1 = router_deprecated_1_1;
+            },
+            function (core_1_1) {
+                core_1 = core_1_1;
             },
             function (http_1_1) {
                 http_1 = http_1_1;
@@ -32,6 +31,9 @@ System.register(['@angular/core', '@angular/common', '@angular/router-deprecated
                 httpclient_1 = httpclient_1_1;
             },
             function (_1) {},
+            function (shopitem_1_1) {
+                shopitem_1 = shopitem_1_1;
+            },
             function (shopinfo_component_1_1) {
                 shopinfo_component_1 = shopinfo_component_1_1;
             }],
@@ -43,7 +45,8 @@ System.register(['@angular/core', '@angular/common', '@angular/router-deprecated
                     this.videosrc = "www.youtube.com/watch?v=" + routeParams.get('id');
                     this.httpclient = httpClient;
                     this.http = http;
-                    this.shopinfo = { ProductHandle: null, PTop: 0, PLeft: 0, StartTime: this.curtime, EndTime: this.curtime, Video_Id: this.vdbid };
+                    this.shopinfo = { Id: 1, ProductHandle: null, PTop: 0, PLeft: 0, StartTime: this.curtime, EndTime: this.curtime, Video_Id: this.vdbid };
+                    //this.cd.detectChanges();
                 }
                 AdminVideoPlay.prototype.ngAfterViewInit = function () {
                     var player = new MediaElementPlayer('video', {
@@ -69,11 +72,22 @@ System.register(['@angular/core', '@angular/common', '@angular/router-deprecated
                     //    this.cd.markForCheck(); // marks path
                     //})
                 };
+                AdminVideoPlay.prototype.ngOnChanges = function () {
+                    var newitem = new shopitem_1.shopitem(11, 2, 0, this.curtime, this.curtime, "", 1);
+                    this.shopinfo = newitem;
+                };
+                AdminVideoPlay.prototype.ngAfterViewChecked = function () {
+                    console.log('GrandChild: in ngAfterViewChecked');
+                    var newitem = new shopitem_1.shopitem(11, 2, 0, this.curtime, this.curtime, "", 1);
+                    this.shopinfo = newitem;
+                };
                 AdminVideoPlay.prototype.addNewItem = function () {
                     var _this = this;
                     // var curTime = (document.getElementById('MyAdminVideo1').currentTime);
+                    var newitem = new shopitem_1.shopitem(11, 2, 0, this.curtime, this.curtime, "", 1);
+                    this.cd.detectChanges();
                     var item = { ProductHandle: null, PTop: 2, PLeft: 0, StartTime: this.curtime, EndTime: this.curtime, Video_Id: this.vdbid };
-                    this.shopinfo = item;
+                    this.shopinfo = newitem;
                     var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
                     var options = new http_1.RequestOptions({ headers: headers });
                     this.http.post('http://localhost/HappiPugCloudService/api/VideoShopItem', JSON.stringify(item), options)
@@ -99,9 +113,9 @@ System.register(['@angular/core', '@angular/common', '@angular/router-deprecated
                         //template: require('./app.html'),
                         styleUrls: ['../app/admin/admin.videoplay.css'],
                         directives: [common_1.CORE_DIRECTIVES, shopinfo_component_1.shopitemComponent],
-                        changeDetection: core_3.ChangeDetectionStrategy.Default
+                        changeDetection: core_1.ChangeDetectionStrategy.Default
                     }), 
-                    __metadata('design:paramtypes', [httpclient_1.HttpClient, router_deprecated_1.RouteParams, http_1.Http, core_2.ChangeDetectorRef])
+                    __metadata('design:paramtypes', [httpclient_1.HttpClient, router_deprecated_1.RouteParams, http_1.Http, core_1.ChangeDetectorRef])
                 ], AdminVideoPlay);
                 return AdminVideoPlay;
             }());
