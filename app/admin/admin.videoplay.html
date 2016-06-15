@@ -42,7 +42,7 @@
 
 		<div class="admItemAdd">
 			
-            <hp-shopinfo [(shopitem)]="shopinfo"  (addFun)="addNewItem($event)" (saveFun)="saveFun($event)"  (deleteFun)="deleteFun($event)" > </hp-shopinfo>
+      <hp-shopinfo [(shopitem)]="shopinfo" [(curtime)]="curtime" (addfun)="addNewItem($event)" (savefun)="saveFun($event)" (deletefun)="deleteFun($event)"> </hp-shopinfo>
 		<!--	<div class="addeditbuttons">
 				<div class="button-add-div">
 					<button class="admin-add-button" type="button" (click)="addNewItem()" id="annotator-button-add" data-button-menu-id="annotator-add-menu" aria-pressed="false" aria-expanded="false">

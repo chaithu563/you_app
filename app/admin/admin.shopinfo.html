@@ -25,12 +25,15 @@
 					<label>Item Left</label><input type="text"  [(ngModel)]="shopitem.PLeft" />
 				</div>
 				<div class="each-item-div">
-					<button (click)="shopitem.StartTime=currentTime">Set StartTime</button><input type="text"  [(ngModel)]="shopitem.StartTime" />
+          <button (click)="setStartTime()">Set StartTime</button><input type="text"  [(ngModel)]="shopitem.StartTime" />
 				</div>
 				<div class="each-item-div">
-					<button (click)="shopitem.EndTime=currentTime">Set EndTime</button><input type="text"  [(ngModel)]="shopitem.EndTime" />
+          <button (click)="setEndTime()">Set EndTime</button><input type="text"  [(ngModel)]="shopitem.EndTime" />
 				</div>
 
+        <div class="each-item-div">
+          <input id="currentTime" type="text" (ngModelChange)="valuechange($event)" [(ngModel)]="CurrentTime" />
+        </div>
 			</div>
 
 			<div class="button-delete-div" *ngIf="shopitem">

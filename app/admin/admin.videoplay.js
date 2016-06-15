@@ -47,8 +47,14 @@ System.register(['@angular/common', '@angular/router-deprecated', '@angular/core
                     this.http = http;
                     this.shopinfo = { Id: 1, ProductHandle: null, PTop: 0, PLeft: 0, StartTime: this.curtime, EndTime: this.curtime, Video_Id: this.vdbid };
                     //this.cd.detectChanges();
+                    this.curtime = 0;
                 }
                 AdminVideoPlay.prototype.ngAfterViewInit = function () {
+                    var _this = this;
+                    $('#currentTime')
+                        .on('change', function (e, args) {
+                        _this.curtime = $(_this).val();
+                    });
                     var player = new MediaElementPlayer('video', {
                         defaultVideoWidth: 960, defaultVideoHeight: 410,
                         features: ['playpause', 'progress', 'current', 'duration', 'volume', 'fullscreen'],
@@ -58,6 +64,11 @@ System.register(['@angular/common', '@angular/router-deprecated', '@angular/core
                             mediaElement.addEventListener('timeupdate', function (e) {
                                 console.log('time chnage' + mediaElement.currentTime);
                                 this.curtime = mediaElement.currentTime;
+                                console.log(this.viewChild);
+                                var input = $('#currentTime');
+                                input.val(mediaElement.currentTime).change();
+                                //$("#currentTime").change(); 
+                                input.trigger('change');
                             }, false);
                             mediaElement.addEventListener('seeking', function (e) {
                                 console.log('seeking' + mediaElement.currentTime);
@@ -105,6 +116,10 @@ System.register(['@angular/common', '@angular/router-deprecated', '@angular/core
                 AdminVideoPlay.prototype.deleteItem = function () {
                     console.log("item deleted");
                 };
+                __decorate([
+                    core_1.ViewChild(shopinfo_component_1.shopitemComponent), 
+                    __metadata('design:type', shopinfo_component_1.shopitemComponent)
+                ], AdminVideoPlay.prototype, "viewChild", void 0);
                 AdminVideoPlay = __decorate([
                     core_1.Component({
                         //selector: 'hp-admin',

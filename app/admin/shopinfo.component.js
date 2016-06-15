@@ -31,23 +31,16 @@ System.register(['@angular/core', '@angular/common', '../httpclient'], function(
                     this.addFun = new core_1.EventEmitter();
                     this.deleteFun = new core_1.EventEmitter();
                     this.testname = 'chaitanya';
-                    //		cd.detach();
-                    //setInterval(() => {
-                    //	this.cd.detectChanges();
-                    //}, 5000);
-                    //	this.cd.detectChanges();
                     this.httpclient = httpClient;
+                    this.CurrentTime = this.curtime;
                 }
                 shopitemComponent.prototype.ngOnInit = function () {
-                    //this.shopitem.subscribe(() => {
-                    //    console.log('deted'); // application state changed
-                    //    this.cd.markForCheck(); 
-                    //})
                     this.cd.markForCheck();
                 };
                 shopitemComponent.prototype.ngOnChanges = function (changes) {
                     console.log('Change detected:', changes['shopitem'].currentValue);
                     this.shopitem = changes['shopitem'].currentValue;
+                    this.CurrentTime = this.curtime;
                 };
                 shopitemComponent.prototype.saveFun1 = function (shop) {
                     this.saveFun.next(shop);
@@ -55,15 +48,23 @@ System.register(['@angular/core', '@angular/common', '../httpclient'], function(
                 shopitemComponent.prototype.deleteFun1 = function (shop) {
                     this.deleteFun.next(shop);
                 };
+                shopitemComponent.prototype.valuechange = function (newValue) {
+                    this.CurrentTime = newValue;
+                    this.CurrentTime = this.curtime;
+                    console.log(newValue);
+                };
+                shopitemComponent.prototype.setStartTime = function () {
+                    this.shopitem.StartTime = $('#currentTime').val();
+                    this.cd.detectChanges();
+                };
+                shopitemComponent.prototype.setEndtime = function () {
+                    this.shopitem.EndTime = $('#currentTime').val();
+                    this.cd.detectChanges();
+                };
                 shopitemComponent.prototype.addFun1 = function () {
                     var _this = this;
-                    //this.addFun.next();
-                    //	this.cd.detectChanges();
                     this.testname = 'chaitanyachange';
                     this.shopitem.PTop = 2;
-                    //setInterval(() => {
-                    //	this.shopitem.PTop = 2;
-                    //}, 5000);
                     this.httpclient.post('http://localhost/HappiPugCloudService/api/VideoShopItem', JSON.stringify(this.shopitem))
                         .map(function (response) { return response.json(); })
                         .subscribe(function (res) {
@@ -91,6 +92,10 @@ System.register(['@angular/core', '@angular/common', '../httpclient'], function(
                     core_1.Input(), 
                     __metadata('design:type', (typeof (_a = typeof core_1.Observable !== 'undefined' && core_1.Observable) === 'function' && _a) || Object)
                 ], shopitemComponent.prototype, "shopitem", void 0);
+                __decorate([
+                    core_1.Input(), 
+                    __metadata('design:type', (typeof (_b = typeof core_1.Observable !== 'undefined' && core_1.Observable) === 'function' && _b) || Object)
+                ], shopitemComponent.prototype, "curtime", void 0);
                 shopitemComponent = __decorate([
                     core_1.Component({
                         selector: 'hp-shopinfo',
@@ -103,7 +108,7 @@ System.register(['@angular/core', '@angular/common', '../httpclient'], function(
                     __metadata('design:paramtypes', [httpclient_1.HttpClient, core_1.ChangeDetectorRef])
                 ], shopitemComponent);
                 return shopitemComponent;
-                var _a;
+                var _a, _b;
             }());
             exports_1("shopitemComponent", shopitemComponent);
         }

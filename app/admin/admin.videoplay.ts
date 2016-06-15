@@ -4,7 +4,7 @@ import { AfterViewInit, AfterViewChecked} from '@angular/core';
 import { CORE_DIRECTIVES, FORM_DIRECTIVES } from '@angular/common';
 import {ROUTER_DIRECTIVES, RouteConfig, Router, RouteParams} from '@angular/router-deprecated';
 //import {MediaElementPlayer} from 'build/mediaelementplayer';
-import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy, ChangeDetectorRef, ViewChild} from '@angular/core';
 import { Http, HTTP_PROVIDERS, Response, Headers, RequestOptions } from '@angular/http';
 import {HttpClient} from '../httpclient';
 import 'rxjs/Rx';
@@ -30,8 +30,8 @@ declare var MediaElementPlayer: any;
 
 
 export class AdminVideoPlay implements AfterViewInit, AfterViewChecked {
-	//https://auth0.com/blog/2016/01/25/angular-2-series-part-4-component-router-in-depth/
 
+  @ViewChild(shopitemComponent) viewChild: shopitemComponent;
 	videosrc: string;
     title: string;
     curtime: number;
@@ -46,11 +46,13 @@ export class AdminVideoPlay implements AfterViewInit, AfterViewChecked {
         this.http = http;
         this.shopinfo = { Id: 1, ProductHandle: null, PTop: 0, PLeft: 0, StartTime: this.curtime, EndTime: this.curtime, Video_Id: this.vdbid };
 				//this.cd.detectChanges();
+        this.curtime = 0;
 	}
 
 
 
 	ngAfterViewInit() {
+
 
 		var player = new MediaElementPlayer('video',
 			{
@@ -63,6 +65,11 @@ export class AdminVideoPlay implements AfterViewInit, AfterViewChecked {
                     mediaElement.addEventListener('timeupdate', function (e) {
                         console.log('time chnage' + mediaElement.currentTime);
                         this.curtime = mediaElement.currentTime;
+                        console.log(this.viewChild);
+                        var input = $('#currentTime');
+                        input.val(mediaElement.currentTime).change(); 
+                        //$("#currentTime").change(); 
+                        input.trigger('change');
                     }, false);
 
                     mediaElement.addEventListener('seeking', function (e) {
@@ -72,7 +79,12 @@ export class AdminVideoPlay implements AfterViewInit, AfterViewChecked {
                    // alert('success');
                 }
 			});
-		player.setSrc(this.videosrc);
+    player.setSrc(this.videosrc);
+
+
+   
+
+
 	} 
 
     ngOnInit() {
@@ -120,11 +132,6 @@ export class AdminVideoPlay implements AfterViewInit, AfterViewChecked {
              
               );
      
-         
-
-
-         
-
       }
 
     public saveItem() {
