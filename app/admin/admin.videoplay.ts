@@ -21,7 +21,6 @@ declare var MediaElementPlayer: any;
 	providers: [HttpClient, HTTP_PROVIDERS],
 	
 	templateUrl: '../app/admin/admin.videoplay.html',
-	//template: require('./app.html'),
 	styleUrls: ['../app/admin/admin.videoplay.css'],
     directives: [CORE_DIRECTIVES, shopitemComponent],
 		changeDetection: ChangeDetectionStrategy.Default 
@@ -31,7 +30,7 @@ declare var MediaElementPlayer: any;
 
 export class AdminVideoPlay implements AfterViewInit, AfterViewChecked {
 
-  @ViewChild(shopitemComponent) viewChild: shopitemComponent;
+ // @ViewChild(shopitemComponent) viewChild: shopitemComponent;
 	videosrc: string;
     title: string;
     curtime: number;
@@ -44,9 +43,10 @@ export class AdminVideoPlay implements AfterViewInit, AfterViewChecked {
 				this.videosrc = "www.youtube.com/watch?v=" + routeParams.get('id');
         this.httpclient = httpClient;
         this.http = http;
+        this.curtime = 0;
         this.shopinfo = { Id: 1, ProductHandle: null, PTop: 0, PLeft: 0, StartTime: this.curtime, EndTime: this.curtime, Video_Id: this.vdbid };
 				//this.cd.detectChanges();
-        this.curtime = 0;
+        
 	}
 
 
@@ -68,7 +68,7 @@ export class AdminVideoPlay implements AfterViewInit, AfterViewChecked {
                         console.log(this.viewChild);
                         var input = $('#currentTime');
                         input.val(mediaElement.currentTime).change(); 
-                        //$("#currentTime").change(); 
+                       
                         input.trigger('change');
                     }, false);
 
@@ -76,75 +76,49 @@ export class AdminVideoPlay implements AfterViewInit, AfterViewChecked {
                         console.log('seeking'+mediaElement.currentTime);
                     }, false);
 
-                   // alert('success');
+                   
                 }
 			});
     player.setSrc(this.videosrc);
 
 
-   
-
-
 	} 
 
-    ngOnInit() {
-        //this.addNewItem.subscribe(() => {
-           
-        //    this.cd.markForCheck(); // marks path
-        //})
-  }
+         ngOnInit() {
+       
+        }
 
-		ngOnChanges() { // <------
+		ngOnChanges() { 
 		
-			var newitem = new shopitem(11, 2, 0, this.curtime, this.curtime, "", 1);
-			this.shopinfo = newitem;
+			//var newitem = new shopitem(11, 2, 0, this.curtime, this.curtime, "", 1);
+			//this.shopinfo = newitem;
 		}
 
 		ngAfterViewChecked() {
-			console.log('GrandChild: in ngAfterViewChecked');
-			var newitem = new shopitem(11, 2, 0, this.curtime, this.curtime, "", 1);
-			this.shopinfo = newitem;
+			//console.log('GrandChild: in ngAfterViewChecked');
+			//var newitem = new shopitem(11, 2, 0, this.curtime, this.curtime, "", 1);
+			//this.shopinfo = newitem;
 		}
 
       public  addNewItem()
       {
-         // var curTime = (document.getElementById('MyAdminVideo1').currentTime);
-				var newitem = new shopitem(11,  2,  0,  this.curtime,  this.curtime, "", 1 );
-				
-				this.cd.detectChanges()
-
-          var item = { ProductHandle: null, PTop: 2, PLeft: 0, StartTime: this.curtime, EndTime: this.curtime, Video_Id: this.vdbid };
-          this.shopinfo = newitem;
-          var headers = new Headers({ 'Content-Type': 'application/json' });
-         var options = new RequestOptions({ headers: headers });
-
-          this.http.post('http://localhost/HappiPugCloudService/api/VideoShopItem', JSON.stringify(item), options)
-
-
-              .map(response => response.json())
-              .subscribe(
-              res => {
-                  console.log('success');
-                  this.shopinfo = res;
-                  this.vdbid = '90';
-                  console.log(this.shopinfo);
-              }
+			
              
-              );
+  
      
       }
 
-    public saveItem() {
+    //public saveItem() {
 
-        console.log("item saved");
+    //    console.log("item saved");
 
-    }
+    //}
 
-    public deleteItem() {
+    //public deleteItem() {
 
-        console.log("item deleted");
+    //    console.log("item deleted");
 
-    }
+    //}
 
 }
 

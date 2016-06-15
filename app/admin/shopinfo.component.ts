@@ -47,11 +47,11 @@ export class shopitemComponent implements OnChanges{
         this.deleteFun.next(shop);
 
     }
-    valuechange(newValue) {
-      this.CurrentTime = newValue;
-      this.CurrentTime = this.curtime;
-      console.log(newValue)
-    }
+    //valuechange(newValue) {
+    //  this.CurrentTime = newValue;
+    //  this.CurrentTime = this.curtime;
+    //  console.log(newValue)
+    //}
 
     setStartTime() {
       this.shopitem.StartTime = $('#currentTime').val();
@@ -64,8 +64,8 @@ export class shopitemComponent implements OnChanges{
     }
 
     addFun1() {
-			this.testname = 'chaitanyachange';
-			this.shopitem.PTop = 2;
+			
+			//this.shopitem.PTop = 2;
 
 
 			this.httpclient.post('http://localhost/HappiPugCloudService/api/VideoShopItem', JSON.stringify(this.shopitem))
@@ -76,7 +76,7 @@ export class shopitemComponent implements OnChanges{
 					res => {
 						console.log('success');
 						this.shopitem = res;
-						this.shopitem.PLeft = 2;
+						//this.shopitem.PLeft = 2;
 					//	this.vdbid = '90';
 						this.cd.detectChanges();
 						console.log(this.shopitem);

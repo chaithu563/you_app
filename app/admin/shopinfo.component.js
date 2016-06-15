@@ -48,11 +48,11 @@ System.register(['@angular/core', '@angular/common', '../httpclient'], function(
                 shopitemComponent.prototype.deleteFun1 = function (shop) {
                     this.deleteFun.next(shop);
                 };
-                shopitemComponent.prototype.valuechange = function (newValue) {
-                    this.CurrentTime = newValue;
-                    this.CurrentTime = this.curtime;
-                    console.log(newValue);
-                };
+                //valuechange(newValue) {
+                //  this.CurrentTime = newValue;
+                //  this.CurrentTime = this.curtime;
+                //  console.log(newValue)
+                //}
                 shopitemComponent.prototype.setStartTime = function () {
                     this.shopitem.StartTime = $('#currentTime').val();
                     this.cd.detectChanges();
@@ -62,15 +62,14 @@ System.register(['@angular/core', '@angular/common', '../httpclient'], function(
                     this.cd.detectChanges();
                 };
                 shopitemComponent.prototype.addFun1 = function () {
+                    //this.shopitem.PTop = 2;
                     var _this = this;
-                    this.testname = 'chaitanyachange';
-                    this.shopitem.PTop = 2;
                     this.httpclient.post('http://localhost/HappiPugCloudService/api/VideoShopItem', JSON.stringify(this.shopitem))
                         .map(function (response) { return response.json(); })
                         .subscribe(function (res) {
                         console.log('success');
                         _this.shopitem = res;
-                        _this.shopitem.PLeft = 2;
+                        //this.shopitem.PLeft = 2;
                         //	this.vdbid = '90';
                         _this.cd.detectChanges();
                         console.log(_this.shopitem);
