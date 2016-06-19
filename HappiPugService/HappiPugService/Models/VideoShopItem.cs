@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace HappiPugCloudService.Models
+namespace HappiPugService.Models
 {
     using System;
     using System.Collections.Generic;

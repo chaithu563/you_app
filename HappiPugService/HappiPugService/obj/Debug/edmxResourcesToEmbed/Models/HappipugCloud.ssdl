@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="happipugCloudModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="happipugModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="Actor">
     <Key>
       <PropertyRef Name="Id" />
@@ -113,7 +113,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="happipugCloudModelStoreContainer">
+  <EntityContainer Name="happipugModelStoreContainer">
     <EntitySet Name="Actor" EntityType="Self.Actor" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ActorType" EntityType="Self.ActorType" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Language" EntityType="Self.Language" Schema="dbo" store:Type="Tables" />

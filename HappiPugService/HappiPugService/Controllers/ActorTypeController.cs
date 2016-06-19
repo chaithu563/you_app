@@ -1,4 +1,4 @@
-﻿using HappiPugCloudService.Models;
+﻿using HappiPugService.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +10,7 @@ namespace HappiPugCloudService.Controllers
 {
     public class ActorTypeController : ApiController
     {
-        happipugCloudEntities hpobj = new happipugCloudEntities();
+        happiPugCloudEntities hpobj = new happiPugCloudEntities();
         // GET api/video
         public IEnumerable<ActorType> Get()
         {

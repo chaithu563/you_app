@@ -138,37 +138,37 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Actor.cs">
-      <DependentUpon>HappipugCloud.tt</DependentUpon>
+      <DependentUpon>HappiPugCloud.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ActorType.cs">
-      <DependentUpon>HappipugCloud.tt</DependentUpon>
+      <DependentUpon>HappiPugCloud.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\HappipugCloud.Context.cs">
+    <Compile Include="Models\HappiPugCloud.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>HappipugCloud.Context.tt</DependentUpon>
+      <DependentUpon>HappiPugCloud.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\HappipugCloud.cs">
+    <Compile Include="Models\HappiPugCloud.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>HappipugCloud.tt</DependentUpon>
+      <DependentUpon>HappiPugCloud.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\HappipugCloud.Designer.cs">
+    <Compile Include="Models\HappiPugCloud.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>HappipugCloud.edmx</DependentUpon>
+      <DependentUpon>HappiPugCloud.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Language.cs">
-      <DependentUpon>HappipugCloud.tt</DependentUpon>
+      <DependentUpon>HappiPugCloud.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Video.cs">
-      <DependentUpon>HappipugCloud.tt</DependentUpon>
+      <DependentUpon>HappiPugCloud.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\VideoShopItem.cs">
-      <DependentUpon>HappipugCloud.tt</DependentUpon>
+      <DependentUpon>HappiPugCloud.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\VideoType.cs">
-      <DependentUpon>HappipugCloud.tt</DependentUpon>
+      <DependentUpon>HappiPugCloud.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -177,25 +177,25 @@
     <Content Include="Global.asax" />
     <Content Include="cert\HappiePug-bbca6989906d.p12" />
     <Content Include="Controllers\HappiePug-3c5325296563.p12" />
-    <EntityDeploy Include="Models\HappipugCloud.edmx">
+    <EntityDeploy Include="Models\HappiPugCloud.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>HappipugCloud.Designer.cs</LastGenOutput>
+      <LastGenOutput>HappiPugCloud.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\HappipugCloud.edmx.diagram">
-      <DependentUpon>HappipugCloud.edmx</DependentUpon>
+    <Content Include="Models\HappiPugCloud.edmx.diagram">
+      <DependentUpon>HappiPugCloud.edmx</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\happipug %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\happipug.pubxml" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
-    <Content Include="Models\HappipugCloud.Context.tt">
+    <Content Include="Models\HappiPugCloud.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>HappipugCloud.edmx</DependentUpon>
-      <LastGenOutput>HappipugCloud.Context.cs</LastGenOutput>
+      <DependentUpon>HappiPugCloud.edmx</DependentUpon>
+      <LastGenOutput>HappiPugCloud.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\HappipugCloud.tt">
+    <Content Include="Models\HappiPugCloud.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>HappipugCloud.edmx</DependentUpon>
-      <LastGenOutput>HappipugCloud.cs</LastGenOutput>
+      <DependentUpon>HappiPugCloud.edmx</DependentUpon>
+      <LastGenOutput>HappiPugCloud.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\jquery-1.7.1.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />

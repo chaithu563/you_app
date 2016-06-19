@@ -45,7 +45,11 @@ System.register(['@angular/common', '@angular/router-deprecated', '@angular/core
                     this.curtime = 0;
                     this.shopinfo = { Id: 1, ProductHandle: null, PTop: 0, PLeft: 0, StartTime: this.curtime, EndTime: this.curtime, Video_Id: this.vdbid };
                     //this.cd.detectChanges();
+                    this.loadMovieItems();
                 }
+                AdminVideoPlay.prototype.openSelectedItem = function (item) {
+                    alert(item);
+                };
                 AdminVideoPlay.prototype.ngAfterViewInit = function () {
                     var player = new MediaElementPlayer('video', {
                         defaultVideoWidth: 960, defaultVideoHeight: 410,
@@ -73,6 +77,19 @@ System.register(['@angular/common', '@angular/router-deprecated', '@angular/core
                 AdminVideoPlay.prototype.ngOnChanges = function () {
                     //var newitem = new shopitem(11, 2, 0, this.curtime, this.curtime, "", 1);
                     //this.shopinfo = newitem;
+                };
+                AdminVideoPlay.prototype.loadMovieItems = function () {
+                    var _this = this;
+                    this.httpclient.get('http://localhost/HappiPugCloudService/api/VideoShopItem/VideoItemsSet/' + this.vdbid)
+                        .map(function (response) { return response.json(); })
+                        .subscribe(function (res) {
+                        console.log('success');
+                        _this.availItems = res;
+                        //this.shopitem.PLeft = 2;
+                        //	this.vdbid = '90';
+                        _this.cd.detectChanges();
+                        console.log(_this.availItems);
+                    });
                 };
                 AdminVideoPlay.prototype.ngAfterViewChecked = function () {
                     //console.log('GrandChild: in ngAfterViewChecked');

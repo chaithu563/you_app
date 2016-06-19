@@ -1,62 +1,62 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="happipugCloudModelStoreContainer" CdmEntityContainer="happipugCloudEntities">
+  <EntityContainerMapping StorageEntityContainer="happipugModelStoreContainer" CdmEntityContainer="happiPugCloudEntities">
     <EntitySetMapping Name="Actors">
-      <EntityTypeMapping TypeName="happipugCloudModel.Actor">
+      <EntityTypeMapping TypeName="happipugModel.Actor">
         <MappingFragment StoreEntitySet="Actor">
-          <ScalarProperty Name="LanguageId" ColumnName="LanguageId" />
-          <ScalarProperty Name="ActorTypeId" ColumnName="ActorTypeId" />
-          <ScalarProperty Name="ActorName" ColumnName="ActorName" />
           <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ActorName" ColumnName="ActorName" />
+          <ScalarProperty Name="ActorTypeId" ColumnName="ActorTypeId" />
+          <ScalarProperty Name="LanguageId" ColumnName="LanguageId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ActorTypes">
-      <EntityTypeMapping TypeName="happipugCloudModel.ActorType">
+      <EntityTypeMapping TypeName="happipugModel.ActorType">
         <MappingFragment StoreEntitySet="ActorType">
-          <ScalarProperty Name="TypeName" ColumnName="TypeName" />
           <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TypeName" ColumnName="TypeName" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Languages">
-      <EntityTypeMapping TypeName="happipugCloudModel.Language">
+      <EntityTypeMapping TypeName="happipugModel.Language">
         <MappingFragment StoreEntitySet="Language">
-          <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Videos">
-      <EntityTypeMapping TypeName="happipugCloudModel.Video">
+      <EntityTypeMapping TypeName="happipugModel.Video">
         <MappingFragment StoreEntitySet="Videos">
-          <ScalarProperty Name="VideoTypeId" ColumnName="VideoTypeId" />
-          <ScalarProperty Name="ActorIds" ColumnName="ActorIds" />
-          <ScalarProperty Name="LanguageId" ColumnName="LanguageId" />
-          <ScalarProperty Name="VideoName" ColumnName="VideoName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="YoutubeID" ColumnName="YoutubeID" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="VideoTypes">
-      <EntityTypeMapping TypeName="happipugCloudModel.VideoType">
-        <MappingFragment StoreEntitySet="VideoType">
-          <ScalarProperty Name="TypeName" ColumnName="TypeName" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="VideoName" ColumnName="VideoName" />
+          <ScalarProperty Name="LanguageId" ColumnName="LanguageId" />
+          <ScalarProperty Name="ActorIds" ColumnName="ActorIds" />
+          <ScalarProperty Name="VideoTypeId" ColumnName="VideoTypeId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="VideoShopItems">
-      <EntityTypeMapping TypeName="happipugCloudModel.VideoShopItem">
+      <EntityTypeMapping TypeName="happipugModel.VideoShopItem">
         <MappingFragment StoreEntitySet="VideoShopItems">
-          <ScalarProperty Name="ProductHandle" ColumnName="ProductHandle" />
-          <ScalarProperty Name="Video_Id" ColumnName="Video_Id" />
-          <ScalarProperty Name="EndTime" ColumnName="EndTime" />
-          <ScalarProperty Name="StartTime" ColumnName="StartTime" />
-          <ScalarProperty Name="PLeft" ColumnName="PLeft" />
-          <ScalarProperty Name="PTop" ColumnName="PTop" />
           <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PTop" ColumnName="PTop" />
+          <ScalarProperty Name="PLeft" ColumnName="PLeft" />
+          <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+          <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+          <ScalarProperty Name="Video_Id" ColumnName="Video_Id" />
+          <ScalarProperty Name="ProductHandle" ColumnName="ProductHandle" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VideoTypes">
+      <EntityTypeMapping TypeName="happipugModel.VideoType">
+        <MappingFragment StoreEntitySet="VideoType">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TypeName" ColumnName="TypeName" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

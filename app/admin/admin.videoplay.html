@@ -1,95 +1,48 @@
 ﻿<div class="videocontent">
 
-	<div class="adminDiv">
+    <div class="adminDiv">
 
-		<div class="admVideoDiv">
-
-			<!--<div class="admin_video_overlays" ng-show="true">
-				
-				<div  *ngFor="#item of availItems" ng-style="{'position':'absolute' }" my-draggable="{{item}}">
-					<img style="width: 30px; height: 30px; color: black" src="../app/img/plus-tag.svg" (click)="openSelectedItem(item)">
-				</div>
-
-
-			</div>-->
-
-			<div class="videodiv">
+        <div class="admVideoDiv">
 
 
 
+            <div class="admin_video_overlays" ng-show="true">
+                <!--my-draggable="{{item}}"-->
+                <div  *ngFor="#item of availItems" ng-style="{'position':'absolute' }" >
+                    <img style="width: 30px; height: 30px; color: black" src="./app/img/plus-tag.svg" (click)="openSelectedItem(item)">
+                </div>
+            </div>
 
-				<video width="640" height="360" id="videoPlayer" preload="none">
-					<source type="video/youtube" [src]="videosrc" />
-				</video>
+            <div class="videodiv">
 
-				<!--<div class="admin-video-controls">
-				
 
-					<img id="play-pause" class="controlimg" ng-src="../app/img/{{playorpause}}-icon.png" ng-click="ShowItemsAvail()" alt="" />
 
-					<input type="range" id="seek-bar" value="0">
 
-					<img id="mute" class="controlimg" ng-src="../app/img/{{muteorunmute}}-icon.png" alt="" />
-					<input type="range" id="volume-bar" min="0" max="1" step="0.1" value="1">
+                <video width="640" height="360" id="videoPlayer" preload="none">
+                    <source type="video/youtube" [src]="videosrc" />
+                </video>
 
-					<img id="full-screen" title="Full screen" src="../app/img/FullScreen.png" class="controlimg" alt="" />
-				</div>-->
+                <!--<div class="admin-video-controls">
 
-			</div>
-		
-        
+
+                    <img id="play-pause" class="controlimg" ng-src="../app/img/{{playorpause}}-icon.png" ng-click="ShowItemsAvail()" alt="" />
+
+                    <input type="range" id="seek-bar" value="0">
+
+                    <img id="mute" class="controlimg" ng-src="../app/img/{{muteorunmute}}-icon.png" alt="" />
+                    <input type="range" id="volume-bar" min="0" max="1" step="0.1" value="1">
+
+                    <img id="full-screen" title="Full screen" src="../app/img/FullScreen.png" class="controlimg" alt="" />
+                </div>-->
+
+            </div>
+
+
         </div>
 
-		<div class="admItemAdd">
-			
-      <hp-shopinfo [(shopitem)]="shopinfo" [(curtime)]="curtime" (addfun)="addNewItem($event)" (savefun)="saveFun($event)" (deletefun)="deleteFun($event)"> </hp-shopinfo>
-		<!--	<div class="addeditbuttons">
-				<div class="button-add-div">
-					<button class="admin-add-button" type="button" (click)="addNewItem()" id="annotator-button-add" data-button-menu-id="annotator-add-menu" aria-pressed="false" aria-expanded="false">
-						<span style="font-size: large; margin-right: 20%">+</span><span style="font-size: medium">Add</span>
-					</button>
-				</div>
-
-
-				<div class="button-edit-div">
-					<button class="admin-add-button" type="button" onclick=";return false;" id="Button1" data-button-menu-id="annotator-add-menu" aria-pressed="false" aria-expanded="false">
-						<span style="font-size: medium">View</span>
-					</button>
-				</div>
-			</div>
-			<div class="item-details">
-				<div class="each-item-div">
-					<label>Product Handle</label><input type="text" [(ngModel)]="vdbid" />
-				</div>
-				
-
-				<div class="each-item-div">
-					<label>Item Top</label><input type="text"  [(ngModel)]="shopinfo.PTop" />
-				</div>
-				<div class="each-item-div">
-					<label>Item Left</label><input type="text"  [(ngModel)]="shopinfo.PLeft" />
-				</div>
-				<div class="each-item-div">
-					<button (click)="shopinfo.StartTime=currentTime">Set StartTime</button><input type="text"  [(ngModel)]="shopinfo.StartTime" />
-				</div>
-				<div class="each-item-div">
-					<button (click)="shopinfo.EndTime=currentTime">Set EndTime</button><input type="text"  [(ngModel)]="shopinfo.EndTime" />
-				</div>
-
-			</div>
-
-			<div class="button-delete-div" *ngIf="shopinfo">
-				<button class="admin-add-button" type="button" (click)="deleteItem(shopinfo.Id)" data-button-menu-id="annotator-add-menu" aria-pressed="false" aria-expanded="false">
-					<span style="font-size: large; margin-right: 20%">*</span><span style="font-size: medium">Delete</span>
-				</button>
-
-                <button class="admin-add-button" type="button" (click)="saveItem(shopinfo.Id)" data-button-menu-id="annotator-add-menu" aria-pressed="false" aria-expanded="false">
-					<span style="font-size: large; margin-right: 20%">-</span><span style="font-size: medium">Save</span>
-				</button>
-			</div>-->
-
-
-		</div>
-	</div>
+        <div class="admItemAdd">
+            <hp-shopinfo [(shopitem)]="shopinfo" [(curtime)]="curtime" (addfun)="addNewItem($event)" (savefun)="saveFun($event)" (deletefun)="deleteFun($event)"> </hp-shopinfo>
+        </div>
+    </div>
 
 </div>

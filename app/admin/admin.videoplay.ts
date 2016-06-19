@@ -38,6 +38,7 @@ export class AdminVideoPlay implements AfterViewInit, AfterViewChecked {
     vdbid: string;
     http: Http;
     httpclient: HttpClient;
+    availItems: Array<shopitem>;
     constructor(httpClient: HttpClient, routeParams: RouteParams, http: Http, private cd: ChangeDetectorRef) {
                 this.vdbid = routeParams.get('dbid');
 				this.videosrc = "www.youtube.com/watch?v=" + routeParams.get('id');
@@ -46,9 +47,14 @@ export class AdminVideoPlay implements AfterViewInit, AfterViewChecked {
         this.curtime = 0;
         this.shopinfo = { Id: 1, ProductHandle: null, PTop: 0, PLeft: 0, StartTime: this.curtime, EndTime: this.curtime, Video_Id: this.vdbid };
 				//this.cd.detectChanges();
-        
+        this.loadMovieItems();
 	}
 
+    openSelectedItem(item: shopitem) {
+
+        alert(item);
+
+    }
 
 
 	ngAfterViewInit() {
@@ -85,14 +91,36 @@ export class AdminVideoPlay implements AfterViewInit, AfterViewChecked {
 	} 
 
          ngOnInit() {
-       
+            
         }
 
 		ngOnChanges() { 
 		
 			//var newitem = new shopitem(11, 2, 0, this.curtime, this.curtime, "", 1);
 			//this.shopinfo = newitem;
-		}
+           
+         }
+
+         loadMovieItems() {
+
+
+             this.httpclient.get('http://localhost/HappiPugCloudService/api/VideoShopItem/VideoItemsSet/' + this.vdbid)
+
+
+                .map(response => response.json())
+                .subscribe(
+                res => {
+                    console.log('success');
+                    this.availItems = res;
+                    //this.shopitem.PLeft = 2;
+                    //	this.vdbid = '90';
+                    this.cd.detectChanges();
+                    console.log(this.availItems);
+                }
+
+                );
+
+        }
 
 		ngAfterViewChecked() {
 			//console.log('GrandChild: in ngAfterViewChecked');

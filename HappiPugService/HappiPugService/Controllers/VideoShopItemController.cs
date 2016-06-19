@@ -1,4 +1,4 @@
-﻿using HappiPugCloudService.Models;
+﻿using HappiPugService.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +10,7 @@ namespace HappiPugCloudService.Controllers
 {
     public class VideoShopItemController : ApiController
     {
-        happipugCloudEntities hpobj = new happipugCloudEntities();
+        happiPugCloudEntities hpobj = new happiPugCloudEntities();
         
         // GET api/video
         public IEnumerable<VideoShopItem> Get()
@@ -21,13 +21,21 @@ namespace HappiPugCloudService.Controllers
         // GET api/video/5
         public VideoShopItem Get(int id)
         {
-            return hpobj.VideoShopItems.First(x => x.Id == id);
+            return hpobj.VideoShopItems.FirstOrDefault(x => x.Id == id);
+        }
+
+        // GET api/video/5
+        [HttpGet]
+       // [Route("VideoShopItem/VideoItemsSet/{id}")]
+        public IEnumerable< VideoShopItem> VideoItemsSet(int id)
+        {
+            return hpobj.VideoShopItems.Where(x => x.Video_Id == id).ToList<VideoShopItem>();
         }
 
         // POST api/video
         public VideoShopItem Post([FromBody]VideoShopItem item)
         {
-            VideoShopItem vidObj = new VideoShopItem() { ProductHandle = item.ProductHandle, PTop = item.PTop, PLeft = item.PLeft, StartTime = item.StartTime,EndTime=item.EndTime };
+            VideoShopItem vidObj = new VideoShopItem() { ProductHandle = item.ProductHandle, PTop = item.PTop, PLeft = item.PLeft, StartTime = item.StartTime,EndTime=item.EndTime,Video_Id=item.Video_Id};
 
             hpobj.VideoShopItems.Add(vidObj);
 

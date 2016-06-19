@@ -4,18 +4,18 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="4e694658abd94778be6470008f4c4246" Name="Diagram1" >
-        <EntityTypeShape EntityType="happipugCloudModel.Actor" Width="1.5" PointX="6" PointY="3.5" />
-        <EntityTypeShape EntityType="happipugCloudModel.ActorType" Width="1.5" PointX="3.75" PointY="0.75" />
-        <EntityTypeShape EntityType="happipugCloudModel.Language" Width="1.5" PointX="0.75" PointY="3.625" />
-        <EntityTypeShape EntityType="happipugCloudModel.Video" Width="1.5" PointX="3" PointY="3.125" />
-        <EntityTypeShape EntityType="happipugCloudModel.VideoType" Width="1.5" PointX="0.75" PointY="0.75" />
-        <AssociationConnector Association="happipugCloudModel.FK__Actor__ActorType__3A81B327" />
-        <AssociationConnector Association="happipugCloudModel.FK__Actor__LanguageI__3B75D760" />
-        <AssociationConnector Association="happipugCloudModel.FK__Videos__Language__403A8C7D" />
-        <AssociationConnector Association="happipugCloudModel.FK__Videos__VideoTyp__412EB0B6" />
-        <EntityTypeShape EntityType="happipugCloudModel.VideoShopItem" Width="1.5" PointX="5.25" PointY="7.25" />
-        <AssociationConnector Association="happipugCloudModel.FK__VideoShop__Video__5441852A" />
+      <Diagram DiagramId="86a1592e0d6748f5a91173bf850cff54" Name="Diagram1">
+        <EntityTypeShape EntityType="happipugModel.Actor" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="happipugModel.ActorType" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="happipugModel.Language" Width="1.5" PointX="0.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="happipugModel.Video" Width="1.5" PointX="6" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="happipugModel.VideoShopItem" Width="1.5" PointX="8.25" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="happipugModel.VideoType" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="happipugModel.FK__Actor__ActorType__4AB81AF0" ManuallyRouted="false" />
+        <AssociationConnector Association="happipugModel.FK__Actor__LanguageI__4BAC3F29" ManuallyRouted="false" />
+        <AssociationConnector Association="happipugModel.FK__Videos__Language__5BE2A6F2" ManuallyRouted="false" />
+        <AssociationConnector Association="happipugModel.FK__Videos__VideoTyp__5CD6CB2B" ManuallyRouted="false" />
+        <AssociationConnector Association="happipugModel.FK__VideoShop__Video__5441852A" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
