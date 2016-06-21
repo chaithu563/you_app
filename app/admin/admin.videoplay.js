@@ -104,7 +104,7 @@ System.register(['@angular/common', '@angular/router-deprecated', '@angular/core
                         providers: [httpclient_1.HttpClient, http_1.HTTP_PROVIDERS],
                         templateUrl: '../app/admin/admin.videoplay.html',
                         styleUrls: ['../app/admin/admin.videoplay.css'],
-                        directives: [common_1.CORE_DIRECTIVES, shopinfo_component_1.shopitemComponent],
+                        directives: [common_1.CORE_DIRECTIVES, shopinfo_component_1.shopitemComponent, draggable],
                         changeDetection: core_1.ChangeDetectionStrategy.Default
                     }), 
                     __metadata('design:paramtypes', [httpclient_1.HttpClient, router_deprecated_1.RouteParams, http_1.Http, core_1.ChangeDetectorRef])

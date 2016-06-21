@@ -11,6 +11,7 @@ import 'rxjs/Rx';
 import {videoinfo } from '../interfaces/videoinfo';
 import {shopitem } from '../interfaces/shopitem';
 import {shopitemComponent } from '../admin/shopinfo.component';
+import {DraggableDirective } from '../common/drag.directive';
 //import {YoutubeVideo} from 'YoutubeVideo';
 //declare var $: JQueryStatic;
 declare var YoutubeVideo: any;
@@ -22,7 +23,7 @@ declare var MediaElementPlayer: any;
 	
 	templateUrl: '../app/admin/admin.videoplay.html',
 	styleUrls: ['../app/admin/admin.videoplay.css'],
-    directives: [CORE_DIRECTIVES, shopitemComponent],
+    directives: [CORE_DIRECTIVES, shopitemComponent, draggable],
 		changeDetection: ChangeDetectionStrategy.Default 
 })
 

@@ -8,7 +8,7 @@
 
             <div class="admin_video_overlays" ng-show="true">
                 <!--my-draggable="{{item}}"-->
-                <div  *ngFor="#item of availItems" ng-style="{'position':'absolute' }" >
+                <div  *ngFor="#item of availItems" ng-style="{'position':'absolute' }" [draggable]="item" >
                     <img style="width: 30px; height: 30px; color: black" src="./app/img/plus-tag.svg" (click)="openSelectedItem(item)">
                 </div>
             </div>
