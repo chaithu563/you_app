@@ -21,14 +21,14 @@ System.register(['@angular/core', '../interfaces/shopitem'], function(exports_1,
                 shopitem_1 = shopitem_1_1;
             }],
         execute: function() {
-            ;
             DraggableDirective = (function () {
                 function DraggableDirective(el) {
+                    var _this = this;
                     // el.nativeElement.style.backgroundColor = 'yellow';
                     this.myele = el.nativeElement;
                     var topPer = ((el[0].offsetParent.offsetHeight) * this.data.PTop) / 100;
                     var leftPer = ((el[0].offsetParent.offsetWidth) * this.data.PLeft) / 100;
-                    this.startX = 0, this.startY = 0, x = topPer, y = leftPer;
+                    this.startX = 0, this.startY = 0, this.x = topPer, this.y = leftPer;
                     el.nativeElement.css({
                         position: 'absolute',
                         border: '1px solid red',
@@ -37,20 +37,39 @@ System.register(['@angular/core', '../interfaces/shopitem'], function(exports_1,
                         top: this.data.PTop + '%',
                         left: this.data.PLeft + '%'
                     });
+                    this.mousedrag = this.mousedown.toRx().map(function (event) {
+                        event.preventDefault();
+                        return {
+                            left: event.clientX - _this.myele.nativeElement.getBoundingClientRect().left,
+                            top: event.clientY - _this.myele.nativeElement.getBoundingClientRect().top
+                        };
+                    })
+                        .flatMap(function (imageOffset) { return _this.mousemove.toRx().map(function (pos) { return ({
+                        top: pos.clientY - imageOffset.top,
+                        left: pos.clientX - imageOffset.left
+                    }); })
+                        .takeUntil(_this.mouseup.toRx()); });
                 }
-                DraggableDirective.prototype.onMouseEnter = function () {
+                DraggableDirective.prototype.onInit = function () {
+                    var _this = this;
+                    this.mousedrag.subscribe({
+                        next: function (pos) {
+                            // Update position
+                            _this.myele.nativeElement.style.top = pos.top + 'px';
+                            _this.myele.nativeElement.style.left = pos.left + 'px';
+                        }
+                    });
+                };
+                DraggableDirective.prototype.onMouseMove = function (event) {
                     //this.highlight(this.highlightColor || this._defaultColor);
                 };
-                DraggableDirective.prototype.onMouseLeave = function () {
+                DraggableDirective.prototype.onMouseUp = function (event) {
                     //this.highlight(null);
                 };
                 DraggableDirective.prototype.onMousedown = function (event) {
-                    var parentPosition = getPosition(event.currentTarget.offsetParent);
-                    event.preventDefault();
-                    startX = event.pageX - y;
-                    startY = event.pageY - x;
-                    $document.on('mousemove', mousemove);
-                    $document.on('mouseup', mouseup);
+                    this.mousedown(event);
+                    //$document.on('mousemove', mousemove);
+                    //$document.on('mouseup', mouseup);
                 };
                 DraggableDirective.prototype.getPosition = function (element) {
                     var xPosition = 0;
@@ -62,28 +81,67 @@ System.register(['@angular/core', '../interfaces/shopitem'], function(exports_1,
                     }
                     return { x: xPosition, y: yPosition };
                 };
+                DraggableDirective.prototype.mousedown = function (event) {
+                    var parentPosition = this.getPosition(event.currentTarget.offsetParent);
+                    event.preventDefault();
+                    this.startX = event.pageX - this.y;
+                    this.startY = event.pageY - this.x;
+                };
+                DraggableDirective.prototype.mousemove = function (event) {
+                    this.y = event.pageY - this.startY;
+                    this.x = event.pageX - this.startX;
+                    var finalPositiontop = this.myele[0].attributes["style"].value.split(';')[3].split(':')[1].replace("px", "").replace("%", "").replace(" ", "");
+                    var finalPositionleft = this.myele[0].attributes["style"].value.split(';')[4].split(':')[1].replace("px", "").replace("%", "").replace(" ", "");
+                    var top = Math.round(((finalPositiontop) * 100) / this.myele[0].offsetParent.offsetHeight);
+                    var left = Math.round(((finalPositionleft) * 100) / this.myele[0].offsetParent.offsetWidth);
+                    if (top + 1 >= 0 && left + 1 >= 0 && top - 1 <= 100 && left - 1 <= 100)
+                        this.myele.css({
+                            top: this.y + 'px',
+                            left: this.x + 'px'
+                        });
+                };
+                DraggableDirective.prototype.mouseup = function () {
+                    //$document.off('mousemove', mousemove);
+                    //$document.off('mouseup', mouseup);
+                    //handle top left
+                    var finalPositiontop = this.myele[0].attributes["style"].value.split(';')[3].split(':')[1].replace("px", "").replace("%", "").replace(" ", "");
+                    var finalPositionleft = this.myele[0].attributes["style"].value.split(';')[4].split(':')[1].replace("px", "").replace("%", "").replace(" ", "");
+                    var top = Math.round(((finalPositiontop) * 100) / this.myele[0].offsetParent.offsetHeight);
+                    var left = Math.round(((finalPositionleft) * 100) / this.myele[0].offsetParent.offsetWidth);
+                    this.data.PTop = this.myele[0].attributes["style"].value.split(';')[3].split(':')[1].indexOf("%") > -1 ? finalPositiontop : top;
+                    this.data.PLeft = this.myele[0].attributes["style"].value.split(';')[4].split(':')[1].indexOf("%") > -1 ? finalPositionleft : left;
+                    if (this.data.PTop >= 0 && this.data.PLeft >= 0 && this.data.PTop <= 100 && this.data.PLeft <= 100)
+                        this.myele.css({
+                            top: this.data.PTop + '%',
+                            left: this.data.PLeft + '%'
+                        });
+                };
                 __decorate([
                     core_1.Input('draggable'), 
                     __metadata('design:type', shopitem_1.shopitem)
                 ], DraggableDirective.prototype, "data", void 0);
                 __decorate([
-                    core_1.HostListener('mouseenter'), 
+                    core_1.HostListener('mousemove', ['$event']), 
                     __metadata('design:type', Function), 
-                    __metadata('design:paramtypes', []), 
+                    __metadata('design:paramtypes', [Object]), 
                     __metadata('design:returntype', void 0)
-                ], DraggableDirective.prototype, "onMouseEnter", null);
+                ], DraggableDirective.prototype, "onMouseMove", null);
                 __decorate([
-                    core_1.HostListener('mouseleave'), 
+                    core_1.HostListener('mouseup', ['$event']), 
                     __metadata('design:type', Function), 
-                    __metadata('design:paramtypes', []), 
+                    __metadata('design:paramtypes', [Object]), 
                     __metadata('design:returntype', void 0)
-                ], DraggableDirective.prototype, "onMouseLeave", null);
+                ], DraggableDirective.prototype, "onMouseUp", null);
                 __decorate([
                     core_1.HostListener('mousedown', ['$event']), 
                     __metadata('design:type', Function), 
                     __metadata('design:paramtypes', [Object]), 
                     __metadata('design:returntype', void 0)
                 ], DraggableDirective.prototype, "onMousedown", null);
+                DraggableDirective = __decorate([
+                    core_1.Directive({ selector: '[draggable]' }), 
+                    __metadata('design:paramtypes', [core_1.ElementRef])
+                ], DraggableDirective);
                 return DraggableDirective;
             }());
             exports_1("DraggableDirective", DraggableDirective);

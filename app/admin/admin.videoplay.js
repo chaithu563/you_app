@@ -1,5 +1,5 @@
 /////<reference path="../../typings/jquery/jquery.d.ts" />
-System.register(['@angular/common', '@angular/router-deprecated', '@angular/core', '@angular/http', '../httpclient', 'rxjs/Rx', '../admin/shopinfo.component'], function(exports_1, context_1) {
+System.register(['@angular/common', '@angular/router-deprecated', '@angular/core', '@angular/http', '../httpclient', 'rxjs/Rx', '../admin/shopinfo.component', '../common/drag.directive'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -11,7 +11,7 @@ System.register(['@angular/common', '@angular/router-deprecated', '@angular/core
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var common_1, router_deprecated_1, core_1, http_1, httpclient_1, shopinfo_component_1;
+    var common_1, router_deprecated_1, core_1, http_1, httpclient_1, shopinfo_component_1, drag_directive_1;
     var AdminVideoPlay;
     return {
         setters:[
@@ -33,6 +33,9 @@ System.register(['@angular/common', '@angular/router-deprecated', '@angular/core
             function (_1) {},
             function (shopinfo_component_1_1) {
                 shopinfo_component_1 = shopinfo_component_1_1;
+            },
+            function (drag_directive_1_1) {
+                drag_directive_1 = drag_directive_1_1;
             }],
         execute: function() {
             AdminVideoPlay = (function () {
@@ -104,7 +107,7 @@ System.register(['@angular/common', '@angular/router-deprecated', '@angular/core
                         providers: [httpclient_1.HttpClient, http_1.HTTP_PROVIDERS],
                         templateUrl: '../app/admin/admin.videoplay.html',
                         styleUrls: ['../app/admin/admin.videoplay.css'],
-                        directives: [common_1.CORE_DIRECTIVES, shopinfo_component_1.shopitemComponent, draggable],
+                        directives: [common_1.CORE_DIRECTIVES, shopinfo_component_1.shopitemComponent, drag_directive_1.DraggableDirective],
                         changeDetection: core_1.ChangeDetectionStrategy.Default
                     }), 
                     __metadata('design:paramtypes', [httpclient_1.HttpClient, router_deprecated_1.RouteParams, http_1.Http, core_1.ChangeDetectorRef])

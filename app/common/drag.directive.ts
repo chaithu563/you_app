@@ -1,17 +1,21 @@
 ﻿import { Directive, ElementRef, Input, HostListener } from '@angular/core';
+//import {DOM} from 'angular2/src/core/dom/dom_adapter';
 import {shopitem } from '../interfaces/shopitem';
-@Directive({ selector: '[draggable]' });
+
+@Directive({ selector: '[draggable]' })
 
 
 
 export class DraggableDirective {
-    myele: HTMLElement;
+	  mousedrag;
+    myele: any;
     startX: number;
     startY: number;
     x: number;
     y: number;
 
     @Input('draggable') data: shopitem;
+
     constructor(el: ElementRef) {
 
        // el.nativeElement.style.backgroundColor = 'yellow';
@@ -20,7 +24,7 @@ export class DraggableDirective {
         var topPer = ((el[0].offsetParent.offsetHeight) * this.data.PTop) / 100;
 
         var leftPer = ((el[0].offsetParent.offsetWidth) * this.data.PLeft) / 100;
-        this.startX = 0, this.startY = 0, x = topPer, y = leftPer;
+        this.startX = 0, this.startY = 0, this.x = topPer, this.y = leftPer;
 
         el.nativeElement.css({
             position: 'absolute',
@@ -32,24 +36,45 @@ export class DraggableDirective {
         });
 
 
+
+				this.mousedrag = this.mousedown.toRx().map(event => {
+					event.preventDefault();
+					return {
+						left: event.clientX - this.myele.nativeElement.getBoundingClientRect().left,
+						top: event.clientY - this.myele.nativeElement.getBoundingClientRect().top
+					};
+				})
+					.flatMap(imageOffset => this.mousemove.toRx().map(pos => ({
+						top: pos.clientY - imageOffset.top,
+						left: pos.clientX - imageOffset.left
+					}))
+						.takeUntil(this.mouseup.toRx()));
+
     }
 
-  
+		onInit() {
+			this.mousedrag.subscribe({
+				next: pos => {
+					// Update position
+					this.myele.nativeElement.style.top = pos.top + 'px';
+					this.myele.nativeElement.style.left = pos.left + 'px';
+				}
+			});
+		}
 
-    @HostListener('mouseenter') onMouseEnter() {
+    @HostListener('mousemove', ['$event']) onMouseMove(event) {
         //this.highlight(this.highlightColor || this._defaultColor);
     }
-    @HostListener('mouseleave') onMouseLeave() {
+    @HostListener('mouseup', ['$event']) onMouseUp(event) {
         //this.highlight(null);
     }
+
     @HostListener('mousedown', ['$event'])
     onMousedown(event) {
-        var parentPosition = getPosition(event.currentTarget.offsetParent);
-        event.preventDefault();
-        startX = event.pageX - y;
-        startY = event.pageY - x;
-        $document.on('mousemove', mousemove);
-        $document.on('mouseup', mouseup);
+       
+			this.mousedown(event);
+        //$document.on('mousemove', mousemove);
+        //$document.on('mouseup', mouseup);
     }
   
 
@@ -63,7 +88,52 @@ export class DraggableDirective {
         this.myele = element.offsetParent;
     }
     return { x: xPosition, y: yPosition };
-}
+		}
+
+		private mousedown(event) {
+			var parentPosition = this.getPosition(event.currentTarget.offsetParent);
+			event.preventDefault();
+			this.startX = event.pageX - this.y;
+			this.startY = event.pageY - this.x;
+		}
+
+	                private mousemove(event) {
+                    this.y = event.pageY - this.startY;
+                    this.x = event.pageX - this.startX;
+
+                    var finalPositiontop = this.myele[0].attributes["style"].value.split(';')[3].split(':')[1].replace("px", "").replace("%", "").replace(" ", "");
+                    var finalPositionleft = this.myele[0].attributes["style"].value.split(';')[4].split(':')[1].replace("px", "").replace("%", "").replace(" ", "");
+
+
+
+                    var top = Math.round(((finalPositiontop) * 100) / this.myele[0].offsetParent.offsetHeight);
+                    var left = Math.round(((finalPositionleft) * 100) / this.myele[0].offsetParent.offsetWidth);
+                    if (top + 1 >= 0 && left + 1 >= 0 && top - 1 <= 100 && left - 1 <= 100)
+											this.myele.css({
+                            top: this.y + 'px',
+                            left: this.x + 'px'
+                        });
+                }
+
+                private mouseup() {
+                    //$document.off('mousemove', mousemove);
+                    //$document.off('mouseup', mouseup);
+                    //handle top left
+									var finalPositiontop = this.myele[0].attributes["style"].value.split(';')[3].split(':')[1].replace("px", "").replace("%", "").replace(" ", "");
+									var finalPositionleft = this.myele[0].attributes["style"].value.split(';')[4].split(':')[1].replace("px", "").replace("%", "").replace(" ", "");
+
+
+
+									var top = Math.round(((finalPositiontop) * 100) / this.myele[0].offsetParent.offsetHeight);
+									var left = Math.round(((finalPositionleft) * 100) / this.myele[0].offsetParent.offsetWidth);
+									this.data.PTop = this.myele[0].attributes["style"].value.split(';')[3].split(':')[1].indexOf("%") > -1 ? finalPositiontop : top;
+									this.data.PLeft = this.myele[0].attributes["style"].value.split(';')[4].split(':')[1].indexOf("%") > -1 ? finalPositionleft : left;
+									if (this.data.PTop >= 0 && this.data.PLeft >= 0 && this.data.PTop <= 100 && this.data.PLeft <= 100)
+                        this.myele.css({
+													top: this.data.PTop + '%',
+													left: this.data.PLeft + '%'
+                        });
+                }
 
 
 }

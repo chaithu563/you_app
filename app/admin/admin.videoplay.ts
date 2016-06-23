@@ -23,7 +23,7 @@ declare var MediaElementPlayer: any;
 	
 	templateUrl: '../app/admin/admin.videoplay.html',
 	styleUrls: ['../app/admin/admin.videoplay.css'],
-    directives: [CORE_DIRECTIVES, shopitemComponent, draggable],
+	directives: [CORE_DIRECTIVES, shopitemComponent, DraggableDirective],
 		changeDetection: ChangeDetectionStrategy.Default 
 })
 
