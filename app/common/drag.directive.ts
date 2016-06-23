@@ -5,14 +5,36 @@ import {shopitem } from '../interfaces/shopitem';
 
 
 export class DraggableDirective {
-    myele HTMLElement;
-    constructor(el: ElementRef) {
-
-        el.nativeElement.style.backgroundColor = 'yellow';
-        this.myele = el.nativeElement;
-    }
+    myele: HTMLElement;
+    startX: number;
+    startY: number;
+    x: number;
+    y: number;
 
     @Input('draggable') data: shopitem;
+    constructor(el: ElementRef) {
+
+       // el.nativeElement.style.backgroundColor = 'yellow';
+        this.myele = el.nativeElement;
+
+        var topPer = ((el[0].offsetParent.offsetHeight) * this.data.PTop) / 100;
+
+        var leftPer = ((el[0].offsetParent.offsetWidth) * this.data.PLeft) / 100;
+        this.startX = 0, this.startY = 0, x = topPer, y = leftPer;
+
+        el.nativeElement.css({
+            position: 'absolute',
+            border: '1px solid red',
+            backgroundColor: 'lightgrey',
+            cursor: 'pointer',
+            top: this.data.PTop + '%',
+            left:this.data.PLeft + '%'
+        });
+
+
+    }
+
+  
 
     @HostListener('mouseenter') onMouseEnter() {
         //this.highlight(this.highlightColor || this._defaultColor);
@@ -20,9 +42,16 @@ export class DraggableDirective {
     @HostListener('mouseleave') onMouseLeave() {
         //this.highlight(null);
     }
-    private highlight(color: string) {
-        this.myele.style.backgroundColor = color;
+    @HostListener('mousedown', ['$event'])
+    onMousedown(event) {
+        var parentPosition = getPosition(event.currentTarget.offsetParent);
+        event.preventDefault();
+        startX = event.pageX - y;
+        startY = event.pageY - x;
+        $document.on('mousemove', mousemove);
+        $document.on('mouseup', mouseup);
     }
+  
 
     private getPosition(element: HTMLElement) {
     var xPosition = 0;
@@ -31,7 +60,7 @@ export class DraggableDirective {
     while (element) {
         xPosition += (element.offsetLeft - element.scrollLeft + element.clientLeft);
         yPosition += (element.offsetTop - element.scrollTop + element.clientTop);
-        element = element.offsetParent;
+        this.myele = element.offsetParent;
     }
     return { x: xPosition, y: yPosition };
 }
