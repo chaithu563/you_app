@@ -23,121 +23,68 @@ System.register(['@angular/core', '../interfaces/shopitem'], function(exports_1,
         execute: function() {
             DraggableDirective = (function () {
                 function DraggableDirective(el) {
-                    var _this = this;
-                    // el.nativeElement.style.backgroundColor = 'yellow';
                     this.myele = el.nativeElement;
-                    var topPer = ((el[0].offsetParent.offsetHeight) * this.data.PTop) / 100;
-                    var leftPer = ((el[0].offsetParent.offsetWidth) * this.data.PLeft) / 100;
-                    this.startX = 0, this.startY = 0, this.x = topPer, this.y = leftPer;
-                    el.nativeElement.css({
-                        position: 'absolute',
-                        border: '1px solid red',
-                        backgroundColor: 'lightgrey',
-                        cursor: 'pointer',
-                        top: this.data.PTop + '%',
-                        left: this.data.PLeft + '%'
-                    });
-                    this.mousedrag = this.mousedown.toRx().map(function (event) {
-                        event.preventDefault();
-                        return {
-                            left: event.clientX - _this.myele.nativeElement.getBoundingClientRect().left,
-                            top: event.clientY - _this.myele.nativeElement.getBoundingClientRect().top
-                        };
-                    })
-                        .flatMap(function (imageOffset) { return _this.mousemove.toRx().map(function (pos) { return ({
-                        top: pos.clientY - imageOffset.top,
-                        left: pos.clientX - imageOffset.left
-                    }); })
-                        .takeUntil(_this.mouseup.toRx()); });
+                    //var topPer = ((this.myele[0].offsetParent.offsetHeight) * this.data.PTop) / 100;
+                    //var leftPer = ((this.myele[0].offsetParent.offsetWidth) * this.data.PLeft) / 100;
+                    //this.startX = 0, this.startY = 0, this.x = topPer, this.y = leftPer;
+                    //el.nativeElement.style{
+                    //    position: 'absolute',
+                    //    border: '1px solid red',
+                    //    backgroundColor: 'lightgrey',
+                    //    cursor: 'pointer',
+                    //    top:  '0%',
+                    //    left: '0%'
+                    //};
+                    el.nativeElement.style.position = 'absolute';
+                    el.nativeElement.style.border = '1px solid red';
+                    el.nativeElement.style.cursor = 'pointer';
+                    el.nativeElement.style.top = '0%';
+                    el.nativeElement.style.left = '0%';
+                    //		this.mousedrag = this.mousedown.toRx().map(event => {
+                    //			event.preventDefault();
+                    //			return {
+                    //				left: event.clientX - this.myele.nativeElement.getBoundingClientRect().left,
+                    //				top: event.clientY - this.myele.nativeElement.getBoundingClientRect().top
+                    //			};
+                    //		})
+                    //			.flatMap(imageOffset => this.mousemove.toRx().map(pos => ({
+                    //				top: pos.clientY - imageOffset.top,
+                    //				left: pos.clientX - imageOffset.left
+                    //			}))
+                    //				.takeUntil(this.mouseup.toRx()));
                 }
-                DraggableDirective.prototype.onInit = function () {
-                    var _this = this;
-                    this.mousedrag.subscribe({
-                        next: function (pos) {
-                            // Update position
-                            _this.myele.nativeElement.style.top = pos.top + 'px';
-                            _this.myele.nativeElement.style.left = pos.left + 'px';
-                        }
-                    });
-                };
-                DraggableDirective.prototype.onMouseMove = function (event) {
-                    //this.highlight(this.highlightColor || this._defaultColor);
-                };
-                DraggableDirective.prototype.onMouseUp = function (event) {
-                    //this.highlight(null);
-                };
-                DraggableDirective.prototype.onMousedown = function (event) {
-                    this.mousedown(event);
-                    //$document.on('mousemove', mousemove);
-                    //$document.on('mouseup', mouseup);
-                };
-                DraggableDirective.prototype.getPosition = function (element) {
-                    var xPosition = 0;
-                    var yPosition = 0;
-                    while (element) {
-                        xPosition += (element.offsetLeft - element.scrollLeft + element.clientLeft);
-                        yPosition += (element.offsetTop - element.scrollTop + element.clientTop);
-                        this.myele = element.offsetParent;
-                    }
-                    return { x: xPosition, y: yPosition };
-                };
-                DraggableDirective.prototype.mousedown = function (event) {
-                    var parentPosition = this.getPosition(event.currentTarget.offsetParent);
-                    event.preventDefault();
-                    this.startX = event.pageX - this.y;
-                    this.startY = event.pageY - this.x;
-                };
-                DraggableDirective.prototype.mousemove = function (event) {
-                    this.y = event.pageY - this.startY;
-                    this.x = event.pageX - this.startX;
-                    var finalPositiontop = this.myele[0].attributes["style"].value.split(';')[3].split(':')[1].replace("px", "").replace("%", "").replace(" ", "");
-                    var finalPositionleft = this.myele[0].attributes["style"].value.split(';')[4].split(':')[1].replace("px", "").replace("%", "").replace(" ", "");
-                    var top = Math.round(((finalPositiontop) * 100) / this.myele[0].offsetParent.offsetHeight);
-                    var left = Math.round(((finalPositionleft) * 100) / this.myele[0].offsetParent.offsetWidth);
-                    if (top + 1 >= 0 && left + 1 >= 0 && top - 1 <= 100 && left - 1 <= 100)
-                        this.myele.css({
-                            top: this.y + 'px',
-                            left: this.x + 'px'
-                        });
-                };
-                DraggableDirective.prototype.mouseup = function () {
-                    //$document.off('mousemove', mousemove);
-                    //$document.off('mouseup', mouseup);
-                    //handle top left
-                    var finalPositiontop = this.myele[0].attributes["style"].value.split(';')[3].split(':')[1].replace("px", "").replace("%", "").replace(" ", "");
-                    var finalPositionleft = this.myele[0].attributes["style"].value.split(';')[4].split(':')[1].replace("px", "").replace("%", "").replace(" ", "");
-                    var top = Math.round(((finalPositiontop) * 100) / this.myele[0].offsetParent.offsetHeight);
-                    var left = Math.round(((finalPositionleft) * 100) / this.myele[0].offsetParent.offsetWidth);
-                    this.data.PTop = this.myele[0].attributes["style"].value.split(';')[3].split(':')[1].indexOf("%") > -1 ? finalPositiontop : top;
-                    this.data.PLeft = this.myele[0].attributes["style"].value.split(';')[4].split(':')[1].indexOf("%") > -1 ? finalPositionleft : left;
-                    if (this.data.PTop >= 0 && this.data.PLeft >= 0 && this.data.PTop <= 100 && this.data.PLeft <= 100)
-                        this.myele.css({
-                            top: this.data.PTop + '%',
-                            left: this.data.PLeft + '%'
-                        });
+                DraggableDirective.prototype.ngOnInit = function () {
+                    //this.myele.nativeElement.css({
+                    //	position: 'absolute',
+                    //	border: '1px solid red',
+                    //	backgroundColor: 'lightgrey',
+                    //	cursor: 'pointer',
+                    //	top: this.data.PTop + '%',
+                    //	left: this.data.PLeft + '%'
+                    //});
+                    //this.mousedrag.subscribe({
+                    //	next: pos => {
+                    //		// Update position
+                    //		this.myele.nativeElement.style.top = pos.top + 'px';
+                    //		this.myele.nativeElement.style.left = pos.left + 'px';
+                    //	}
+                    //});
+                    //this.myele.nativeElement.style({
+                    //position: 'absolute',
+                    //border: '1px solid red',
+                    //backgroundColor: 'lightgrey',
+                    //cursor: 'pointer',
+                    //top: this.data.PTop + '%',
+                    //left:this.data.PLeft + '%'
+                    //});
+                    this.myele.style.top = this.data.PTop + '%';
+                    this.myele.style.left = this.data.PLeft + '%';
+                    jQuery(this.myele).draggable({ containment: '.admin_video_overlays' });
                 };
                 __decorate([
                     core_1.Input('draggable'), 
                     __metadata('design:type', shopitem_1.shopitem)
                 ], DraggableDirective.prototype, "data", void 0);
-                __decorate([
-                    core_1.HostListener('mousemove', ['$event']), 
-                    __metadata('design:type', Function), 
-                    __metadata('design:paramtypes', [Object]), 
-                    __metadata('design:returntype', void 0)
-                ], DraggableDirective.prototype, "onMouseMove", null);
-                __decorate([
-                    core_1.HostListener('mouseup', ['$event']), 
-                    __metadata('design:type', Function), 
-                    __metadata('design:paramtypes', [Object]), 
-                    __metadata('design:returntype', void 0)
-                ], DraggableDirective.prototype, "onMouseUp", null);
-                __decorate([
-                    core_1.HostListener('mousedown', ['$event']), 
-                    __metadata('design:type', Function), 
-                    __metadata('design:paramtypes', [Object]), 
-                    __metadata('design:returntype', void 0)
-                ], DraggableDirective.prototype, "onMousedown", null);
                 DraggableDirective = __decorate([
                     core_1.Directive({ selector: '[draggable]' }), 
                     __metadata('design:paramtypes', [core_1.ElementRef])
