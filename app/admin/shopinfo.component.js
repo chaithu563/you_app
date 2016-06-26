@@ -43,10 +43,30 @@ System.register(['@angular/core', '@angular/common', '../httpclient'], function(
                     this.CurrentTime = this.curtime;
                 };
                 shopitemComponent.prototype.saveFun1 = function (shop) {
-                    this.saveFun.next(shop);
+                    var _this = this;
+                    this.httpclient.put('http://localhost/HappiPugCloudService/api/VideoShopItem/' + this.shopitem.Id, JSON.stringify(this.shopitem))
+                        .map(function (response) { return response.json(); })
+                        .subscribe(function (res) {
+                        console.log('success');
+                        _this.shopitem = res;
+                        //this.shopitem.PLeft = 2;
+                        //	this.vdbid = '90';
+                        _this.cd.detectChanges();
+                        console.log(_this.shopitem);
+                    });
                 };
                 shopitemComponent.prototype.deleteFun1 = function (shop) {
-                    this.deleteFun.next(shop);
+                    var _this = this;
+                    this.httpclient.delete('http://localhost/HappiPugCloudService/api/VideoShopItem/' + this.shopitem.Id)
+                        .map(function (response) { return response.json(); })
+                        .subscribe(function (res) {
+                        console.log('success');
+                        _this.shopitem = [];
+                        //this.shopitem.PLeft = 2;
+                        //	this.vdbid = '90';
+                        _this.cd.detectChanges();
+                        console.log(_this.shopitem);
+                    });
                 };
                 //valuechange(newValue) {
                 //  this.CurrentTime = newValue;
@@ -57,7 +77,7 @@ System.register(['@angular/core', '@angular/common', '../httpclient'], function(
                     this.shopitem.StartTime = $('#currentTime').val();
                     this.cd.detectChanges();
                 };
-                shopitemComponent.prototype.setEndtime = function () {
+                shopitemComponent.prototype.setEndTime = function () {
                     this.shopitem.EndTime = $('#currentTime').val();
                     this.cd.detectChanges();
                 };

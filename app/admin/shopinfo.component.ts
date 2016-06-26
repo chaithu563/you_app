@@ -26,6 +26,7 @@ export class shopitemComponent implements OnChanges{
 			this.testname = 'chaitanya';
       this.httpclient = httpClient;
       this.CurrentTime = this.curtime;
+
     }
 
     ngOnInit() {
@@ -38,13 +39,44 @@ export class shopitemComponent implements OnChanges{
 		}
     saveFun1(shop: shopitem) {
 
-        this.saveFun.next(shop);
+       
+        this.httpclient.put('http://localhost/HappiPugCloudService/api/VideoShopItem/' + this.shopitem.Id, JSON.stringify(this.shopitem))
+
+
+            .map(response => response.json())
+            .subscribe(
+            res => {
+                console.log('success');
+                this.shopitem = res;
+                //this.shopitem.PLeft = 2;
+                //	this.vdbid = '90';
+                this.cd.detectChanges();
+                console.log(this.shopitem);
+            }
+
+        );
+
 
     }
 
     deleteFun1(shop: shopitem) {
 
-        this.deleteFun.next(shop);
+        this.httpclient.delete('http://localhost/HappiPugCloudService/api/VideoShopItem/' + this.shopitem.Id)
+
+
+            .map(response => response.json())
+            .subscribe(
+            res => {
+                console.log('success');
+                this.shopitem = [];
+                //this.shopitem.PLeft = 2;
+                //	this.vdbid = '90';
+                this.cd.detectChanges();
+                console.log(this.shopitem);
+            }
+
+            );
+
 
     }
     //valuechange(newValue) {
@@ -58,7 +90,7 @@ export class shopitemComponent implements OnChanges{
       this.cd.detectChanges();
     }
 
-    setEndtime() {
+    setEndTime() {
       this.shopitem.EndTime = $('#currentTime').val();
       this.cd.detectChanges();
     }

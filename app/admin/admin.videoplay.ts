@@ -1,6 +1,6 @@
 ﻿ /////<reference path="../../typings/jquery/jquery.d.ts" />
 
-import { AfterViewInit, AfterViewChecked} from '@angular/core';
+import { AfterViewInit, AfterViewChecked, OnInit, OnChanges, SimpleChange, ElementRef} from '@angular/core';
 import { CORE_DIRECTIVES, FORM_DIRECTIVES } from '@angular/common';
 import {ROUTER_DIRECTIVES, RouteConfig, Router, RouteParams} from '@angular/router-deprecated';
 //import {MediaElementPlayer} from 'build/mediaelementplayer';
@@ -29,10 +29,11 @@ declare var MediaElementPlayer: any;
 
 
 
-export class AdminVideoPlay implements AfterViewInit, AfterViewChecked {
+export class AdminVideoPlay implements AfterViewInit, AfterViewChecked, OnInit, OnChanges {
 
  // @ViewChild(shopitemComponent) viewChild: shopitemComponent;
-	videosrc: string;
+    videosrc: string;
+    myele: any;
     title: string;
     curtime: number;
      shopinfo: shopitem;
@@ -40,7 +41,9 @@ export class AdminVideoPlay implements AfterViewInit, AfterViewChecked {
     http: Http;
     httpclient: HttpClient;
     availItems: Array<shopitem>;
-    constructor(httpClient: HttpClient, routeParams: RouteParams, http: Http, private cd: ChangeDetectorRef) {
+    availItemsTime: Array<shopitem>;
+    constructor(el: ElementRef, httpClient: HttpClient, routeParams: RouteParams, http: Http, private cd: ChangeDetectorRef) {
+        this.myele = el;
                 this.vdbid = routeParams.get('dbid');
 				this.videosrc = "www.youtube.com/watch?v=" + routeParams.get('id');
         this.httpclient = httpClient;
@@ -49,11 +52,15 @@ export class AdminVideoPlay implements AfterViewInit, AfterViewChecked {
         this.shopinfo = { Id: 1, ProductHandle: null, PTop: 0, PLeft: 0, StartTime: this.curtime, EndTime: this.curtime, Video_Id: this.vdbid };
 				//this.cd.detectChanges();
         this.loadMovieItems();
+     //   this.availItemsTime = 0;
+
+
 	}
 
     openSelectedItem(item: shopitem) {
 
-        alert(item);
+      //  alert(item);
+        this.shopinfo = item;
 
     }
 
@@ -70,13 +77,21 @@ export class AdminVideoPlay implements AfterViewInit, AfterViewChecked {
                     console.log(mediaElement.duration);
                     // add event listener
                     mediaElement.addEventListener('timeupdate', function (e) {
-                        console.log('time chnage' + mediaElement.currentTime);
+                       // console.log('time chnage' + mediaElement.currentTime);
                         this.curtime = mediaElement.currentTime;
-                        console.log(this.viewChild);
+                       // console.log(this.viewChild);
                         var input = $('#currentTime');
                         input.val(mediaElement.currentTime).change(); 
                        
                         input.trigger('change');
+
+                        var avitems = $('#avItems');
+                     
+                        $('#avItems').focus().trigger(jQuery.Event('keypress', { which: 13 })).change();
+                        avitems.val(mediaElement.currentTime).change(); 
+                        $("#avItems").focus();
+                        $('#avItems').text(mediaElement.currentTime);
+                    
                     }, false);
 
                     mediaElement.addEventListener('seeking', function (e) {
@@ -91,16 +106,24 @@ export class AdminVideoPlay implements AfterViewInit, AfterViewChecked {
 
 	} 
 
-         ngOnInit() {
+    ngOnInit() {
+        var self = this;
+        setInterval(() => {
+            var CT = $('#currentTime').val();
+            self.availItemsTime = self.availItems.filter(x=> x.StartTime <= CT && CT <= x.EndTime);
+
+          
+            self.cd.detectChanges();
+
+        }, 1000);
             
         }
 
-		ngOnChanges() { 
-		
-			//var newitem = new shopitem(11, 2, 0, this.curtime, this.curtime, "", 1);
-			//this.shopinfo = newitem;
-           
+         ngOnChanges(changes: any) {
+             console.log('Change detected:', changes['availItemsTime'].currentValue);
+             console.log(changes['availItemsTime'].currentValue);
          }
+         
 
          loadMovieItems() {
 
@@ -121,34 +144,18 @@ export class AdminVideoPlay implements AfterViewInit, AfterViewChecked {
 
                 );
 
-        }
+         }
+
+         timeChange(event) {
+             console.log(event);
+             this.availItems = ( this.availItems);
+         }
 
 		ngAfterViewChecked() {
-			//console.log('GrandChild: in ngAfterViewChecked');
-			//var newitem = new shopitem(11, 2, 0, this.curtime, this.curtime, "", 1);
-			//this.shopinfo = newitem;
+			
 		}
 
-      public  addNewItem()
-      {
-			
-             
-  
-     
-      }
-
-    //public saveItem() {
-
-    //    console.log("item saved");
-
-    //}
-
-    //public deleteItem() {
-
-    //    console.log("item deleted");
-
-    //}
-
+    
 }
 
 

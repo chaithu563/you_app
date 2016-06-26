@@ -44,6 +44,13 @@ System.register(['@angular/http', '@angular/core'], function(exports_1, context_
                         headers: headers
                     });
                 };
+                HttpClient.prototype.put = function (url, data) {
+                    var headers = new http_1.Headers();
+                    this.createAuthorizationHeader(headers);
+                    return this.http.put(url, data, {
+                        headers: headers
+                    });
+                };
                 HttpClient.prototype.delete = function (url) {
                     var headers = new http_1.Headers();
                     this.createAuthorizationHeader(headers);

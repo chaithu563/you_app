@@ -1,5 +1,5 @@
 /////<reference path="../../typings/jquery/jquery.d.ts" />
-System.register(['@angular/common', '@angular/router-deprecated', '@angular/core', '@angular/http', '../httpclient', 'rxjs/Rx', '../admin/shopinfo.component', '../common/drag.directive'], function(exports_1, context_1) {
+System.register(['@angular/core', '@angular/common', '@angular/router-deprecated', '@angular/http', '../httpclient', 'rxjs/Rx', '../admin/shopinfo.component', '../common/drag.directive'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -11,18 +11,19 @@ System.register(['@angular/common', '@angular/router-deprecated', '@angular/core
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var common_1, router_deprecated_1, core_1, http_1, httpclient_1, shopinfo_component_1, drag_directive_1;
+    var core_1, common_1, router_deprecated_1, core_2, http_1, httpclient_1, shopinfo_component_1, drag_directive_1;
     var AdminVideoPlay;
     return {
         setters:[
+            function (core_1_1) {
+                core_1 = core_1_1;
+                core_2 = core_1_1;
+            },
             function (common_1_1) {
                 common_1 = common_1_1;
             },
             function (router_deprecated_1_1) {
                 router_deprecated_1 = router_deprecated_1_1;
-            },
-            function (core_1_1) {
-                core_1 = core_1_1;
             },
             function (http_1_1) {
                 http_1 = http_1_1;
@@ -39,8 +40,9 @@ System.register(['@angular/common', '@angular/router-deprecated', '@angular/core
             }],
         execute: function() {
             AdminVideoPlay = (function () {
-                function AdminVideoPlay(httpClient, routeParams, http, cd) {
+                function AdminVideoPlay(el, httpClient, routeParams, http, cd) {
                     this.cd = cd;
+                    this.myele = el;
                     this.vdbid = routeParams.get('dbid');
                     this.videosrc = "www.youtube.com/watch?v=" + routeParams.get('id');
                     this.httpclient = httpClient;
@@ -49,9 +51,11 @@ System.register(['@angular/common', '@angular/router-deprecated', '@angular/core
                     this.shopinfo = { Id: 1, ProductHandle: null, PTop: 0, PLeft: 0, StartTime: this.curtime, EndTime: this.curtime, Video_Id: this.vdbid };
                     //this.cd.detectChanges();
                     this.loadMovieItems();
+                    //   this.availItemsTime = 0;
                 }
                 AdminVideoPlay.prototype.openSelectedItem = function (item) {
-                    alert(item);
+                    //  alert(item);
+                    this.shopinfo = item;
                 };
                 AdminVideoPlay.prototype.ngAfterViewInit = function () {
                     var player = new MediaElementPlayer('video', {
@@ -61,12 +65,17 @@ System.register(['@angular/common', '@angular/router-deprecated', '@angular/core
                             console.log(mediaElement.duration);
                             // add event listener
                             mediaElement.addEventListener('timeupdate', function (e) {
-                                console.log('time chnage' + mediaElement.currentTime);
+                                // console.log('time chnage' + mediaElement.currentTime);
                                 this.curtime = mediaElement.currentTime;
-                                console.log(this.viewChild);
+                                // console.log(this.viewChild);
                                 var input = $('#currentTime');
                                 input.val(mediaElement.currentTime).change();
                                 input.trigger('change');
+                                var avitems = $('#avItems');
+                                $('#avItems').focus().trigger(jQuery.Event('keypress', { which: 13 })).change();
+                                avitems.val(mediaElement.currentTime).change();
+                                $("#avItems").focus();
+                                $('#avItems').text(mediaElement.currentTime);
                             }, false);
                             mediaElement.addEventListener('seeking', function (e) {
                                 console.log('seeking' + mediaElement.currentTime);
@@ -76,10 +85,16 @@ System.register(['@angular/common', '@angular/router-deprecated', '@angular/core
                     player.setSrc(this.videosrc);
                 };
                 AdminVideoPlay.prototype.ngOnInit = function () {
+                    var self = this;
+                    setInterval(function () {
+                        var CT = $('#currentTime').val();
+                        self.availItemsTime = self.availItems.filter(function (x) { return x.StartTime <= CT && CT <= x.EndTime; });
+                        self.cd.detectChanges();
+                    }, 1000);
                 };
-                AdminVideoPlay.prototype.ngOnChanges = function () {
-                    //var newitem = new shopitem(11, 2, 0, this.curtime, this.curtime, "", 1);
-                    //this.shopinfo = newitem;
+                AdminVideoPlay.prototype.ngOnChanges = function (changes) {
+                    console.log('Change detected:', changes['availItemsTime'].currentValue);
+                    console.log(changes['availItemsTime'].currentValue);
                 };
                 AdminVideoPlay.prototype.loadMovieItems = function () {
                     var _this = this;
@@ -94,23 +109,22 @@ System.register(['@angular/common', '@angular/router-deprecated', '@angular/core
                         console.log(_this.availItems);
                     });
                 };
-                AdminVideoPlay.prototype.ngAfterViewChecked = function () {
-                    //console.log('GrandChild: in ngAfterViewChecked');
-                    //var newitem = new shopitem(11, 2, 0, this.curtime, this.curtime, "", 1);
-                    //this.shopinfo = newitem;
+                AdminVideoPlay.prototype.timeChange = function (event) {
+                    console.log(event);
+                    this.availItems = (this.availItems);
                 };
-                AdminVideoPlay.prototype.addNewItem = function () {
+                AdminVideoPlay.prototype.ngAfterViewChecked = function () {
                 };
                 AdminVideoPlay = __decorate([
-                    core_1.Component({
+                    core_2.Component({
                         //selector: 'hp-admin',
                         providers: [httpclient_1.HttpClient, http_1.HTTP_PROVIDERS],
                         templateUrl: '../app/admin/admin.videoplay.html',
                         styleUrls: ['../app/admin/admin.videoplay.css'],
                         directives: [common_1.CORE_DIRECTIVES, shopinfo_component_1.shopitemComponent, drag_directive_1.DraggableDirective],
-                        changeDetection: core_1.ChangeDetectionStrategy.Default
+                        changeDetection: core_2.ChangeDetectionStrategy.Default
                     }), 
-                    __metadata('design:paramtypes', [httpclient_1.HttpClient, router_deprecated_1.RouteParams, http_1.Http, core_1.ChangeDetectorRef])
+                    __metadata('design:paramtypes', [core_1.ElementRef, httpclient_1.HttpClient, router_deprecated_1.RouteParams, http_1.Http, core_2.ChangeDetectorRef])
                 ], AdminVideoPlay);
                 return AdminVideoPlay;
             }());

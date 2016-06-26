@@ -8,9 +8,11 @@
 
             <div class="admin_video_overlays" ng-show="true">
                 <!--my-draggable="{{item}}"-->
-                <div  *ngFor="#item of availItems" ng-style="{'position':'absolute' }" [draggable]="item" >
+                <div  *ngFor="#item of availItemsTime" ng-style="{'position':'absolute' }" [draggable]="item" >
                     <img style="width: 30px; height: 30px; color: black" src="../../app/img/plus-tag.svg" (click)="openSelectedItem(item)">
                 </div>
+                <!--[(ngModel)]="availItemsTime"--> 
+              <!--  <input id="avItems" (change) ="timeChange($event)" (oninput)=timeChange($event) (onchange)=timeChange($event) (keydown)=timeChange($event)  (keypress)=timeChange($event)/>-->
             </div>
 
             <div class="videodiv">
