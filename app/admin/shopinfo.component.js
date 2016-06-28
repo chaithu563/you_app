@@ -73,17 +73,17 @@ System.register(['@angular/core', '@angular/common', '../httpclient'], function(
                 //  console.log(newValue)
                 //}
                 shopitemComponent.prototype.setStartTime = function () {
-                    this.shopitem.StartTime = $('#currentTime').val();
+                    this.shopitem.StartTime = this.curtime;
                     this.cd.detectChanges();
                 };
                 shopitemComponent.prototype.setEndTime = function () {
-                    this.shopitem.EndTime = $('#currentTime').val();
+                    this.shopitem.EndTime = this.curtime;
                     this.cd.detectChanges();
                 };
                 shopitemComponent.prototype.addFun1 = function () {
                     var _this = this;
                     //this.shopitem.PTop = 2;
-                    var shopinfo = { Id: 1, ProductHandle: null, PTop: 0, PLeft: 0, StartTime: $('#currentTime').val(), EndTime: $('#currentTime').val(), Video_Id: this.shopitem.Video_Id };
+                    var shopinfo = { Id: 1, ProductHandle: null, PTop: 0, PLeft: 0, StartTime: this.curtime, EndTime: this.curtime, Video_Id: this.shopitem.Video_Id };
                     this.httpclient.post('http://localhost/HappiPugCloudService/api/VideoShopItem', JSON.stringify(shopinfo))
                         .map(function (response) { return response.json(); })
                         .subscribe(function (res) {

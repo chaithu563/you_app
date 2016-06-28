@@ -58,6 +58,7 @@ System.register(['@angular/core', '@angular/common', '@angular/router-deprecated
                     this.shopinfo = item;
                 };
                 AdminVideoPlay.prototype.ngAfterViewInit = function () {
+                    var self = this;
                     var player = new MediaElementPlayer('video', {
                         defaultVideoWidth: 960, defaultVideoHeight: 410,
                         features: ['playpause', 'progress', 'current', 'duration', 'volume', 'fullscreen'],
@@ -65,17 +66,15 @@ System.register(['@angular/core', '@angular/common', '@angular/router-deprecated
                             console.log(mediaElement.duration);
                             // add event listener
                             mediaElement.addEventListener('timeupdate', function (e) {
+                                var _this = this;
                                 // console.log('time chnage' + mediaElement.currentTime);
                                 this.curtime = mediaElement.currentTime;
                                 // console.log(this.viewChild);
-                                var input = $('#currentTime');
-                                input.val(mediaElement.currentTime).change();
-                                input.trigger('change');
-                                var avitems = $('#avItems');
-                                $('#avItems').focus().trigger(jQuery.Event('keypress', { which: 13 })).change();
-                                avitems.val(mediaElement.currentTime).change();
-                                $("#avItems").focus();
-                                $('#avItems').text(mediaElement.currentTime);
+                                //var input = $('#currentTime');
+                                //input.val(mediaElement.currentTime).change(); 
+                                //input.trigger('change');
+                                self.availItemsTime = self.availItems.filter(function (x) { return x.StartTime <= _this.curtime && _this.curtime <= x.EndTime; });
+                                self.cd.detectChanges();
                             }, false);
                             mediaElement.addEventListener('seeking', function (e) {
                                 console.log('seeking' + mediaElement.currentTime);
@@ -85,12 +84,6 @@ System.register(['@angular/core', '@angular/common', '@angular/router-deprecated
                     player.setSrc(this.videosrc);
                 };
                 AdminVideoPlay.prototype.ngOnInit = function () {
-                    var self = this;
-                    setInterval(function () {
-                        var CT = $('#currentTime').val();
-                        self.availItemsTime = self.availItems.filter(function (x) { return x.StartTime <= CT && CT <= x.EndTime; });
-                        self.cd.detectChanges();
-                    }, 1000);
                 };
                 AdminVideoPlay.prototype.ngOnChanges = function (changes) {
                     console.log('Change detected:', changes['availItemsTime'].currentValue);

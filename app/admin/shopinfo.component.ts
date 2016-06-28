@@ -88,19 +88,19 @@ export class shopitemComponent implements OnChanges{
     //}
 
     setStartTime() {
-      this.shopitem.StartTime = $('#currentTime').val();
+      this.shopitem.StartTime =this.curtime;
       this.cd.detectChanges();
     }
 
     setEndTime() {
-      this.shopitem.EndTime = $('#currentTime').val();
+      this.shopitem.EndTime = this.curtime;
       this.cd.detectChanges();
     }
 
     addFun1() {
 			
 			//this.shopitem.PTop = 2;
-        var shopinfo = { Id: 1, ProductHandle: null, PTop: 0, PLeft: 0, StartTime: $('#currentTime').val(), EndTime: $('#currentTime').val(), Video_Id: this.shopitem.Video_Id };
+			var shopinfo = { Id: 1, ProductHandle: null, PTop: 0, PLeft: 0, StartTime: this.curtime, EndTime: this.curtime, Video_Id: this.shopitem.Video_Id };
 
         this.httpclient.post('http://localhost/HappiPugCloudService/api/VideoShopItem', JSON.stringify(shopinfo))
 

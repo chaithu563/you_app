@@ -67,9 +67,10 @@ export class AdminVideoPlay implements AfterViewInit, AfterViewChecked, OnInit, 
 
 	ngAfterViewInit() {
 
-
+		var self = this;
 		var player = new MediaElementPlayer('video',
 			{
+
 				defaultVideoWidth: 960, defaultVideoHeight: 410,
 				features: ['playpause', 'progress', 'current', 'duration', 'volume', 'fullscreen'],
                 success: function (mediaElement, domObject) {
@@ -80,17 +81,16 @@ export class AdminVideoPlay implements AfterViewInit, AfterViewChecked, OnInit, 
                        // console.log('time chnage' + mediaElement.currentTime);
                         this.curtime = mediaElement.currentTime;
                        // console.log(this.viewChild);
-                        var input = $('#currentTime');
-                        input.val(mediaElement.currentTime).change(); 
+                        //var input = $('#currentTime');
+                        //input.val(mediaElement.currentTime).change(); 
                        
-                        input.trigger('change');
+                        //input.trigger('change');
 
-                        var avitems = $('#avItems');
-                     
-                        $('#avItems').focus().trigger(jQuery.Event('keypress', { which: 13 })).change();
-                        avitems.val(mediaElement.currentTime).change(); 
-                        $("#avItems").focus();
-                        $('#avItems').text(mediaElement.currentTime);
+											
+												self.availItemsTime = self.availItems.filter(x=> x.StartTime <= this.curtime && this.curtime <= x.EndTime);
+
+
+												self.cd.detectChanges();
                     
                     }, false);
 
@@ -107,15 +107,7 @@ export class AdminVideoPlay implements AfterViewInit, AfterViewChecked, OnInit, 
 	} 
 
     ngOnInit() {
-        var self = this;
-        setInterval(() => {
-            var CT = $('#currentTime').val();
-            self.availItemsTime = self.availItems.filter(x=> x.StartTime <= CT && CT <= x.EndTime);
-
-          
-            self.cd.detectChanges();
-
-        }, 1000);
+       
             
         }
 
