@@ -55,12 +55,16 @@ export class DraggableDirective implements OnInit {
 
         console.log(event);
 
-
-        var top = Math.round(((this.myele.style.top.replace("px", "")) * 100) / this.myele.offsetParent.offsetHeight);
-        var left = Math.round(((this.myele.style.left.replace("px", "")) * 100) / this.myele.offsetParent.offsetWidth);
-        this.data.PTop = top;
-        this.data.PLeft = left;
-        this.cd.detectChanges();
+				if (this.myele.style.top.indexOf('%') > -1) {
+				
+				}
+				else {
+					var top = Math.round(((this.myele.style.top.replace("px", "")) * 100) / this.myele.offsetParent.offsetHeight);
+					var left = Math.round(((this.myele.style.left.replace("px", "")) * 100) / this.myele.offsetParent.offsetWidth);
+					this.data.PTop = top;
+					this.data.PLeft = left;
+					this.cd.detectChanges();
+				}
 	}
 
 	@HostListener('mousedown', ['$event'])
