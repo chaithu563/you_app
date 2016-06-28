@@ -27,10 +27,7 @@ System.register(['@angular/core', '@angular/common', '../httpclient'], function(
             shopitemComponent = (function () {
                 function shopitemComponent(httpClient, cd) {
                     this.cd = cd;
-                    this.saveFun = new core_1.EventEmitter();
-                    this.addFun = new core_1.EventEmitter();
-                    this.deleteFun = new core_1.EventEmitter();
-                    this.testname = 'chaitanya';
+                    this.changeData = new core_1.EventEmitter();
                     this.httpclient = httpClient;
                     this.CurrentTime = this.curtime;
                 }
@@ -53,6 +50,7 @@ System.register(['@angular/core', '@angular/common', '../httpclient'], function(
                         //	this.vdbid = '90';
                         _this.cd.detectChanges();
                         console.log(_this.shopitem);
+                        _this.changeData.next(null);
                     });
                 };
                 shopitemComponent.prototype.deleteFun1 = function (shop) {
@@ -66,6 +64,7 @@ System.register(['@angular/core', '@angular/common', '../httpclient'], function(
                         //	this.vdbid = '90';
                         _this.cd.detectChanges();
                         console.log(_this.shopitem);
+                        _this.changeData.next(null);
                     });
                 };
                 //valuechange(newValue) {
@@ -82,9 +81,10 @@ System.register(['@angular/core', '@angular/common', '../httpclient'], function(
                     this.cd.detectChanges();
                 };
                 shopitemComponent.prototype.addFun1 = function () {
-                    //this.shopitem.PTop = 2;
                     var _this = this;
-                    this.httpclient.post('http://localhost/HappiPugCloudService/api/VideoShopItem', JSON.stringify(this.shopitem))
+                    //this.shopitem.PTop = 2;
+                    var shopinfo = { Id: 1, ProductHandle: null, PTop: 0, PLeft: 0, StartTime: $('#currentTime').val(), EndTime: $('#currentTime').val(), Video_Id: this.shopitem.Video_Id };
+                    this.httpclient.post('http://localhost/HappiPugCloudService/api/VideoShopItem', JSON.stringify(shopinfo))
                         .map(function (response) { return response.json(); })
                         .subscribe(function (res) {
                         console.log('success');
@@ -93,20 +93,13 @@ System.register(['@angular/core', '@angular/common', '../httpclient'], function(
                         //	this.vdbid = '90';
                         _this.cd.detectChanges();
                         console.log(_this.shopitem);
+                        _this.changeData.next(null);
                     });
                 };
                 __decorate([
                     core_1.Output(), 
                     __metadata('design:type', core_1.EventEmitter)
-                ], shopitemComponent.prototype, "saveFun", void 0);
-                __decorate([
-                    core_1.Output(), 
-                    __metadata('design:type', core_1.EventEmitter)
-                ], shopitemComponent.prototype, "addFun", void 0);
-                __decorate([
-                    core_1.Output(), 
-                    __metadata('design:type', core_1.EventEmitter)
-                ], shopitemComponent.prototype, "deleteFun", void 0);
+                ], shopitemComponent.prototype, "changeData", void 0);
                 __decorate([
                     core_1.Input(), 
                     __metadata('design:type', (typeof (_a = typeof core_1.Observable !== 'undefined' && core_1.Observable) === 'function' && _a) || Object)

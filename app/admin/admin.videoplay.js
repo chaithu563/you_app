@@ -109,11 +109,14 @@ System.register(['@angular/core', '@angular/common', '@angular/router-deprecated
                         console.log(_this.availItems);
                     });
                 };
-                AdminVideoPlay.prototype.timeChange = function (event) {
-                    console.log(event);
-                    this.availItems = (this.availItems);
-                };
+                //timeChange(event) {
+                //    console.log(event);
+                //    this.availItems = ( this.availItems);
+                //}
                 AdminVideoPlay.prototype.ngAfterViewChecked = function () {
+                };
+                AdminVideoPlay.prototype.changeData = function (data) {
+                    this.loadMovieItems();
                 };
                 AdminVideoPlay = __decorate([
                     core_2.Component({

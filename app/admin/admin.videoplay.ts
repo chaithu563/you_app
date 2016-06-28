@@ -146,16 +146,19 @@ export class AdminVideoPlay implements AfterViewInit, AfterViewChecked, OnInit, 
 
          }
 
-         timeChange(event) {
-             console.log(event);
-             this.availItems = ( this.availItems);
-         }
+         //timeChange(event) {
+         //    console.log(event);
+         //    this.availItems = ( this.availItems);
+         //}
 
 		ngAfterViewChecked() {
 			
 		}
 
     
+        changeData(data : any) {
+            this.loadMovieItems();
+        }
 }
 
 

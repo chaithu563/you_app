@@ -57,11 +57,12 @@ namespace HappiPugCloudService.Controllers
         }
 
         // DELETE api/video/5
-        public void Delete(int id)
+        public bool Delete(int id)
         {
             VideoShopItem vidObj = hpobj.VideoShopItems.First(x => x.Id == id);
             hpobj.VideoShopItems.Remove(vidObj);
             hpobj.SaveChanges();
+            return true;
         }
     }
 }

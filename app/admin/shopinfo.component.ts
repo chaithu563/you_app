@@ -14,16 +14,16 @@ import {shopitem } from '../interfaces/shopitem';
     changeDetection: ChangeDetectionStrategy.Default
 })
 export class shopitemComponent implements OnChanges{
-	@Output() saveFun: EventEmitter<any> = new EventEmitter();
-    @Output() addFun: EventEmitter<any> = new EventEmitter();
-    @Output() deleteFun: EventEmitter<any> = new EventEmitter();
+    @Output() changeData: EventEmitter<any> = new EventEmitter();
+    //@Output() addFun: EventEmitter<any> = new EventEmitter();
+    //@Output() deleteFun: EventEmitter<any> = new EventEmitter();
     @Input() shopitem: Observable<shopitem>;
     @Input() curtime: Observable<string>;
   CurrentTime: any;
 	testname: any;
 	 httpclient: HttpClient;
 	constructor(httpClient: HttpClient,private cd: ChangeDetectorRef) {
-			this.testname = 'chaitanya';
+			
       this.httpclient = httpClient;
       this.CurrentTime = this.curtime;
 
@@ -52,6 +52,7 @@ export class shopitemComponent implements OnChanges{
                 //	this.vdbid = '90';
                 this.cd.detectChanges();
                 console.log(this.shopitem);
+                this.changeData.next(null);
             }
 
         );
@@ -73,6 +74,7 @@ export class shopitemComponent implements OnChanges{
                 //	this.vdbid = '90';
                 this.cd.detectChanges();
                 console.log(this.shopitem);
+                this.changeData.next(null);
             }
 
             );
@@ -98,9 +100,9 @@ export class shopitemComponent implements OnChanges{
     addFun1() {
 			
 			//this.shopitem.PTop = 2;
+        var shopinfo = { Id: 1, ProductHandle: null, PTop: 0, PLeft: 0, StartTime: $('#currentTime').val(), EndTime: $('#currentTime').val(), Video_Id: this.shopitem.Video_Id };
 
-
-			this.httpclient.post('http://localhost/HappiPugCloudService/api/VideoShopItem', JSON.stringify(this.shopitem))
+        this.httpclient.post('http://localhost/HappiPugCloudService/api/VideoShopItem', JSON.stringify(shopinfo))
 
 
 				.map(response => response.json())
@@ -111,7 +113,8 @@ export class shopitemComponent implements OnChanges{
 						//this.shopitem.PLeft = 2;
 					//	this.vdbid = '90';
 						this.cd.detectChanges();
-						console.log(this.shopitem);
+                        console.log(this.shopitem);
+                        this.changeData.next(null);
 					}
 
 					);
