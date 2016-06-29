@@ -10,7 +10,7 @@ System.register(['@angular/platform-browser-dynamic', './admin/admin.home', '@an
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var platform_browser_dynamic_1, admin_home_1, core_1, app_component_1, http_1, httpclient_1, router_deprecated_1, common_1;
+    var platform_browser_dynamic_1, admin_home_1, core_1, app_component_1, http_1, httpclient_1, router_deprecated_1, common_1, core_2;
     var Main;
     return {
         setters:[
@@ -22,6 +22,7 @@ System.register(['@angular/platform-browser-dynamic', './admin/admin.home', '@an
             },
             function (core_1_1) {
                 core_1 = core_1_1;
+                core_2 = core_1_1;
             },
             function (app_component_1_1) {
                 app_component_1 = app_component_1_1;
@@ -39,7 +40,7 @@ System.register(['@angular/platform-browser-dynamic', './admin/admin.home', '@an
                 common_1 = common_1_1;
             }],
         execute: function() {
-            // Routing is set up with the RouteConfig decorator
+            core_2.enableProdMode();
             Main = (function () {
                 function Main() {
                 }
@@ -59,7 +60,8 @@ System.register(['@angular/platform-browser-dynamic', './admin/admin.home', '@an
                 return Main;
             }());
             exports_1("Main", Main);
-            platform_browser_dynamic_1.bootstrap(Main, [http_1.HTTP_PROVIDERS, router_deprecated_1.ROUTER_PROVIDERS, core_1.provide(common_1.APP_BASE_HREF, { useValue: '/' })]);
+            platform_browser_dynamic_1.bootstrap(Main, [http_1.HTTP_PROVIDERS, router_deprecated_1.ROUTER_PROVIDERS, core_1.provide(common_1.APP_BASE_HREF, { useValue: '/' })]).then(function (success) { return console.log("Bootstrap success"); })
+                .catch(function (error) { return console.log(error); });
         }
     }
 });

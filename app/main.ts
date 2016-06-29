@@ -7,6 +7,8 @@ import {HttpClient} from './httpclient';
 import { ROUTER_DIRECTIVES, ROUTER_PROVIDERS,RouteConfig, Router} from '@angular/router-deprecated';
 import { LocationStrategy, PathLocationStrategy, APP_BASE_HREF } from '@angular/common';
 // Routing is set up with the RouteConfig decorator
+import {enableProdMode} from '@angular/core';
+enableProdMode();
 @Component({
     selector: 'hp-main',
     providers: [HttpClient, HTTP_PROVIDERS],
@@ -23,4 +25,5 @@ import { LocationStrategy, PathLocationStrategy, APP_BASE_HREF } from '@angular/
 
 }
 
-bootstrap(Main, [HTTP_PROVIDERS, ROUTER_PROVIDERS, provide(APP_BASE_HREF, { useValue: '/' })]);
+bootstrap(Main, [HTTP_PROVIDERS, ROUTER_PROVIDERS, provide(APP_BASE_HREF, { useValue: '/' })]).then(success => console.log(`Bootstrap success`))
+  .catch(error => console.log(error));
