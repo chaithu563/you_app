@@ -66,14 +66,13 @@ System.register(['@angular/core', '@angular/common', '@angular/router-deprecated
                             console.log(mediaElement.duration);
                             // add event listener
                             mediaElement.addEventListener('timeupdate', function (e) {
-                                var _this = this;
                                 // console.log('time chnage' + mediaElement.currentTime);
-                                this.curtime = mediaElement.currentTime;
+                                self.curtime = mediaElement.currentTime;
                                 // console.log(this.viewChild);
                                 //var input = $('#currentTime');
                                 //input.val(mediaElement.currentTime).change(); 
                                 //input.trigger('change');
-                                self.availItemsTime = self.availItems.filter(function (x) { return x.StartTime <= _this.curtime && _this.curtime <= x.EndTime; });
+                                self.availItemsTime = self.availItems.filter(function (x) { return x.StartTime <= self.curtime && self.curtime <= x.EndTime; });
                                 self.cd.detectChanges();
                             }, false);
                             mediaElement.addEventListener('seeking', function (e) {
@@ -90,16 +89,16 @@ System.register(['@angular/core', '@angular/common', '@angular/router-deprecated
                     console.log(changes['availItemsTime'].currentValue);
                 };
                 AdminVideoPlay.prototype.loadMovieItems = function () {
-                    var _this = this;
+                    var self = this;
                     this.httpclient.get('http://localhost/HappiPugCloudService/api/VideoShopItem/VideoItemsSet/' + this.vdbid)
                         .map(function (response) { return response.json(); })
                         .subscribe(function (res) {
                         console.log('success');
-                        _this.availItems = res;
+                        self.availItems = res;
                         //this.shopitem.PLeft = 2;
                         //	this.vdbid = '90';
-                        _this.cd.detectChanges();
-                        console.log(_this.availItems);
+                        self.cd.detectChanges();
+                        console.log(self.availItems);
                     });
                 };
                 //timeChange(event) {

@@ -34,10 +34,21 @@ System.register(['@angular/core', '@angular/common', '../httpclient'], function(
                 shopitemComponent.prototype.ngOnInit = function () {
                     this.cd.markForCheck();
                 };
+                //  ngOnChanges(changes: { [propName: shopitem]: SimpleChange }) {
+                //	console.log('Change detected:', changes['shopitem'].currentValue);
+                //          this.shopitem = changes['shopitem'].currentValue;
+                //          this.curtime = changes['curtime'].currentValue;
+                //    this.CurrentTime = this.curtime;
+                //    this.cd.detectChanges();
+                //}
                 shopitemComponent.prototype.ngOnChanges = function (changes) {
-                    console.log('Change detected:', changes['shopitem'].currentValue);
-                    this.shopitem = changes['shopitem'].currentValue;
-                    this.CurrentTime = this.curtime;
+                    //console.log('Change detected:', changes['shopitem'].currentValue);
+                    if (changes['shopitem'])
+                        this.shopitem = changes['shopitem'].currentValue;
+                    if (changes['curtime'])
+                        this.curtime = changes['curtime'].currentValue;
+                    // this.CurrentTime = this.curtime;
+                    this.cd.detectChanges();
                 };
                 shopitemComponent.prototype.saveFun1 = function (shop) {
                     var _this = this;

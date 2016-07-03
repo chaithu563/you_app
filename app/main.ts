@@ -16,8 +16,8 @@ enableProdMode();
     directives: [ROUTER_DIRECTIVES]
 })
 @RouteConfig([
-        { path: '/admin/...', component: AdminHome, name: 'AdminHome', useAsDefault: true },
-    { path: '/app', component: AppComponent, name: 'AppHome' }
+        { path: '/admin/...', component: AdminHome, name: 'AdminHome', useAsDefault: true},
+        { path: '/app', component: AppComponent, name: 'AppHome' }
    
 ])
 

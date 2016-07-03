@@ -32,11 +32,22 @@ export class shopitemComponent implements OnChanges{
     ngOnInit() {
         this.cd.markForCheck(); 
   }
-    ngOnChanges(changes: { [propName: shopitem]: SimpleChange }) {
-			console.log('Change detected:', changes['shopitem'].currentValue);
-      this.shopitem = changes['shopitem'].currentValue;
-      this.CurrentTime = this.curtime;
-		}
+  //  ngOnChanges(changes: { [propName: shopitem]: SimpleChange }) {
+		//	console.log('Change detected:', changes['shopitem'].currentValue);
+  //          this.shopitem = changes['shopitem'].currentValue;
+  //          this.curtime = changes['curtime'].currentValue;
+  //    this.CurrentTime = this.curtime;
+  //    this.cd.detectChanges();
+		//}
+    ngOnChanges(changes: any) {
+        //console.log('Change detected:', changes['shopitem'].currentValue);
+        if (changes['shopitem'])
+            this.shopitem = changes['shopitem'].currentValue;
+        if (changes['curtime'])
+        this.curtime = changes['curtime'].currentValue;
+       // this.CurrentTime = this.curtime;
+        this.cd.detectChanges();
+    }
     saveFun1(shop: shopitem) {
 
        

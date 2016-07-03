@@ -79,7 +79,7 @@ export class AdminVideoPlay implements AfterViewInit, AfterViewChecked, OnInit, 
                     // add event listener
                     mediaElement.addEventListener('timeupdate', function (e) {
                        // console.log('time chnage' + mediaElement.currentTime);
-                        this.curtime = mediaElement.currentTime;
+                        self.curtime = mediaElement.currentTime;
                        // console.log(this.viewChild);
                         //var input = $('#currentTime');
                         //input.val(mediaElement.currentTime).change(); 
@@ -87,7 +87,7 @@ export class AdminVideoPlay implements AfterViewInit, AfterViewChecked, OnInit, 
                         //input.trigger('change');
 
 											
-												self.availItemsTime = self.availItems.filter(x=> x.StartTime <= this.curtime && this.curtime <= x.EndTime);
+												self.availItemsTime = self.availItems.filter(x=> x.StartTime <= self.curtime && self.curtime <= x.EndTime);
 
 
 												self.cd.detectChanges();
@@ -118,7 +118,7 @@ export class AdminVideoPlay implements AfterViewInit, AfterViewChecked, OnInit, 
          
 
          loadMovieItems() {
-
+             var self = this;
 
              this.httpclient.get('http://localhost/HappiPugCloudService/api/VideoShopItem/VideoItemsSet/' + this.vdbid)
 
@@ -127,11 +127,11 @@ export class AdminVideoPlay implements AfterViewInit, AfterViewChecked, OnInit, 
                 .subscribe(
                 res => {
                     console.log('success');
-                    this.availItems = res;
+                    self.availItems = res;
                     //this.shopitem.PLeft = 2;
                     //	this.vdbid = '90';
-                    this.cd.detectChanges();
-                    console.log(this.availItems);
+                    self.cd.detectChanges();
+                    console.log(self.availItems);
                 }
 
                 );
