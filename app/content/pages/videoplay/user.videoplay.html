@@ -1,10 +1,26 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <title></title>
-	<meta charset="utf-8" />
-</head>
-<body>
+﻿<div class="videocontent">
 
-</body>
-</html>
+    <div class="adminDiv">
+
+        <div class="admVideoDiv">
+            <div class="admin_video_overlays" ng-show="true">
+                <div *ngFor="#item of availItemsTime" ng-style="{'position':'absolute' }" [draggable]="item">
+                    <img style="width: 30px; height: 30px; color: black" src="../../app/img/plus-tag.svg" (click)="openSelectedItem(item)">
+                </div>
+            </div>
+
+            <div class="videodiv">
+                <video width="100%" height="400" id="videoPlayer" preload="none">
+                    <source type="video/youtube" [src]="videosrc" />
+                </video>
+            </div>
+
+
+        </div>
+
+        <div class="admItemAdd">
+            <hp-shopinfo [(shopitem)]="shopinfo" [(curtime)]="curtime" (changeData)="changeData($event)"> </hp-shopinfo>
+        </div>
+    </div>
+
+</div>

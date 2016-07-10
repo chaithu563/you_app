@@ -1,1 +1,137 @@
-﻿
+﻿/////<reference path="../../typings/jquery/jquery.d.ts" />
+
+import { AfterViewInit, AfterViewChecked, OnInit, OnChanges, SimpleChange, ElementRef} from '@angular/core';
+import { CORE_DIRECTIVES, FORM_DIRECTIVES } from '@angular/common';
+import {ROUTER_DIRECTIVES, RouteConfig, Router, RouteParams} from '@angular/router-deprecated';
+//import {MediaElementPlayer} from 'build/mediaelementplayer';
+import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy, ChangeDetectorRef, ViewChild} from '@angular/core';
+import { Http, HTTP_PROVIDERS, Response, Headers, RequestOptions } from '@angular/http';
+import {HttpClient} from '../../../httpclient';
+import 'rxjs/Rx';
+import {videoinfo } from '../../../interfaces/videoinfo';
+import {shopitem } from '../../../interfaces/shopitem';
+//import {YoutubeVideo} from 'YoutubeVideo';
+//declare var $: JQueryStatic;
+declare var YoutubeVideo: any;
+declare var MediaElementPlayer: any;
+@Component({ 
+    providers: [HttpClient, HTTP_PROVIDERS],
+    templateUrl: '../app/content/pages/videoplay/user.videoplay.html',
+    styleUrls: ['../app/content/pages/videoplay/user.videoplay.css'],
+    directives: [CORE_DIRECTIVES],
+    changeDetection: ChangeDetectionStrategy.Default
+})
+
+
+
+export class UserVideoPlay implements AfterViewInit, AfterViewChecked, OnInit, OnChanges {
+
+    // @ViewChild(shopitemComponent) viewChild: shopitemComponent;
+    videosrc: string;
+    myele: any;
+    title: string;
+    curtime: number;
+    shopinfo: shopitem;
+    vdbid: string;
+    http: Http;
+    httpclient: HttpClient;
+    availItems: Array<shopitem>;
+    availItemsTime: Array<shopitem>;
+    constructor(el: ElementRef, httpClient: HttpClient, routeParams: RouteParams, http: Http, private cd: ChangeDetectorRef) {
+        this.myele = el;
+        this.vdbid = routeParams.get('dbid');
+        this.videosrc = "www.youtube.com/watch?v=" + routeParams.get('id');
+        this.httpclient = httpClient;
+        this.http = http;
+        this.curtime = 0;
+        this.shopinfo = { Id: 1, ProductHandle: null, PTop: 0, PLeft: 0, StartTime: this.curtime, EndTime: this.curtime, Video_Id: this.vdbid };
+        this.loadMovieItems();
+
+
+    }
+
+    openSelectedItem(item: shopitem) {
+        this.shopinfo = item;
+
+    }
+
+
+    ngAfterViewInit() {
+
+        var self = this;
+        var player = new MediaElementPlayer('video',
+            {
+
+                defaultVideoWidth: 960, defaultVideoHeight: 410,
+                features: ['playpause', 'progress', 'current', 'duration', 'volume', 'fullscreen'],
+                success: function (mediaElement, domObject) {
+
+                    console.log(mediaElement.duration);
+                    // add event listener
+                    mediaElement.addEventListener('timeupdate', function (e) {
+                        self.curtime = mediaElement.currentTime;							
+                        self.availItemsTime = self.availItems.filter(x=> x.StartTime <= self.curtime && self.curtime <= x.EndTime);
+                        self.cd.detectChanges();
+
+                    }, false);
+
+                    mediaElement.addEventListener('seeking', function (e) {
+                        console.log('seeking' + mediaElement.currentTime);
+                    }, false);
+
+
+                }
+            });
+        player.setSrc(this.videosrc);
+
+
+    }
+
+    ngOnInit() {
+
+
+    }
+
+    ngOnChanges(changes: any) {
+        console.log('Change detected:', changes['availItemsTime'].currentValue);
+        console.log(changes['availItemsTime'].currentValue);
+    }
+
+
+    loadMovieItems() {
+        var self = this;
+
+        this.httpclient.get('http://localhost/HappiPugCloudService/api/VideoShopItem/VideoItemsSet/' + this.vdbid)
+
+
+            .map(response => response.json())
+            .subscribe(
+            res => {
+                console.log('success');
+                self.availItems = res;
+                self.cd.detectChanges();
+                console.log(self.availItems);
+            }
+
+            );
+
+    }
+
+
+    ngAfterViewChecked() {
+
+    }
+
+
+    changeData(data: any) {
+        this.loadMovieItems();
+    }
+}
+
+
+
+
+
+
+
+

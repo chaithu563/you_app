@@ -34,15 +34,7 @@ System.register(['@angular/core', '@angular/common', '../httpclient'], function(
                 shopitemComponent.prototype.ngOnInit = function () {
                     this.cd.markForCheck();
                 };
-                //  ngOnChanges(changes: { [propName: shopitem]: SimpleChange }) {
-                //	console.log('Change detected:', changes['shopitem'].currentValue);
-                //          this.shopitem = changes['shopitem'].currentValue;
-                //          this.curtime = changes['curtime'].currentValue;
-                //    this.CurrentTime = this.curtime;
-                //    this.cd.detectChanges();
-                //}
                 shopitemComponent.prototype.ngOnChanges = function (changes) {
-                    //console.log('Change detected:', changes['shopitem'].currentValue);
                     if (changes['shopitem'])
                         this.shopitem = changes['shopitem'].currentValue;
                     if (changes['curtime'])
@@ -57,8 +49,6 @@ System.register(['@angular/core', '@angular/common', '../httpclient'], function(
                         .subscribe(function (res) {
                         console.log('success');
                         _this.shopitem = res;
-                        //this.shopitem.PLeft = 2;
-                        //	this.vdbid = '90';
                         _this.cd.detectChanges();
                         console.log(_this.shopitem);
                         _this.changeData.next(null);
@@ -71,18 +61,11 @@ System.register(['@angular/core', '@angular/common', '../httpclient'], function(
                         .subscribe(function (res) {
                         console.log('success');
                         _this.shopitem = [];
-                        //this.shopitem.PLeft = 2;
-                        //	this.vdbid = '90';
                         _this.cd.detectChanges();
                         console.log(_this.shopitem);
                         _this.changeData.next(null);
                     });
                 };
-                //valuechange(newValue) {
-                //  this.CurrentTime = newValue;
-                //  this.CurrentTime = this.curtime;
-                //  console.log(newValue)
-                //}
                 shopitemComponent.prototype.setStartTime = function () {
                     this.shopitem.StartTime = this.curtime;
                     this.cd.detectChanges();

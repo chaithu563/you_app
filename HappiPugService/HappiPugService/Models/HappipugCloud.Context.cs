@@ -7,29 +7,26 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace HappiPugCloudService.Models
+using System;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
+
+public partial class happiPugCloudEntities : DbContext
 {
-    using System;
-    using System.Data.Entity;
-    using System.Data.Entity.Infrastructure;
-    
-    public partial class happiPugCloudEntities : DbContext
+    public happiPugCloudEntities()
+        : base("name=happiPugCloudEntities")
     {
-        public happiPugCloudEntities()
-            : base("name=happiPugCloudEntities")
-        {
-        }
-    
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            throw new UnintentionalCodeFirstException();
-        }
-    
-        public DbSet<Actor> Actors { get; set; }
-        public DbSet<ActorType> ActorTypes { get; set; }
-        public DbSet<Language> Languages { get; set; }
-        public DbSet<Video> Videos { get; set; }
-        public DbSet<VideoShopItem> VideoShopItems { get; set; }
-        public DbSet<VideoType> VideoTypes { get; set; }
     }
+
+    protected override void OnModelCreating(DbModelBuilder modelBuilder)
+    {
+        throw new UnintentionalCodeFirstException();
+    }
+
+    public DbSet<Actor> Actors { get; set; }
+    public DbSet<ActorType> ActorTypes { get; set; }
+    public DbSet<Language> Languages { get; set; }
+    public DbSet<Video> Videos { get; set; }
+    public DbSet<VideoShopItem> VideoShopItems { get; set; }
+    public DbSet<VideoType> VideoTypes { get; set; }
 }
