@@ -48,7 +48,7 @@ System.register(['@angular/core', '@angular/common', '@angular/router-deprecated
                     this.httpclient = httpClient;
                     this.http = http;
                     this.curtime = 0;
-                    this.shopinfo = { Id: 1, ProductHandle: null, PTop: 0, PLeft: 0, StartTime: this.curtime, EndTime: this.curtime, Video_Id: this.vdbid };
+                    this.shopinfo = { Id: 1, ProductHandle: null, PTop: 0, PLeft: 0, StartTime: this.curtime, EndTime: this.curtime, Video_Id: parseInt(this.vdbid) };
                     //this.cd.detectChanges();
                     this.loadMovieItems();
                     //   this.availItemsTime = 0;
