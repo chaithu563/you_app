@@ -32,15 +32,8 @@ export class shopitemComponent implements OnChanges{
     ngOnInit() {
         this.cd.markForCheck(); 
   }
-  //  ngOnChanges(changes: { [propName: shopitem]: SimpleChange }) {
-		//	console.log('Change detected:', changes['shopitem'].currentValue);
-  //          this.shopitem = changes['shopitem'].currentValue;
-  //          this.curtime = changes['curtime'].currentValue;
-  //    this.CurrentTime = this.curtime;
-  //    this.cd.detectChanges();
-		//}
+
     ngOnChanges(changes: any) {
-        //console.log('Change detected:', changes['shopitem'].currentValue);
         if (changes['shopitem'])
             this.shopitem = changes['shopitem'].currentValue;
         if (changes['curtime'])
@@ -59,8 +52,6 @@ export class shopitemComponent implements OnChanges{
             res => {
                 console.log('success');
                 this.shopitem = res;
-                //this.shopitem.PLeft = 2;
-                //	this.vdbid = '90';
                 this.cd.detectChanges();
                 console.log(this.shopitem);
                 this.changeData.next(null);
@@ -81,8 +72,6 @@ export class shopitemComponent implements OnChanges{
             res => {
                 console.log('success');
                 this.shopitem = [];
-                //this.shopitem.PLeft = 2;
-                //	this.vdbid = '90';
                 this.cd.detectChanges();
                 console.log(this.shopitem);
                 this.changeData.next(null);
@@ -92,12 +81,6 @@ export class shopitemComponent implements OnChanges{
 
 
     }
-    //valuechange(newValue) {
-    //  this.CurrentTime = newValue;
-    //  this.CurrentTime = this.curtime;
-    //  console.log(newValue)
-    //}
-
     setStartTime() {
       this.shopitem.StartTime =this.curtime;
       this.cd.detectChanges();

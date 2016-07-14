@@ -3,40 +3,16 @@
     <div class="adminDiv">
 
         <div class="admVideoDiv">
-
-
-
             <div class="admin_video_overlays" ng-show="true">
-                <!--my-draggable="{{item}}"-->
                 <div  *ngFor="#item of availItemsTime" ng-style="{'position':'absolute' }" [draggable]="item" >
                     <img style="width: 30px; height: 30px; color: black" src="../../app/img/plus-tag.svg" (click)="openSelectedItem(item)">
                 </div>
-                <!--[(ngModel)]="availItemsTime"--> 
-              <!--  <input id="avItems" (change) ="timeChange($event)" (oninput)=timeChange($event) (onchange)=timeChange($event) (keydown)=timeChange($event)  (keypress)=timeChange($event)/>-->
-            </div>
+              </div>
 
             <div class="videodiv">
-
-
-
-
                 <video width="100%" height="400" id="videoPlayer" preload="none">
                     <source type="video/youtube" [src]="videosrc" />
                 </video>
-
-                <!--<div class="admin-video-controls">
-
-
-                    <img id="play-pause" class="controlimg" ng-src="../app/img/{{playorpause}}-icon.png" ng-click="ShowItemsAvail()" alt="" />
-
-                    <input type="range" id="seek-bar" value="0">
-
-                    <img id="mute" class="controlimg" ng-src="../app/img/{{muteorunmute}}-icon.png" alt="" />
-                    <input type="range" id="volume-bar" min="0" max="1" step="0.1" value="1">
-
-                    <img id="full-screen" title="Full screen" src="../app/img/FullScreen.png" class="controlimg" alt="" />
-                </div>-->
-
             </div>
 
 
