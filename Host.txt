@@ -117,3 +117,29 @@ clientiD
 secre  R-WyRNKwmIQIOGAEBLCS_qJq
 
 https://developers.google.com/identity/protocols/OAuth2ServiceAccount
+
+For us it only worked because we are using the same theme across all domains. 
+
+I managed to do it by using some Javascript in the code. I think it's probably an ugly solution, but it works for us so far.
+
+For example
+
+First some code to identify the domain
+
+<script>
+  var lo0 = window.location.hostname  
+  var lo1 = lo0.substring(4,10);
+  var lomain;
+  
+        if (lo1 =='greenb' ) {lomain = "gbx";}      
+        else if (lo1 == 'airpur' ) {lomain = "aps";} 
+        else if (lo1 == 'dehumi' ) {lomain = "dhs";} 
+ </script> 
+Then per item we wanted changed, use some other script. For example to change the logo on our page:
+
+ <script>
+  if ( lomain == 'gbx') {document.getElementById("logochange").src = "{{ 'logo-gbx.png' | asset_url }}" ;}
+  else if ( lomain == 'aps') {document.getElementById("logochange").src = "{{ 'logo-aps.png' | asset_url }}" ;}
+  else if ( lomain == 'dhs') {document.getElementById("logochange").src = "{{ 'logo-dhs.png' | asset_url }}" ;}
+  </script>
+This is how I did it. A lot of trial and error and a lot of searching forums and googling for info. Hope this helps you.
