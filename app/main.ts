@@ -2,6 +2,7 @@ import {bootstrap} from '@angular/platform-browser-dynamic';
 import {AdminHome} from './admin/admin.home';
 import {provide, Component} from '@angular/core';
 import {AppComponent} from './app.component';
+import {UserVideoPlay} from '../app/content/pages/videoplay/user.videoplay';
 import {HTTP_PROVIDERS} from '@angular/http';
 import {HttpClient} from './httpclient';
 import { ROUTER_DIRECTIVES, ROUTER_PROVIDERS,RouteConfig, Router} from '@angular/router-deprecated';
@@ -16,9 +17,9 @@ enableProdMode();
     directives: [ROUTER_DIRECTIVES]
 })
 @RouteConfig([
-        { path: '/admin/...', component: AdminHome, name: 'AdminHome', useAsDefault: true},
-        { path: '/app', component: AppComponent, name: 'AppHome' }
-   
+        { path: '/admin/...', component: AdminHome, name: 'AdminHome'},
+        { path: '/app', component: AppComponent, name: 'AppHome'},
+        { path: '/videoplay', component: UserVideoPlay, name: 'AppHome', useAsDefault: true }
 ])
 
  export class Main {

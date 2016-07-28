@@ -1,4 +1,4 @@
-System.register(['@angular/platform-browser-dynamic', './admin/admin.home', '@angular/core', './app.component', '@angular/http', './httpclient', '@angular/router-deprecated', '@angular/common'], function(exports_1, context_1) {
+System.register(['@angular/platform-browser-dynamic', './admin/admin.home', '@angular/core', './app.component', '../app/content/pages/videoplay/user.videoplay', '@angular/http', './httpclient', '@angular/router-deprecated', '@angular/common'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['@angular/platform-browser-dynamic', './admin/admin.home', '@an
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var platform_browser_dynamic_1, admin_home_1, core_1, app_component_1, http_1, httpclient_1, router_deprecated_1, common_1, core_2;
+    var platform_browser_dynamic_1, admin_home_1, core_1, app_component_1, user_videoplay_1, http_1, httpclient_1, router_deprecated_1, common_1, core_2;
     var Main;
     return {
         setters:[
@@ -26,6 +26,9 @@ System.register(['@angular/platform-browser-dynamic', './admin/admin.home', '@an
             },
             function (app_component_1_1) {
                 app_component_1 = app_component_1_1;
+            },
+            function (user_videoplay_1_1) {
+                user_videoplay_1 = user_videoplay_1_1;
             },
             function (http_1_1) {
                 http_1 = http_1_1;
@@ -52,8 +55,9 @@ System.register(['@angular/platform-browser-dynamic', './admin/admin.home', '@an
                         directives: [router_deprecated_1.ROUTER_DIRECTIVES]
                     }),
                     router_deprecated_1.RouteConfig([
-                        { path: '/admin/...', component: admin_home_1.AdminHome, name: 'AdminHome', useAsDefault: true },
-                        { path: '/app', component: app_component_1.AppComponent, name: 'AppHome' }
+                        { path: '/admin/...', component: admin_home_1.AdminHome, name: 'AdminHome' },
+                        { path: '/app', component: app_component_1.AppComponent, name: 'AppHome' },
+                        { path: '/videoplay', component: user_videoplay_1.UserVideoPlay, name: 'AppHome', useAsDefault: true }
                     ]), 
                     __metadata('design:paramtypes', [])
                 ], Main);
